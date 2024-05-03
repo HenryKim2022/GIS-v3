@@ -30,29 +30,7 @@
     "icon": "mdi-account-group-outline",
     "url": "user-lists"
     }
-
   ],
-
-
-
-
-
-
-
-  "files": [
-    {
-      "name": "Class Attendance",
-      "subtitle": "By Tommy Shelby",
-      "src": "img/icons/misc/search-xls.png",
-      "meta": "17kb",
-      "url": "app-file-manager.html"
-    }
-
-  ],
-
-
-
-
 
 
   "members": [
@@ -80,6 +58,5 @@
       "src": "img/avatars/7.png",
       "url": "app-user-view-account.html"
     }
-
   ]
 }
