@@ -30,33 +30,56 @@
     "icon": "mdi-account-group-outline",
     "url": "user-lists"
     }
+
   ],
+
+
+
+
+
+
+
+  "files": [
+    {
+      "name": "",
+      "subtitle": "",
+      "src": "",
+      "meta": "",
+      "url": ""
+    }
+
+  ],
+
+
+
+
 
 
   "members": [
     {
-      "name": "Henry Kim",
-      "subtitle": "Admin",
+      "name": "Hendri",
+      "subtitle": "Programmer",
       "src": "img/avatars/1.png",
       "url": "app-user-view-account.html"
     },
     {
       "name": "M. Ramdan Pujianto",
-      "subtitle": "Customer",
+      "subtitle": "Analize",
       "src": "img/avatars/2.png",
       "url": "app-user-view-account.html"
     },
     {
       "name": "Yopi Okta",
-      "subtitle": "Staff",
+      "subtitle": "Designer",
       "src": "img/avatars/5.png",
       "url": "app-user-view-account.html"
     },
     {
       "name": "M. Haffizh",
-      "subtitle": "Staff",
+      "subtitle": "Project Manager",
       "src": "img/avatars/7.png",
       "url": "app-user-view-account.html"
     }
+
   ]
 }
