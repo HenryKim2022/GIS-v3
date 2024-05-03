@@ -30,15 +30,7 @@
     "icon": "mdi-account-group-outline",
     "url": "user-lists"
     }
-
   ],
-
-
-
-
-
-
-
   "files": [
     {
       "name": "",
@@ -47,14 +39,7 @@
       "meta": "",
       "url": ""
     }
-
   ],
-
-
-
-
-
-
   "members": [
     {
       "name": "Hendri",
@@ -80,6 +65,5 @@
       "src": "img/avatars/7.png",
       "url": "app-user-view-account.html"
     }
-
   ]
 }
