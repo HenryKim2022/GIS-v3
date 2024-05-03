@@ -514,7 +514,7 @@ if (typeof $ !== 'undefined') {
       var searchData = $.ajax({
         url: assetsPath + 'json/' + searchJson, //? Use your own search api instead
         dataType: 'json',
-        async: true
+        async: false
       }).responseJSON;
       // Init typeahead on searchInput
       searchInput.each(function () {
