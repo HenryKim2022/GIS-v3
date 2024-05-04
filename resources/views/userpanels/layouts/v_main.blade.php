@@ -1401,36 +1401,29 @@
                                                     </a>
                                                 </div>
 
-                                                <style>
+                                                {{-- <style>
                                                 .li-mem {
                                                     font-size: small;
                                                 }
-                                                </style>
+                                                </style> --}}
 
-                                                <?php
-                                                $groupMembersJson = env('GROUP_MEMBER');
-                                                $groupMembers = json_decode($groupMembersJson, true);
-
-                                                if (is_array($groupMembers)) {
-                                                    echo '<div class="cust-ul pl-0 ml-4 grad-txt-2 text-md">';
-                                                    echo '<div class="row">';
-
-                                                    foreach ($groupMembers as $members) {
-                                                        echo '<span class="li-mem" style="font-size: 0.8rem;">';
-                                                        echo '<i class="cust-j mdi mdi-drama-masks mdi-24px"></i>';
-                                                        echo '<i class="fa-duotone mdi mdi-arrow-expand-right mdi-12px"></i>';
-
-                                                        foreach ($members as $member) {
-                                                            echo $member . ' ';
-                                                        }
-
-                                                        echo '</span>';
-                                                    }
-
-                                                    echo '</div>';
-                                                    echo '</div>';
-                                                }
-                                                ?>
+                                                @php
+                                                    $groupMembersJson = env('GROUP_MEMBER');
+                                                    $groupMembers = json_decode($groupMembersJson, true);
+                                                @endphp
+                                                @if (is_array($groupMembers))
+                                                    <div class="cust-ul pl-0 ml-4 grad-txt-2 text-md">
+                                                        <div class="row">
+                                                            @foreach ($groupMembers as $member)
+                                                                <span class="li-mem" style="font-size: 0.8rem;">
+                                                                    <i class="cust-j mdi mdi-drama-masks mdi-24px"></i>
+                                                                    <i class="fa-duotone mdi mdi-arrow-expand-right mdi-12px"></i>
+                                                                    {{ $member[0] }}
+                                                                </span>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endif
 
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                             </div>

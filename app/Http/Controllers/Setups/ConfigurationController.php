@@ -29,7 +29,7 @@ class ConfigurationController extends Controller
     public function saveConfiguration(Request $request)
     {
         if ($request != null){
-            $groupMembers = '"' . "[\n    [\\\"Hendri\\\", \\\"(1152125001)\\\"],\n    [\\\"Yopi Okta R.W\\\", \\\"(1152120003)\\\"],\n    [\\\"AKhmad Hafizh D\\\", \\\"(1152120001)\\\"],\n    [\\\"M. Ramdan P\\\", \\\"(1152120006)\\\"]\n]" . '"';
+            $groupMembers = '"' . "[\n    [\\\"Hendri\\\", \\\"Programmer\\\", \\\"(1152125001)\\\"],\n    [\\\"Yopi Okta R.W\\\", \\\"Designer\\\", \\\"(1152120003)\\\"],\n    [\\\"Akhmad Hafizh D\\\", \\\"Project Manager\\\", \\\"(1152120001)\\\"],\n    [\\\"M. Ramdan P\\\", \\\"Analize\\\", \\\"(1152120006)\\\"]\n]" . '"';
             $envData = [
                 'APP_NAME' => $request->input('app_name') == 'null' ? null : '"' . $request->input('app_name') . '"',
                 'APP_ALIAS' => $request->input('app_alias') == 'null' ? null : '"' . $request->input('app_alias') . '"',
