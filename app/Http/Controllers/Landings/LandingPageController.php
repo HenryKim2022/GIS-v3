@@ -21,6 +21,8 @@ class LandingPageController extends Controller
         Session::put('page', $this->pageData);
     }
 
+
+    //
     public function index(){
         $process = $this->setPageSession("Landing Page", "landing-page");
         if ($process){

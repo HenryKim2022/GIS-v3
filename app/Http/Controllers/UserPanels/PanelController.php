@@ -20,6 +20,8 @@ class PanelController extends Controller
         Session::put('page', $this->pageData);
     }
 
+
+    //
     public function index(){
         $process = $this->setPageSession("Dashboard", "dashboard");
         if ($process){
