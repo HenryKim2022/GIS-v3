@@ -31,7 +31,7 @@ class LoginController extends Controller
     }
 
     public function forgotPassword(){
-        $process = $this->setPageSession("Login Page", "login");
+        $process = $this->setPageSession("Forgot Password Page", "forgot");
         if ($process){
             return view('auth/v_forgot_pass');
         }

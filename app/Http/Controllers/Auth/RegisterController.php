@@ -24,7 +24,10 @@ class RegisterController extends Controller
 
     //
     public function index(){
-        return view('auth/v_register');
+        $process = $this->setPageSession("Register Page", "register");
+        if ($process){
+            return view('auth/v_register');
+        }
     }
 
 
