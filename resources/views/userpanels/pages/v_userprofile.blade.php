@@ -1,7 +1,8 @@
 <!doctype html>
 
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="layout-navbar-fixed layout-compact dark-style layout-menu-fixed" dir="ltr"
-    data-theme="theme-default" data-assets-path="public/materialize/assets/" data-template="vertical-menu-template">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    class="layout-navbar-fixed layout-compact dark-style layout-menu-fixed customizer-hide" dir="ltr" data-theme="theme-default"
+    data-assets-path="public/materialize/assets/" data-template="vertical-menu-template">
 
 <head>
     <meta charset="utf-8" />
