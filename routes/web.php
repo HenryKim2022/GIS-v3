@@ -32,8 +32,6 @@ use App\Http\Controllers\UserPanels\PanelController;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
 // // // // SETUPS: ENV CONFIG
 Route::get('/configure', [ConfigurationController::class, 'showConfigurationPage'])->name('configure');     // FORM VIEWER
 Route::post('/configure', [ConfigurationController::class, 'saveConfiguration'])->name('configure.save');   // CONFIG FORM SAVER
@@ -44,6 +42,7 @@ if (env('APP_INSTALL', false)) {    // Not False
     Route::get('/configure', function () {
         return redirect('/');
     });
+
 
     Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');                          // CHANGE IT LATER (IF NEDDED)
 
@@ -78,6 +77,7 @@ if (env('APP_INSTALL', false)) {    // Not False
 
     //////////// USERPANEL: DASHBOARD DKK
     Route::get('/dashboard', [PanelController::class, 'index'])->name('dashboardpage');
+    Route::get('/myprofile', [PanelController::class, 'myprofile'])->name('myprofilepage');
 
 }
 

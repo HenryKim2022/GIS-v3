@@ -325,9 +325,9 @@ if (document.getElementById('layout-menu')) {
   });
 
   // If layout is RTL add .dropdown-menu-end class to .dropdown-menu
-  // if (isRtl) {
-  //   Helpers._addClass('dropdown-menu-end', document.querySelectorAll('#layout-navbar .dropdown-menu'));
-  // }
+  if (isRtl) {
+    Helpers._addClass('dropdown-menu-end', document.querySelectorAll('#layout-navbar .dropdown-menu'));
+  }
 
   // Auto update layout based on screen size
   window.Helpers.setAutoUpdate(true);

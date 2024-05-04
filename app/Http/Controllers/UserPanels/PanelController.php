@@ -12,5 +12,9 @@ class PanelController extends Controller
         return view('userpanels/layouts/v_main');
     }
 
+    public function myprofile(){
+        return view('userpanels/pages/v_userprofile');
+    }
+
 
 }

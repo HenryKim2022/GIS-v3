@@ -69,7 +69,7 @@
   background-color: #fff;
 }
 
-.dark-style body {
+.dark-style body.cst-landing-body {
   background-color: #30334e;
 }
 .dark-style .landing-light-mode {

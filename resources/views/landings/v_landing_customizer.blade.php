@@ -9,66 +9,13 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Landing Page - Front Pages | Materialize - Material Design HTML Admin Template</title>
-
+    <title>{{ env('APP_NAME') }} | Landing Page</title>
     <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('public/materialize/assets/img/favicon/favicon.ico') }}" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
-        rel="stylesheet" />
-
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/fonts/materialdesignicons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/fonts/flag-icons.css') }}" />
-
-    <!-- Menu waves for no-customizer fix -->
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/node-waves/node-waves.css') }}" />
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/css/rtl/core.css') }}"
-        class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/css/rtl/theme-default.css') }}"
-        class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/css/demo.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/css/pages/front-page.css') }}" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/nouislider/nouislider.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/swiper/swiper.css') }}" />
-    <link rel="stylesheet"
-        href="{{ asset('public/materialize/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/leaflet/leaflet.css') }}" />
-
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/animate-css/animate.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
-
-
-
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/css/pages/front-page-landing.css') }}" />
-
-    {{-- Custom CSS --}}
-    <link rel="stylesheet" href="{{ asset('public/css/custom.css') }}">
-
-
-    <!-- Helpers -->
-    <script src="{{ asset('public/materialize/assets/vendor/js/helpers.js') }}"></script>
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <script src="{{ asset('public/materialize/assets/vendor/js/template-customizer.js') }}"></script>
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{ asset('public/materialize/assets/js/front-config.js') }}"></script>
+    @include('css.v_cssheader_collections')
 </head>
 
-<body>
-    <script src="{{ asset('public/materialize/assets/vendor/js/dropdown-hover.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/js/mega-dropdown.js') }}"></script>
-
+<body class="cst-landing-body">
     <!-- Navbar: Start -->
     <nav class="layout-navbar container shadow-none py-0">
         <div class="navbar navbar-expand-lg landing-navbar border-top-0 px-3 px-md-4">
@@ -1021,39 +968,7 @@
         </section>
         <!-- Real customers reviews: End -->
 
-
-
-
-        <!-- Our great team: Start -->
-        {{-- ?php
-        $groupMembersJson = env('GROUP_MEMBER');
-        $groupMembers = json_decode($groupMembersJson, true);
-
-        if (is_array($groupMembers)) {
-            echo '<div class="cust-ul pl-0 ml-4 grad-txt-2 text-md">';
-            echo '<div class="row">';
-
-            foreach ($groupMembers as $members) {
-                echo '<span class="li-mem" style="font-size: 0.8rem;">';
-                echo '<i class="cust-j mdi mdi-drama-masks mdi-24px"></i>';
-                echo '<i class="fa-duotone mdi mdi-arrow-expand-right mdi-12px"></i>';
-
-                foreach ($members as $member) {
-                    echo $member . ' ';
-                }
-
-                echo '</span>';
-            }
-
-            echo '</div>';
-            echo '</div>';
-        }
-        ?> --}}
-
-
-
-
-        <section id="landingTeam" class="section-py landing-team">
+        <section id="landingTeam" class="section-py landing-team disable-right-click">
             <div class="container bg-icon-right position-relative">
                 <img src="{{ asset('public/materialize/assets/img/front-pages/icons/bg-right-icon-light.png') }}"
                     alt="section icon" class="position-absolute top-0 end-0" data-speed="1"
@@ -1687,46 +1602,7 @@
     <!-- Footer: End -->
 
 
-
-    {{-- Custom JS --}}
-    <script src="{{ asset('public/js/custom.js') }}"></script>
-
-
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ asset('public/materialize/assets/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/libs/node-waves/node-waves.js') }}"></script>
-
-    <script src="{{ asset('public/materialize/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/libs/hammer/hammer.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/js/menu.js') }}"></script>
-    <!-- endbuild -->
-
-
-    <!-- alert:js assets vendor & page -->
-    <script src="{{ asset('public/materialize/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/js/extended-ui-sweetalert2.js') }}"></script>
-    <!-- endalert -->
-
-
-    <!-- Vendors JS -->
-    <script src="{{ asset('public/materialize/assets/vendor/libs/nouislider/nouislider.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/libs/swiper/swiper.js') }}"></script>
-    <script src="https://unpkg.com/swiper@9.3.1/swiper-bundle.min.js" type="text/javascript"></script>
-    <script src="{{ asset('public/materialize/assets/vendor/libs/leaflet/leaflet.js') }}"></script>
-
-    <!-- Main JS -->
-    <script src="{{ asset('public/materialize/assets/js/front-main.js') }}"></script>
-
-    <!-- Page JS -->
-    <script src="{{ asset('public/materialize/assets/js/front-page-landing.js') }}"></script>
-    <script src="{{ asset('public/materialize/assets/js/maps-leaflet.js') }}"></script>
-
-
+    @include('js.v_jsbody_collections')
 </body>
 
 </html>

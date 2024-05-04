@@ -1,6 +1,20 @@
 "use strict";
 
 ////////////////////////////////////////////////
+/////    <!-- CUST SCRIPT:  RIGHT CLICKS JS -->
+////////////////////////////////////////////////
+
+var elements = document.getElementsByClassName("disable-right-click");
+// Iterate over the elements and add a right-click event listener
+for (var i = 0; i < elements.length; i++) {
+  elements[i].addEventListener("contextmenu", function(event) {
+    event.preventDefault(); // Prevent the default right-click behavior
+  });
+}
+
+
+
+////////////////////////////////////////////////
 /////    <!-- MAXIMIZE + FULLSCREEN JS -->
 ////////////////////////////////////////////////
 
