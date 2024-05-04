@@ -9,7 +9,8 @@ class PanelController extends Controller
 {
 
     public function index(){
-        return view('userpanels/layouts/v_main');
+        // return view('userpanels/layouts/v_main');
+        return view('userpanels/pages/v_dashboard');
     }
 
     public function myprofile(){

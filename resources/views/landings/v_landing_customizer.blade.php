@@ -4,16 +4,8 @@
     class="dark-style layout-navbar-fixed layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
     {{-- data-assets-path="../../assets/" --}} data-assets-path="public/materialize/assets/" data-template="front-pages">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-    <title>{{ env('APP_NAME') }} | Landing Page</title>
-    <meta name="description" content="" />
-
-    @include('css.v_cssheader_collections')
-</head>
+{{-- MERGED HEADER: v_header --}}
+@include('userpanels.layouts.v_header')
 
 <body class="cst-landing-body">
     <!-- Navbar: Start -->
@@ -310,8 +302,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-medium" href="{{ base_url('dashboard') }}"
-                            target="_self">Dashboard</a>
+                        <a class="nav-link fw-medium" href="{{ base_url('dashboard') }}" target="_self">Dashboard</a>
                     </li>
                 </ul>
             </div>
@@ -373,14 +364,14 @@
                         alt="section title icon" class="me-2" />
                     <span class="text-uppercase">
                         <h3 class="text-center mb-2">
-                            <span class="fw-bold">{{ env('APP_NAME') . " : " }}</span>
-                            {{env ('APP_PURPOSE') }}
+                            <span class="fw-bold">{{ env('APP_NAME') . ' : ' }}</span>
+                            {{ env('APP_PURPOSE') }}
                         </h3>
                     </span>
                 </h6>
 
                 <p class="text-center fw-medium mb-3 mb-md-1 pb-3">
-                    {{env ('APP_ALIAS') }}
+                    {{ env('APP_ALIAS') }}
                     {{-- Not just a set of tools, the package includes ready-to-deploy conceptual application. --}}
                 </p>
                 <div class="position-relative hero-animation-img">
@@ -983,18 +974,21 @@
                 <p class="text-center fw-medium mb-3 mb-md-5 pb-3">Who is behind these great-looking interfaces?</p>
                 <div class="row gy-5 mt-2">
 
-                @php
-                    $groupMembersJson = env('GROUP_MEMBER');
-                    $groupMembers = json_decode($groupMembersJson, true);
-                @endphp
+                    @php
+                        $groupMembersJson = env('GROUP_MEMBER');
+                        $groupMembers = json_decode($groupMembersJson, true);
+                    @endphp
 
-                @if (is_array($groupMembers))
-                    @foreach ($groupMembers as $member)
+                    @if (is_array($groupMembers))
+                        @foreach ($groupMembers as $member)
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card card-hover-border-primary mt-3 mt-lg-0 shadow-none">
                                     <div class="bg-label-primary position-relative team-image-box">
                                         @php
-                                            $memberImg = $member[3] != null ? "https://" . $member[3] : asset(env(key: 'APP_NOIMAGE'))
+                                            $memberImg =
+                                                $member[3] != null
+                                                    ? 'https://' . $member[3]
+                                                    : asset(env(key: 'APP_NOIMAGE'));
                                         @endphp
                                         <img src="{{ $memberImg }}"
                                             class="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl non-draggable"
@@ -1017,8 +1011,8 @@
                                     </div>
                                 </div>
                             </div>
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
 
                 </div>
             </div>
@@ -1340,8 +1334,8 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="head-One">
                                     <button type="button" class="accordion-button collapsed"
-                                        data-bs-toggle="collapse" data-bs-target="#accordionOne"
-                                        aria-expanded="true" aria-controls="accordionOne">
+                                        data-bs-toggle="collapse" data-bs-target="#accordionOne" aria-expanded="true"
+                                        aria-controls="accordionOne">
                                         Do you charge for each upgrade?
                                     </button>
                                 </h2>
@@ -1580,19 +1574,19 @@
                 class="container d-flex flex-wrap justify-content-between flex-md-row flex-column text-center text-md-start">
                 <div class="mb-2 mb-md-0">
                     <span class="footer-text">
-                        © {{ env('APP_YEAR') == date('Y') ? env('APP_YEAR') :  env('APP_YEAR') . '-' . date('Y') }}
+                        © {{ env('APP_YEAR') == date('Y') ? env('APP_YEAR') : env('APP_YEAR') . '-' . date('Y') }}
                     </span>
                     , made with <span class="text-danger"><i class="tf-icons mdi mdi-heart"></i></span> by
                     <a href="{{ env('APP_URL') }}" target="_blank"
                         class="footer-link fw-medium">{{ env('APP_NAME') }}</a>
                 </div>
                 <div>
-                    <a href="https://www.linkedin.com/in/hendri-%E2%80%8E-087093278/" class="footer-link me-2" target="_blank"><i
-                            class="mdi mdi-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/hendri-%E2%80%8E-087093278/" class="footer-link me-2"
+                        target="_blank"><i class="mdi mdi-linkedin"></i></a>
                     <a href="https://github.com/HenryKim2022/" class="footer-link me-2" target="_blank"><i
                             class="mdi mdi-github"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=100025068874578/" class="footer-link me-2" target="_blank"><i
-                            class="mdi mdi-facebook"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100025068874578/" class="footer-link me-2"
+                        target="_blank"><i class="mdi mdi-facebook"></i></a>
                     <a href="https://www.instagram.com/henrykim119/" class="footer-link" target="_blank"><i
                             class="mdi mdi-instagram"></i></a>
                 </div>
@@ -1600,6 +1594,15 @@
         </div>
     </footer>
     <!-- Footer: End -->
+
+    {{-- CST: WHEN MODAL ACTIVE --}}
+    <div class="content-backdrop fade"></div>
+
+
+    {{-- MERGED MODALS: v_modals --}}
+    @include('userpanels.modals.v_aboutus_modal')
+    <!-- / v_modals -->
+
 
 
     @include('js.v_jsbody_collections')
