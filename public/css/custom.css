@@ -135,7 +135,6 @@ html {
 
 
 
-
 /*  */
 /* CUST CSS: GROUP MEMBER */
 /*  */
@@ -144,6 +143,18 @@ html {
 }
 
 
+
+
+/*  */
+/* CUST CSS: GENEREAL IMAGE */
+/*  */
+.non-draggable {
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
 
 
 

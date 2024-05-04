@@ -1080,7 +1080,7 @@
                                             $memberImg = $member[3] != null ? "https://" . $member[3] : asset(env(key: 'APP_NOIMAGE'))
                                         @endphp
                                         <img src="{{ $memberImg }}"
-                                            class="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
+                                            class="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl non-draggable"
                                             alt="human image" />
                                     </div>
                                     <div class="card-body text-center">
