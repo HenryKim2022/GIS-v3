@@ -425,14 +425,16 @@
                     <img src="{{ asset('public/materialize/assets/img/front-pages/icons/section-tilte-icon.png') }}"
                         alt="section title icon" class="me-2" />
                     <span class="text-uppercase">
-                        <h3 class="text-center mb-2"><span class="fw-bold">Everything you need</span> to start your
-                            next
-                            project</h3>
+                        <h3 class="text-center mb-2">
+                            <span class="fw-bold">{{ env('APP_NAME') . " : " }}</span>
+                            {{env ('APP_PURPOSE') }}
+                        </h3>
                     </span>
                 </h6>
 
                 <p class="text-center fw-medium mb-3 mb-md-1 pb-3">
-                    Not just a set of tools, the package includes ready-to-deploy conceptual application.
+                    {{env ('APP_ALIAS') }}
+                    {{-- Not just a set of tools, the package includes ready-to-deploy conceptual application. --}}
                 </p>
                 <div class="position-relative hero-animation-img">
                     <!-- Draggable Marker With Popup -->
