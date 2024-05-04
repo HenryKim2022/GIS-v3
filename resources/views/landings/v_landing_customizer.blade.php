@@ -1076,7 +1076,10 @@
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card card-hover-border-primary mt-3 mt-lg-0 shadow-none">
                                     <div class="bg-label-primary position-relative team-image-box">
-                                        <img src="{{ "https://" . $member[3] }}"
+                                        @php
+                                            $memberImg = $member[3] != null ? "https://" . $member[3] : asset(env(key: 'APP_NOIMAGE'))
+                                        @endphp
+                                        <img src="{{ $memberImg }}"
                                             class="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
                                             alt="human image" />
                                     </div>
