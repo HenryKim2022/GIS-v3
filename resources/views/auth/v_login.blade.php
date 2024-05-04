@@ -137,7 +137,7 @@
         <div
           class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg position-relative py-sm-5 px-4 py-4">
           <div class="w-px-400 mx-auto pt-5 pt-lg-0">
-            <h4 class="mb-2">Welcome to Materialize! 👋</h4>
+            <h4 class="mb-2">Welcome to {{ env("APP_NAME") }}! 👋</h4>
             <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
             <form id="formAuthentication" class="mb-3" action="index.html" method="GET">

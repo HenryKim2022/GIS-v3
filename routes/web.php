@@ -78,6 +78,7 @@ if (env('APP_INSTALL', false)) {    // Not False
     //////////// USERPANEL: DASHBOARD DKK
     Route::get('/dashboard', [PanelController::class, 'index'])->name('dashboardpage');
     Route::get('/myprofile', [PanelController::class, 'myprofile'])->name('myprofilepage');
+    Route::get('/logout', [PanelController::class, 'logout'])->name('logoutrediret');
 
 }
 

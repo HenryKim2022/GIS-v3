@@ -71,13 +71,13 @@
                 </button>
                 <ul class="navbar-nav me-auto p-3 p-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-medium" aria-current="page" href="#landingHero">Home</a>
+                        <a class="nav-link fw-medium" aria-current="page" href="#hero">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-medium" href="#landingFeatures">Features</a>
+                        <a class="nav-link fw-medium" href="#features">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-medium" href="#landingTeam">Team</a>
+                        <a class="nav-link fw-medium" href="#team">Team</a>
                     </li>
                     <li class="nav-item d-none">
                         <a class="nav-link fw-medium" href="#landingFAQ">FAQ</a>
@@ -353,7 +353,7 @@
 
     <div data-bs-spy="scroll" class="scrollspy-example">
         <!-- Hero: Start -->
-        <section id="landingHero" class="section-py landing-hero position-relative">
+        <section id="hero" class="section-py landing-hero position-relative">
             <img src="{{ asset('public/materialize/assets/img/front-pages/backgrounds/hero-bg-light.png') }}"
                 alt="hero background" class="position-absolute top-0 start-0 w-100 h-100 z-n1" data-speed="1"
                 data-app-light-img="front-pages/backgrounds/hero-bg-light.png"
@@ -408,7 +408,7 @@
         <!-- Hero: End -->
 
         <!-- Useful features: Start -->
-        <section id="landingFeatures" class="section-py landing-features">
+        <section id="features" class="section-py landing-features">
             <div class="container">
                 <h6 class="text-center fw-semibold d-flex justify-content-center align-items-center mb-4">
                     <img src="{{ asset('public/materialize/assets/img/front-pages/icons/section-tilte-icon.png') }}"
@@ -484,17 +484,15 @@
         </section>
         <!-- Useful features: End -->
 
-        <!-- Real customers reviews: Start -->
+        <!-- Real location reviews: Start -->
         <section id="landingReviews" class="section-py bg-body landing-reviews pb-0">
             <div class="container">
                 <h6 class="text-center fw-semibold d-flex justify-content-center align-items-center mb-4">
                     <img src="{{ asset('public/materialize/assets/img/front-pages/icons/section-tilte-icon.png') }}"
                         alt="section title icon" class="me-2" />
-                    <span class="text-uppercase">real customers reviews</span>
+                    <span class="text-uppercase">real locations reviews</span>
                 </h6>
-                <h3 class="text-center mb-2"><span class="fw-bold">Success stories</span> from clients</h3>
-                <p class="text-center fw-medium mb-3 mb-md-5">See what our customers have to say about their
-                    experience.</p>
+                <p class="text-center fw-medium mb-3 mb-md-5">See locations saved on {{ env("APP_NAME") }} database.</p>
             </div>
             <div class="swiper-reviews-carousel overflow-hidden mb-5 pt-4">
                 <div class="swiper" id="swiper-reviews">
@@ -959,7 +957,7 @@
         </section>
         <!-- Real customers reviews: End -->
 
-        <section id="landingTeam" class="section-py landing-team disable-right-click">
+        <section id="team" class="section-py landing-team disable-right-click">
             <div class="container bg-icon-right position-relative">
                 <img src="{{ asset('public/materialize/assets/img/front-pages/icons/bg-right-icon-light.png') }}"
                     alt="section icon" class="position-absolute top-0 end-0" data-speed="1"

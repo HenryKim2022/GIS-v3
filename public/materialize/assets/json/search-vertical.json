@@ -29,6 +29,16 @@
     "name": "User List",
     "icon": "mdi-account-group-outline",
     "url": "user-lists"
+    },
+    {
+    "name": "My Profile",
+    "icon": "mdi-account-outline",
+    "url": "myprofile"
+    },
+    {
+    "name": "Log Out",
+    "icon": "mdi-logout",
+    "url": "logout"
     }
   ],
   "files": [

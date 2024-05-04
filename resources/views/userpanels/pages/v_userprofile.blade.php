@@ -3,8 +3,16 @@
 
 <!-- CONTENT: MY PROFILE -->
 @section('content')
+@php
+    $page = Session::get('page');
+    $page_title = $page['page_title'];
+    $page_url = $page['page_url'];
+@endphp
+
+
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">User Profile /</span> Profile</h4>
+    {{-- <h4 class="py-3 mb-4"><span class="text-muted fw-light">User Profile /</span> My Profile</h4> --}}
+    <h4 class="py-3 mb-4" href="{{ $page_url }}"><span class="text-muted fw-light"></span> {{ $page_title }}</h4>
 
     <!-- Header -->
     <div class="row">
@@ -59,18 +67,11 @@
                     <a class="nav-link active" href="javascript:void(0);"><i
                             class="mdi mdi-account-outline me-1 mdi-20px"></i>Profile</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages-profile-teams.html"><i
-                            class="mdi mdi-account-multiple-outline me-1 mdi-20px"></i>Teams</a>
+                <li class="nav-item" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                    <a class="nav-link" href="javascript:void(0);"><i
+                            class="mdi mdi-account-edit-outline me-1 mdi-20px"></i>Edit Profile</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages-profile-projects.html"><i
-                            class="mdi mdi-view-grid-outline me-1 mdi-20px"></i>Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages-profile-connections.html"><i
-                            class="mdi mdi-link me-1 mdi-20px"></i>Connections</a>
-                </li>
+
             </ul>
         </div>
     </div>
@@ -78,7 +79,7 @@
 
     <!-- User Profile Content -->
     <div class="row">
-        <div class="col-xl-4 col-lg-5 col-md-5">
+        <div class="col-xl-12 col-lg-12 col-md-12">
             <!-- About User -->
             <div class="card mb-4">
                 <div class="card-body">
@@ -96,453 +97,31 @@
                             <i class="mdi mdi-star-outline mdi-24px"></i><span class="fw-medium mx-2">Role:</span>
                             <span>Developer</span>
                         </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="mdi mdi-flag-outline mdi-24px"></i><span class="fw-medium mx-2">Country:</span>
-                            <span>USA</span>
-                        </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="mdi mdi-translate mdi-24px"></i><span class="fw-medium mx-2">Languages:</span>
-                            <span>English</span>
-                        </li>
                     </ul>
                     <small class="card-text text-uppercase">Contacts</small>
                     <ul class="list-unstyled my-3 py-1">
                         <li class="d-flex align-items-center mb-3">
-                            <i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-medium mx-2">Contact:</span>
+                            <i class="mdi mdi-whatsapp mdi-24px"></i><span class="fw-medium mx-2">Contact:</span>
                             <span>(123) 456-7890</span>
-                        </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="mdi mdi-message-outline mdi-24px"></i><span class="fw-medium mx-2">Skype:</span>
-                            <span>john.doe</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
                             <i class="mdi mdi-email-outline mdi-24px"></i><span class="fw-medium mx-2">Email:</span>
                             <span>john.doe@example.com</span>
                         </li>
                     </ul>
-                    <small class="card-text text-uppercase">Teams</small>
-                    <ul class="list-unstyled mb-0 mt-3 pt-1">
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="mdi mdi-github mdi-24px text-secondary me-2"></i>
-                            <div class="d-flex flex-wrap">
-                                <span class="fw-medium me-2">Backend Developer</span><span>(126
-                                    Members)</span>
-                            </div>
-                        </li>
-                        <li class="d-flex align-items-center">
-                            <i class="mdi mdi-react mdi-24px text-info me-2"></i>
-                            <div class="d-flex flex-wrap">
-                                <span class="fw-medium me-2">React Developer</span><span>(98
-                                    Members)</span>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
             <!--/ About User -->
-            <!-- Profile Overview -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <small class="card-text text-uppercase">Overview</small>
-                    <ul class="list-unstyled mb-0 mt-3 pt-1">
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="mdi mdi-check mdi-24px"></i><span class="fw-medium mx-2">Task Compiled:</span>
-                            <span>13.5k</span>
-                        </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="mdi mdi-account-outline mdi-24px"></i><span class="fw-medium mx-2">Projects
-                                Compiled:</span> <span>146</span>
-                        </li>
-                        <li class="d-flex align-items-center">
-                            <i class="mdi mdi-view-grid-outline mdi-24px"></i><span
-                                class="fw-medium mx-2">Connections:</span> <span>897</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--/ Profile Overview -->
-        </div>
-        <div class="col-xl-8 col-lg-7 col-md-7">
-            <!-- Activity Timeline -->
-            <div class="card card-action mb-4">
-                <div class="card-header align-items-center">
-                    <h5 class="card-action-title mb-0">
-                        <i class="mdi mdi-format-list-bulleted mdi-24px me-2"></i>Activity
-                        Timeline
-                    </h5>
-                    <div class="card-action-element">
-                        <div class="dropdown">
-                            <button type="button" class="btn dropdown-toggle hide-arrow p-0"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="mdi mdi-dots-vertical mdi-24px text-muted"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="javascript:void(0);">Share
-                                        timeline</a></li>
-                                <li><a class="dropdown-item" href="javascript:void(0);">Suggest
-                                        edits</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li><a class="dropdown-item" href="javascript:void(0);">Report
-                                        bug</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body pt-3 pb-0">
-                    <ul class="timeline mb-0">
-                        <li class="timeline-item timeline-item-transparent">
-                            <span class="timeline-point timeline-point-danger"></span>
-                            <div class="timeline-event">
-                                <div class="timeline-header mb-1">
-                                    <h6 class="mb-0">Client Meeting</h6>
-                                    <small class="text-muted">Today</small>
-                                </div>
-                                <p class="mb-2">Project meeting with john @10:15am</p>
-                                <div class="d-flex flex-wrap">
-                                    <div class="avatar me-3">
-                                        <img src="{{ asset('public/materialize/assets/img/avatars/3.png') }}"
-                                            alt="Avatar" class="rounded-circle" />
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0">Lester McCarthy (Client)</h6>
-                                        <span>CEO of Infibeam</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-item timeline-item-transparent">
-                            <span class="timeline-point timeline-point-primary"></span>
-                            <div class="timeline-event">
-                                <div class="timeline-header mb-1">
-                                    <h6 class="mb-0">Create a new project for client</h6>
-                                    <small class="text-muted">2 Day Ago</small>
-                                </div>
-                                <p class="mb-0">Add files to new design folder</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item timeline-item-transparent">
-                            <span class="timeline-point timeline-point-warning"></span>
-                            <div class="timeline-event">
-                                <div class="timeline-header mb-1">
-                                    <h6 class="mb-0">Shared 2 New Project Files</h6>
-                                    <small class="text-muted">6 Day Ago</small>
-                                </div>
-                                <p class="mb-2">
-                                    Sent by Mollie Dixon
-                                    <img src="{{ asset('public/materialize/assets/img/avatars/4.png') }}"
-                                        class="rounded-circle me-3" alt="avatar" height="24" width="24" />
-                                </p>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <a href="javascript:void(0)" class="me-3">
-                                        <img src="{{ asset('public/materialize/assets/img/icons/misc/doc.png') }}"
-                                            alt="Document image" width="15" class="me-2" />
-                                        <span class="fw-medium text-body">App Guidelines</span>
-                                    </a>
-                                    <a href="javascript:void(0)">
-                                        <img src="{{ asset('public/materialize/assets/img/icons/misc/xls.png') }}"
-                                            alt="Excel image" width="15" class="me-2" />
-                                        <span class="fw-medium text-body">Testing Results</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-item timeline-item-transparent border-transparent">
-                            <span class="timeline-point timeline-point-info"></span>
-                            <div class="timeline-event">
-                                <div class="timeline-header mb-1">
-                                    <h6 class="mb-0">Project status updated</h6>
-                                    <small class="text-muted">10 Day Ago</small>
-                                </div>
-                                <p class="mb-0">Woocommerce iOS App Completed</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--/ Activity Timeline -->
-            <div class="row">
-                <!-- Connections -->
-                <div class="col-lg-12 col-xl-6">
-                    <div class="card card-action mb-4">
-                        <div class="card-header align-items-center">
-                            <h5 class="card-action-title mb-0">Connections</h5>
-                            <div class="card-action-element">
-                                <div class="dropdown">
-                                    <button type="button" class="btn dropdown-toggle hide-arrow p-0"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical mdi-24px text-muted"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Share
-                                                connections</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Suggest edits</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider" />
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Report bug</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled mb-0">
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/avatars/2.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">Cecilia Payne</h6>
-                                                <small>45 Connections</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <button class="btn btn-outline-primary btn-icon">
-                                                <i class="mdi mdi-account-outline mdi-24px"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/avatars/3.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">Curtis Fletcher</h6>
-                                                <small>1.32k Connections</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <button class="btn btn-primary btn-icon">
-                                                <i class="mdi mdi-account-outline mdi-24px"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/avatars/8.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">Alice Stone</h6>
-                                                <small>125 Connections</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <button class="btn btn-primary btn-icon">
-                                                <i class="mdi mdi-account-outline mdi-24px"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/avatars/7.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">Darrell Barnes</h6>
-                                                <small>456 Connections</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <button class="btn btn-outline-primary btn-icon">
-                                                <i class="mdi mdi-account-outline mdi-24px"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
 
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/avatars/12.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">Eugenia Moore</h6>
-                                                <small>1.2k Connections</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <button class="btn btn-outline-primary btn-icon">
-                                                <i class="mdi mdi-account-outline mdi-24px"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="text-center">
-                                    <a href="javascript:;">View all connections</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Connections -->
-                <!-- Teams -->
-                <div class="col-lg-12 col-xl-6">
-                    <div class="card card-action mb-4">
-                        <div class="card-header align-items-center">
-                            <h5 class="card-action-title mb-0">Teams</h5>
-                            <div class="card-action-element">
-                                <div class="dropdown">
-                                    <button type="button" class="btn dropdown-toggle hide-arrow p-0"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical mdi-24px text-muted"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Share teams</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Suggest edits</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider" />
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Report bug</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled mb-0">
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/icons/brands/react-label.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">React Developers</h6>
-                                                <small>72 Members</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a href="javascript:;"><span
-                                                    class="badge bg-label-danger rounded-pill">Developer</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/icons/brands/support-label.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">Support Team</h6>
-                                                <small>122 Members</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a href="javascript:;"><span
-                                                    class="badge bg-label-primary rounded-pill">Support</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/icons/brands/figma-label.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">UI Designers</h6>
-                                                <small>7 Members</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a href="javascript:;"><span
-                                                    class="badge bg-label-info rounded-pill">Designer</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/icons/brands/vue-label.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-2">
-                                                <h6 class="mb-0">Vue.js Developers</h6>
-                                                <small>289 Members</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a href="javascript:;"><span
-                                                    class="badge bg-label-danger rounded-pill">Developer</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex align-items-start">
-                                            <div class="avatar me-3">
-                                                <img src="{{ asset('public/materialize/assets/img/icons/brands/twitter-label.png') }}"
-                                                    alt="Avatar" class="rounded-circle" />
-                                            </div>
-                                            <div class="me-w">
-                                                <h6 class="mb-0">Digital Marketing</h6>
-                                                <small>24 Members</small>
-                                            </div>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a href="javascript:;"><span
-                                                    class="badge bg-label-secondary rounded-pill">Marketing</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="text-center">
-                                    <a href="javascript:;">View all teams</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Teams -->
-            </div>
-
-            <!-- Projects table -->
-            <div class="card mb-4">
-                <div class="card-datatable table-responsive">
-                    <table class="datatable-project table">
-                        <thead class="table-light">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th>Project</th>
-                                <th class="text-nowrap">Total Task</th>
-                                <th>Progress</th>
-                                <th>Hours</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            <!--/ Projects table -->
         </div>
     </div>
     <!--/ User Profile Content -->
+
+    {{-- MERGED MODALS: v_edit_profile_modal --}}
+    @include('userpanels.modals.v_editprofile_modal')
+    <!-- / v_edit_profile_modal -->
+
+
 </div>
 @endsection
 <!-- / CONTENT: MY PROFILE -->

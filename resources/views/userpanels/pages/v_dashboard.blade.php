@@ -3,6 +3,13 @@
 
 <!-- CONTENT: DASHBOARD -->
 @section('content')
+@php
+    $page = Session::get('page');
+    $page_title = $page['page_title'];
+    $page_url = $page['page_url'];
+@endphp
+
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row gy-4">
         <!-- Gamification Card -->
@@ -11,6 +18,7 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-md-6 order-2 order-md-1">
                         <div class="card-body">
+                            <h1 class="card-title pb-xl-2" href="{{ $page_url }}">{{ $page_title }}</h1>
                             <h4 class="card-title pb-xl-2">Congratulations John!🎉</h4>
                             <p class="mb-0">You have done <span class="h6 mb-0">68%</span>😎
                                 more sales today.</p>
