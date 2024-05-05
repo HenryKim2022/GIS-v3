@@ -24,7 +24,7 @@ function setFullscreenHeight() {
     const body = document.getElementsByTagName("body")[0];
 
     if (document.fullscreenElement) {
-        const decreasedHeight = Math.floor(windowHeight - 120); // Decrease the height by 10%
+        const decreasedHeight = Math.floor(windowHeight - 45); // Decrease the height by 10%
         if (leaflet_map) {
             leaflet_map.style.height = decreasedHeight + "px";
 

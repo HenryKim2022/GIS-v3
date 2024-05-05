@@ -57,6 +57,18 @@ html {
 .leaflet_card_body {
     max-height: 90vh;
 }
+#userLocation{
+    border-radius: 10px;
+    overflow: hidden;
+}
+.minmax-map-btn{
+    position: absolute;
+    bottom: 0.5vh;
+    left: 0.5vw;
+    z-index: 2;
+    transform: translateY(-4%);
+    transform: translateX(-4%);
+}
 
 /*  */
 /* CUST CSS: MODALS */

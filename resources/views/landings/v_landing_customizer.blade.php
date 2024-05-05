@@ -379,7 +379,7 @@
                     <div id="leaflet_card">
                         <div class="col-12">
                             <div class="card mb-4">
-                                <div class="card card-header-actions d-flex card-scroll">
+                                <div class="card card-header-actions d-flex card-scroll d-none">
                                     <h5 class="card-header d-flex justify-content-between align-items-center m-0 pl-2 pt-1 pb-1 pr-2">
                                         <span>School Location</span>
                                         <div class="no-caret">
@@ -393,8 +393,18 @@
                                     </h5>
                                 </div>
                                 <div class="card-body" id="leaflet_card_body">
-                                    <div class="leaflet-map leaflet_wrapper" id="userLocation"></div>
+                                    <div class="leaflet-map leaflet_wrapper" id="userLocation">
+                                        <span class="minmax-map-btn no-caret">
+                                            <button class="btn minMaxBtn btn-transparent-dark btn-icon"
+                                                data-widget="fullscreen" id="mapsfullscreen-btn" role="button"
+                                                aria-haspopup="true" aria-expanded="false"
+                                                onclick="fullscreenFunct()">
+                                                <i class="mdi mdi-36px mdi-fullscreen" style="color: black;" onmouseover="this.style.color='gray'" onmouseout="this.style.color='black'"></i>
+                                            </button>
+                                        </span>
+                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
 
