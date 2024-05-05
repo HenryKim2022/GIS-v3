@@ -14,8 +14,9 @@ let map = new L.Map('map', {
 //////////////// ENDOF: ALWAYS NEED1:                                        
 
 //////////////// ALWAYS NEED2:
+var appName = "GIS";
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    attribution: `Map data &copy; <a href="https://www.openstreetmap.org/">${appName}</a>`
 }).addTo(map);
 //////////////// ENDOF: ALWAYS NEED2:
 
