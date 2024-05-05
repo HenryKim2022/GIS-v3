@@ -59,16 +59,17 @@ html {
 }
 #userLocation{
     border-radius: 10px;
-    overflow: hidden;
+    overflow: scroll;
 }
-.minmax-map-btn{
+/* .minmax-map-btn{
     position: absolute;
     bottom: 0.5vh;
     left: 0.5vw;
     z-index: 2;
     transform: translateY(-4%);
     transform: translateX(-4%);
-}
+} */
+#map { height: 58vh; }
 
 /*  */
 /* CUST CSS: MODALS */
@@ -102,6 +103,7 @@ html {
     .leaflet-map {
         height: 25vh;
     }
+    #map { height: 25vh; }
 }
 
 /*  ------------------------------------  */

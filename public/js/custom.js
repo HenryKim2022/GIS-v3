@@ -7,9 +7,9 @@
 var elements = document.getElementsByClassName("disable-right-click");
 // Iterate over the elements and add a right-click event listener
 for (var i = 0; i < elements.length; i++) {
-  elements[i].addEventListener("contextmenu", function(event) {
-    event.preventDefault(); // Prevent the default right-click behavior
-  });
+    elements[i].addEventListener("contextmenu", function (event) {
+        event.preventDefault(); // Prevent the default right-click behavior
+    });
 }
 
 
@@ -18,50 +18,52 @@ for (var i = 0; i < elements.length; i++) {
 /////    <!-- MAXIMIZE + FULLSCREEN JS -->
 ////////////////////////////////////////////////
 
-function setFullscreenHeight() {
-    const windowHeight = window.innerHeight; // Get the height of the viewport
-    const leaflet_map = document.getElementsByClassName("leaflet-map")[0];
-    const body = document.getElementsByTagName("body")[0];
+// function setFullscreenHeight() {
+//     const windowHeight = window.innerHeight; // Get the height of the viewport
+//     const leaflet_map = document.getElementsByClassName("leaflet-map")[0];
+//     const body = document.getElementsByTagName("body")[0];
 
-    if (document.fullscreenElement) {
-        const decreasedHeight = Math.floor(windowHeight - 45); // Decrease the height by 10%
-        if (leaflet_map) {
-            leaflet_map.style.height = decreasedHeight + "px";
+//     if (document.fullscreenElement) {
+//         const decreasedHeight = Math.floor(windowHeight - 45); // Decrease the height by 10%
+//         if (leaflet_map) {
+//             leaflet_map.style.height = decreasedHeight + "px";
 
-            leaflet_map.classList.add("leaflet-map-container-static"); // Add the static class
-        }
-        body.classList.add("no-scroll"); // Add the no-scroll class
-    } else {
-        if (leaflet_map) {
-            leaflet_map.style.height = ""; // Remove the height
+//             leaflet_map.classList.add("leaflet-map-container-static"); // Add the static class
+//         }
+//         body.classList.add("no-scroll"); // Add the no-scroll class
+//     } else {
+//         if (leaflet_map) {
+//             leaflet_map.style.height = ""; // Remove the height
 
-            leaflet_map.classList.remove("leaflet-map-container-static"); // Remove the static class
-        }
-        body.classList.remove("no-scroll"); // Remove the no-scroll class
-    }
-}
+//             leaflet_map.classList.remove("leaflet-map-container-static"); // Remove the static class
+//         }
+//         body.classList.remove("no-scroll"); // Remove the no-scroll class
+//     }
+// }
 
-// Call the function when the window is resized or orientation changes
-window.addEventListener("resize", setFullscreenHeight);
-window.addEventListener("orientationchange", setFullscreenHeight);
+// // Call the function when the window is resized or orientation changes
+// window.addEventListener("resize", setFullscreenHeight);
+// window.addEventListener("orientationchange", setFullscreenHeight);
 
-function fullscreenFunct() {
-    var leaflet_card = document.getElementById("leaflet_card");
+// function fullscreenFunct() {
+//     var leaflet_card = document.getElementById("leaflet_card");
 
-    if (leaflet_card.classList.contains("full_screen")) {
-        // The element already has the "full_screen" class
-        leaflet_card.classList.remove("full_screen"); // remove F11 trigger
-        document.exitFullscreen();
-        document.getElementById("mapsfullscreen-btn").innerHTML =
-            '<i class="mdi mdi-24px mdi-fullscreen"></i>';
-    } else {
-        // The element does not have the "full_screen" class
-        leaflet_card.classList.add("full_screen"); // add F11 trigger
-        document.documentElement.requestFullscreen();
-        document.getElementById("mapsfullscreen-btn").innerHTML =
-            '<i class="mdi mdi-24px mdi-fullscreen-exit"></i>';
-    }
-}
+//     if (leaflet_card.classList.contains("full_screen")) {
+//         // The element already has the "full_screen" class
+//         leaflet_card.classList.remove("full_screen"); // remove F11 trigger
+//         document.exitFullscreen();
+//         document.getElementById("mapsfullscreen-btn").innerHTML =
+//             '<i class="mdi mdi-24px mdi-fullscreen"></i>';
+//     } else {
+//         // The element does not have the "full_screen" class
+//         leaflet_card.classList.add("full_screen"); // add F11 trigger
+//         document.documentElement.requestFullscreen();
+//         document.getElementById("mapsfullscreen-btn").innerHTML =
+//             '<i class="mdi mdi-24px mdi-fullscreen-exit"></i>';
+//     }
+// }
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////    <!-- CUST SCRIPT: ADD DARKEN BACKGROUND WHILE ABOUT-US MODAL SHOW JS -->
@@ -113,8 +115,8 @@ function showAlert(
             confirmButtonAriaLabel: "Thumbs up, okay!",
             allowOutsideClick: false,
             allowEscapeKey: false,
-            didOpen: function () {},
-            didClose: function () {},
+            didOpen: function () { },
+            didClose: function () { },
         });
     }
 }
@@ -153,9 +155,9 @@ const signupBtn = document.getElementById("signupBtn");
 const confirmPolicyBtn = document.getElementById("confirmPolicyBtn");
 const termsCheckbox = document.getElementById("terms-conditions");
 
-if (signupBtn){
-    if (confirmPolicyBtn){
-        if (termsCheckbox){
+if (signupBtn) {
+    if (confirmPolicyBtn) {
+        if (termsCheckbox) {
             termsCheckbox.addEventListener("change", function () {
                 if (termsCheckbox.checked) {
                     signupBtn.disabled = false;

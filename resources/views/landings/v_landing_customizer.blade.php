@@ -393,7 +393,7 @@
                                     </h5>
                                 </div>
                                 <div class="card-body" id="leaflet_card_body">
-                                    <div class="leaflet-map leaflet_wrapper" id="userLocation">
+                                    {{-- <div class="leaflet-map leaflet_wrapper" id="userLocation">
                                         <span class="minmax-map-btn no-caret">
                                             <button class="btn minMaxBtn btn-transparent-dark btn-icon"
                                                 data-widget="fullscreen" id="mapsfullscreen-btn" role="button"
@@ -402,9 +402,43 @@
                                                 <i class="mdi mdi-36px mdi-fullscreen" style="color: black;" onmouseover="this.style.color='gray'" onmouseout="this.style.color='black'"></i>
                                             </button>
                                         </span>
+                                       
+                                    </div> --}}
+
+                                    {{-- <style>
+                                        #map { height: 58vh; }
+                                    </style> --}}
+                                    <div id="map" class="leaflet-map leaflet_wrapper" id="userLocation">                                     
                                     </div>
+                                    <script>
+                                        //////////////// ALWAYS NEED1:
+                                        let map = new L.Map('map', {
+                                            fullscreenControl: true,
+                                            fullscreenControlOptions: {
+                                                position: 'topleft'
+                                            },
+                                            gestureHandling: false
+                                        }).setView([-6.2226432,106.5910272], 13);
+                                        //////////////// ENDOF: ALWAYS NEED1:
+                                        
+                                        
+                                        //////////////// ALWAYS NEED2:
+                                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+                                        }).addTo(map);
+                                        //////////////// ENDOF: ALWAYS NEED2:
+
+                                        // L.control.locate().addTo(map);
+                                        L.control.locate({
+                                            strings: {
+                                            title: "Show me where I am, yo!"
+                                            }
+                                        }).addTo(map);
+                                      
+                                        
+                                      </script>
                                 </div>
-                                
+
                             </div>
                         </div>
 

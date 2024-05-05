@@ -4,8 +4,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap"
-    rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&ampdisplay=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/fonts/materialdesignicons.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/fonts/flag-icons.css') }}" />
@@ -27,17 +26,20 @@
 <link rel="stylesheet"
     href="{{ asset('public/materialize/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
-<link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/leaflet/leaflet.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
 <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/animate-css/animate.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 
-<link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
+<link rel="stylesheet"
+    href="{{ asset('public/materialize/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+<link rel="stylesheet"
+    href="{{ asset('public/materialize/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+<link rel="stylesheet"
+    href="{{ asset('public/materialize/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
 
-
+{{-- Leaflet from Template --}}
+{{-- <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/leaflet/leaflet.css') }}" /> --}}
 
 <!-- Page CSS -->
 <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/css/pages/front-page-landing.css') }}" />
@@ -61,3 +63,37 @@
 
 <script src="{{ asset('public/materialize/assets/vendor/js/dropdown-hover.js') }}"></script>
 <script src="{{ asset('public/materialize/assets/vendor/js/mega-dropdown.js') }}"></script>
+
+{{-- Leaflet from Leaflet Official --}}
+<link rel="stylesheet" href="{{ asset('public/plugins/leaflet-official/leaflet.base.v1.9.4/leaflet.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.base.v1.9.4/leaflet.js') }}"></script>
+
+{{-- LeafletFullscreen: For Old Browser --}}
+{{-- <link rel="stylesheet"
+href="{{ asset('public/plugins/leaflet-official/leaflet.fullscreen.v1.0.1/dist/leaflet.fullscreen.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.fullscreen.v1.0.1/dist/Leaflet.fullscreen.min.js') }}">
+</script> --}}
+
+{{-- LeafletFullscreen: For Modern Browser --}}
+<link rel="stylesheet"
+    href="{{ asset('public/plugins/leaflet-official/leaflet.fullscreen.vlastest/Control.FullScreen.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.fullscreen.vlastest/Control.FullScreen.js') }}">
+</script>
+
+{{-- LeafletGestureHandling --}}
+<link rel="stylesheet"
+    href="{{ asset('public/plugins/leaflet-official/leaflet.gesturehandling.vlastest/dist/leaflet-gesture-handling.min.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.gesturehandling.vlastest/dist/leaflet-gesture-handling.min.js') }}">
+</script>
+
+{{-- LeafletToolbar (base) --}}
+<link rel="stylesheet"
+href="{{ asset('public/plugins/leaflet-official/leaflet.draw.toolbar/leaflet.toolbar.base.vlastest/dist/leaflet.toolbar.min.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.draw.toolbar/leaflet.toolbar.base.vlastest/dist/leaflet.toolbar.min.js') }}">
+</script>
+
+{{-- LeafletLocateControl (addons) --}}
+<link rel="stylesheet"
+href="{{ asset('public/plugins/leaflet-official/leaflet.locatecontrol.vlastest/dist/L.Control.Locate.min.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.locatecontrol.vlastest/dist/L.Control.Locate.min.js') }}">
+</script>
