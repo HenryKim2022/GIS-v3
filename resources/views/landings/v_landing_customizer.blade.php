@@ -79,228 +79,6 @@
                     <li class="nav-item">
                         <a class="nav-link fw-medium" href="#team">Team</a>
                     </li>
-                    <li class="nav-item d-none">
-                        <a class="nav-link fw-medium" href="#landingFAQ">FAQ</a>
-                    </li>
-                    <li class="nav-item d-none">
-                        <a class="nav-link fw-medium text-nowrap" href="#landingContact">Contact us</a>
-                    </li>
-                    <li class="nav-item mega-dropdown d-none">
-                        <a href="javascript:void(0);"
-                            class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown mega-dropdown fw-medium"
-                            aria-expanded="false" data-bs-toggle="mega-dropdown" data-trigger="hover">
-                            <span data-i18n="Pages">Pages</span>
-                        </a>
-                        <div class="dropdown-menu p-4">
-                            <div class="row gy-4">
-                                <div class="col-12 col-lg">
-                                    <div class="h6 d-flex align-items-center mb-2 mb-lg-3">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded bg-label-primary"><i
-                                                    class="mdi mdi-view-grid-outline"></i></span>
-                                        </div>
-                                        <span class="ps-1">Other</span>
-                                    </div>
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="pricing-page.html">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                <span data-i18n="Pricing">Pricing</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="payment-page.html">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                <span data-i18n="Payment">Payment</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="checkout-page.html">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                <span data-i18n="Checkout">Checkout</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="help-center-landing.html">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                <span data-i18n="Help Center">Help Center</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-lg">
-                                    <div class="h6 d-flex align-items-center mb-2 mb-lg-3">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded bg-label-primary"><i
-                                                    class="mdi mdi-lock-open-outline"></i></span>
-                                        </div>
-                                        <span class="ps-1">Auth Demo</span>
-                                    </div>
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-login-basic.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Login (Basic)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-login-cover.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Login (Cover)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-register-basic.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Register (Basic)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-register-cover.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Register (Cover)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-register-multisteps.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Register (Multi-steps)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-forgot-password-basic.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Forgot Password (Basic)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-forgot-password-cover.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Forgot Password (Cover)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-reset-password-basic.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Reset Password (Basic)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-reset-password-cover.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Reset Password (Cover)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-lg">
-                                    <div class="h6 d-flex align-items-center mb-2 mb-lg-3">
-                                        <div class="avatar avatar-sm flex-shrink-0 me-2">
-                                            <span class="avatar-initial rounded bg-label-primary"><i
-                                                    class="mdi mdi-image-outline"></i></span>
-                                        </div>
-                                        <span class="ps-1">Other</span>
-                                    </div>
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/pages-misc-error.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Error
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/pages-misc-under-maintenance.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Under Maintenance
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/pages-misc-comingsoon.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Coming Soon
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/pages-misc-not-authorized.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Not Authorized
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-verify-email-basic.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Verify Email (Basic)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-verify-email-cover.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Verify Email (Cover)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-two-steps-basic.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Two Steps (Basic)
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link mega-dropdown-link d-flex align-items-center"
-                                                href="../vertical-menu-template/auth-two-steps-cover.html"
-                                                target="_blank">
-                                                <i class="mdi mdi-radiobox-blank mdi-14px me-2"></i>
-                                                Two Steps (Cover)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 d-none d-lg-block">
-                                    <div class="bg-body nav-img-col p-2">
-                                        <img src="{{ asset('public/materialize/assets/img/front-pages/misc/nav-item-col-img-light.png') }}"
-                                            class="img-fluid scaleX-n1-rtl w-100" alt="nav item col image"
-                                            data-app-light-img="front-pages/misc/nav-item-col-img-light.png"
-                                            data-app-dark-img="front-pages/misc/nav-item-col-img-dark.png" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link fw-medium" href="{{ base_url('dashboard') }}" target="_self">Dashboard</a>
                     </li>
@@ -312,8 +90,7 @@
             <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Style Switcher -->
                 <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
-                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <i class="mdi mdi-24px"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
@@ -380,7 +157,8 @@
                         <div class="col-12">
                             <div class="card mb-4">
                                 <div class="card card-header-actions d-flex card-scroll d-none">
-                                    <h5 class="card-header d-flex justify-content-between align-items-center m-0 pl-2 pt-1 pb-1 pr-2">
+                                    <h5
+                                        class="card-header d-flex justify-content-between align-items-center m-0 pl-2 pt-1 pb-1 pr-2">
                                         <span>School Location</span>
                                         <div class="no-caret">
                                             <button class="btn minMaxBtn btn-transparent-dark btn-icon"
@@ -393,51 +171,10 @@
                                     </h5>
                                 </div>
                                 <div class="card-body" id="leaflet_card_body">
-                                    {{-- <div class="leaflet-map leaflet_wrapper" id="userLocation">
-                                        <span class="minmax-map-btn no-caret">
-                                            <button class="btn minMaxBtn btn-transparent-dark btn-icon"
-                                                data-widget="fullscreen" id="mapsfullscreen-btn" role="button"
-                                                aria-haspopup="true" aria-expanded="false"
-                                                onclick="fullscreenFunct()">
-                                                <i class="mdi mdi-36px mdi-fullscreen" style="color: black;" onmouseover="this.style.color='gray'" onmouseout="this.style.color='black'"></i>
-                                            </button>
-                                        </span>
-                                       
-                                    </div> --}}
-
-                                    {{-- <style>
-                                        #map { height: 58vh; }
-                                    </style> --}}
-                                    <div id="map" class="leaflet-map leaflet_wrapper" id="userLocation">                                     
+                                    <div id="map" class="leaflet-map leaflet_wrapper" id="userLocation">
                                     </div>
-                                    <script>
-                                        //////////////// ALWAYS NEED1:
-                                        let map = new L.Map('map', {
-                                            fullscreenControl: true,
-                                            fullscreenControlOptions: {
-                                                position: 'topleft'
-                                            },
-                                            gestureHandling: false
-                                        }).setView([-6.2226432,106.5910272], 13);
-                                        //////////////// ENDOF: ALWAYS NEED1:
-                                        
-                                        
-                                        //////////////// ALWAYS NEED2:
-                                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-                                        }).addTo(map);
-                                        //////////////// ENDOF: ALWAYS NEED2:
-
-                                        // L.control.locate().addTo(map);
-                                        L.control.locate({
-                                            strings: {
-                                            title: "Show me where I am, yo!"
-                                            }
-                                        }).addTo(map);
-                                      
-                                        
-                                      </script>
                                 </div>
+                                <script src="{{ asset('public/plugins/leaflet-official/leaflet-map-merged-config.js') }}"></script>
 
                             </div>
                         </div>
@@ -536,7 +273,8 @@
                         alt="section title icon" class="me-2" />
                     <span class="text-uppercase">real locations reviews</span>
                 </h6>
-                <p class="text-center fw-medium mb-3 mb-md-5">See locations saved on {{ env("APP_NAME") }} database.</p>
+                <p class="text-center fw-medium mb-3 mb-md-5">See locations saved on {{ env('APP_NAME') }} database.
+                </p>
             </div>
             <div class="swiper-reviews-carousel overflow-hidden mb-5 pt-4">
                 <div class="swiper" id="swiper-reviews">
@@ -1061,260 +799,6 @@
         </section>
         <!-- Our great team: End -->
 
-        <!-- Pricing plans: Start -->
-        <section id="landingPricing" class="section-py bg-body landing-pricing d-none">
-            <div class="container bg-icon-left position-relative">
-                <img src="{{ asset('public/materialize/assets/img/front-pages/icons/bg-left-icon-light.png') }}"
-                    alt="section icon" class="position-absolute top-0 start-0" data-speed="1"
-                    data-app-light-img="front-pages/icons/bg-left-icon-light.png"
-                    data-app-dark-img="front-pages/icons/bg-left-icon-dark.png" />
-                <h6 class="text-center fw-semibold d-flex justify-content-center align-items-center mb-4">
-                    <img src="{{ asset('public/materialize/assets/img/front-pages/icons/section-tilte-icon.png') }}"
-                        alt="section title icon" class="me-2" />
-                    <span class="text-uppercase">pricing plans</span>
-                </h6>
-                <h3 class="text-center mb-2"><span class="fw-bold">Tailored pricing plans</span> designed for you</h3>
-                <p class="text-center fw-medium mb-5 pt-3 pb-lg-5">
-                    All plans include 40+ advanced tools and features to boost your product.<br />
-                    the best plan to fit your needs.
-                </p>
-                <div id="slider-pricing" class="mb-5"></div>
-                <div class="row gy-4 pt-lg-3">
-                    <!-- Basic Plan: Start -->
-                    <div class="col-xl-4 col-lg-6">
-                        <div class="card shadow-none">
-                            <div class="card-header border-0">
-                                <h3 class="mb-2 pb-1">Basic Plan</h3>
-                                <div class="d-flex align-items-center">
-                                    <h5 class="d-flex mb-0"><sup class="h5 mt-3">$</sup><span
-                                            class="display-3 fw-bold">20</span></h5>
-                                    <div class="ms-2 ps-1">
-                                        <h6 class="mb-1">Per month</h6>
-                                        <p class="small mb-0">10% off for yearly subscription</p>
-                                    </div>
-                                </div>
-                                <img src="{{ asset('public/materialize/assets/img/front-pages/icons/smiling-icon.png') }}"
-                                    alt="smiling icon" />
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Timeline
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Basic search
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Live chat widget
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Email marketing
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Custom Forms
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Traffic analytics
-                                        </h5>
-                                    </li>
-                                </ul>
-                                <hr />
-                                <div class="d-flex justify-content-between align-items-center flex-wrap">
-                                    <div class="me-1">
-                                        <h6 class="mb-1">Basic Support</h6>
-                                        <p class="small mb-0">Only Email</p>
-                                    </div>
-                                    <span class="badge bg-label-primary rounded-pill">AVG. Time: 24h</span>
-                                </div>
-                                <div class="text-center mt-4 pt-2">
-                                    <a href="payment-page.html" class="btn btn-outline-primary w-100">Get Started</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Basic Plan: End -->
-
-                    <!-- Favourite Plan: Start -->
-                    <div class="col-xl-4 col-lg-6">
-                        <div class="card border-primary border-2 shadow-none">
-                            <div class="card-header border-0">
-                                <h3 class="mb-2 pb-1">Favourite Plan</h3>
-                                <div class="d-flex align-items-center">
-                                    <h5 class="d-flex mb-0"><sup class="h5 mt-3">$</sup><span
-                                            class="display-3 fw-bold">51</span></h5>
-                                    <div class="ms-2 ps-1">
-                                        <h6 class="mb-1">Per month</h6>
-                                        <p class="small mb-0">10% off for yearly subscription</p>
-                                    </div>
-                                </div>
-                                <img src="{{ asset('public/materialize/assets/img/front-pages/icons/smiling-icon.png') }}"
-                                    alt="smiling icon" />
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Everything in basic
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Timeline with database
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Advanced search
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Marketing automation
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Advanced chatbot
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Campaign management
-                                        </h5>
-                                    </li>
-                                </ul>
-                                <hr />
-                                <div class="d-flex justify-content-between align-items-center flex-wrap">
-                                    <div class="me-1">
-                                        <h6 class="mb-1">Standard Support</h6>
-                                        <p class="small mb-0">Email & Chat</p>
-                                    </div>
-                                    <span class="badge bg-label-primary rounded-pill">AVG. Time: 6h</span>
-                                </div>
-                                <div class="text-center mt-4 pt-2">
-                                    <a href="payment-page.html" class="btn btn-primary w-100">Get Started</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Favourite Plan: End -->
-
-                    <!-- Standard Plan: Start -->
-                    <div class="col-xl-4 col-lg-6">
-                        <div class="card shadow-none">
-                            <div class="card-header border-0">
-                                <h3 class="mb-2 pb-1">Standard Plan</h3>
-                                <div class="d-flex align-items-center">
-                                    <h5 class="d-flex mb-0"><sup class="h5 mt-3">$</sup><span
-                                            class="display-3 fw-bold">99</span></h5>
-                                    <div class="ms-2 ps-1">
-                                        <h6 class="mb-1">Per month</h6>
-                                        <p class="small mb-0">10% off for yearly subscription</p>
-                                    </div>
-                                </div>
-                                <img src="{{ asset('public/materialize/assets/img/front-pages/icons/smiling-icon.png') }}"
-                                    alt="smiling icon" />
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Everything in premium
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Timeline with database
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Fuzzy search
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            A/B testing sanbox
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Custom permissions
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <h5>
-                                            <img src="{{ asset('public/materialize/assets/img/front-pages/icons/list-arrow-icon.png') }}"
-                                                alt="list arrow icon" class="me-2 pe-1 scaleX-n1-rtl" />
-                                            Social media automation
-                                        </h5>
-                                    </li>
-                                </ul>
-                                <hr />
-                                <div class="d-flex justify-content-between align-items-center flex-wrap">
-                                    <div class="me-1">
-                                        <h6 class="mb-1">Exclusive Support</h6>
-                                        <p class="small mb-0">Email, Chat & Google Meet</p>
-                                    </div>
-                                    <span class="badge bg-label-primary rounded-pill">Live Support</span>
-                                </div>
-                                <div class="text-center mt-4 pt-2">
-                                    <a href="payment-page.html" class="btn btn-outline-primary w-100">Get Started</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Standard Plan: End -->
-                </div>
-            </div>
-        </section>
-        <!-- Pricing plans: End -->
-
         <!-- Fun facts: Start -->
         <section id="landingFunFacts" class="section-py landing-fun-facts d-none">
             <div class="container">
@@ -1560,8 +1044,8 @@
                                     Layout</a>
                             </li>
                             <li class="mb-3">
-                                <a href="../horizontal-menu-template/" target="_blank"
-                                    class="footer-link">Horizontal Layout</a>
+                                <a href="../horizontal-menu-template/" target="_blank" class="footer-link">Horizontal
+                                    Layout</a>
                             </li>
                             <li class="mb-3">
                                 <a href="../vertical-menu-template-bordered/" target="_blank"

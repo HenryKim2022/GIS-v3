@@ -97,3 +97,10 @@ href="{{ asset('public/plugins/leaflet-official/leaflet.draw.toolbar/leaflet.too
 href="{{ asset('public/plugins/leaflet-official/leaflet.locatecontrol.vlastest/dist/L.Control.Locate.min.css') }}" />
 <script src="{{ asset('public/plugins/leaflet-official/leaflet.locatecontrol.vlastest/dist/L.Control.Locate.min.js') }}">
 </script>
+
+{{-- LeafletSearch (addons) --}}
+<link rel="stylesheet"
+href="{{ asset('public/plugins/leaflet-official/leaflet.search.vlastest/src/leaflet-search.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.search.vlastest/src/leaflet-search.js') }}">
+</script>
+
