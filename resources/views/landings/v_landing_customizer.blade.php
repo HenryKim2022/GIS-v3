@@ -379,7 +379,7 @@
                     <div id="leaflet_card">
                         <div class="col-12">
                             <div class="card mb-4">
-                                <div class="card card-header-actions d-flex card-scroll">
+                                <div class="card card-header-actions d-flex card-scroll m-0 pl-2 pt-1 pb-1 pr-2">
                                     <h5 class="card-header d-flex justify-content-between align-items-center">
                                         <span>School Location</span>
                                         <div class="no-caret">
