@@ -10,7 +10,6 @@
 <script src="{{ asset('public/materialize/assets/vendor/libs/i18n/i18n.js') }}"></script>
 <script src="{{ asset('public/materialize/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
 <script src="{{ asset('public/materialize/assets/vendor/js/menu.js') }}"></script>
-
 <!-- endbuild -->
 
 <!-- Vendors JS -->
@@ -35,9 +34,11 @@
 {{-- Custom JS --}}
 <script src="{{ asset('public/js/custom.js') }}"></script>
 
- <!-- Page JS -->
- <script src="{{ asset('public/materialize/assets/js/dashboards-analytics.js') }}"></script>
- <script src="{{ asset('public/materialize/assets/js/front-page-landing.js') }}"></script>
- {{-- <script src="{{ asset('public/materialize/assets/js/maps-leaflet.js') }}"></script> --}}
- 
- <script src="{{ asset('public/materialize/assets/js/app-user-view-account.js') }}"></script>
+<!-- Page JS -->
+<script src="{{ asset('public/materialize/assets/js/dashboards-analytics.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/js/front-page-landing.js') }}"></script>
+
+{{-- Template Leaflet JS --}}
+{{-- <script src="{{ asset('public/materialize/assets/js/maps-leaflet.js') }}"></script> --}}
+
+<script src="{{ asset('public/materialize/assets/js/app-user-view-account.js') }}"></script>
