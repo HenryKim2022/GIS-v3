@@ -1,7 +1,7 @@
 var school500 = {
     "type": "FeatureCollection",
     "generator": "overpass-turbo",
-    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+    "copyright": "The data included in this document is from iti-if.my.id. The data is made available when we are active.",
     "timestamp": "2024-05-07T15:09:02Z",
     "features": [
         {
@@ -15,7 +15,9 @@ var school500 = {
                 "institu_address": "JL. Senopati No.1",
                 "institu_descb": "",
                 "institu_image": "",
-                "institu_mark_id": "1"
+                "institu_mark_id": "1",
+                "created_at": "",
+                "updated_at": ""
             },
             "geometry": {
                 "type": "Point",
@@ -25,6 +27,8 @@ var school500 = {
                 ]
             }
         },
+
+
         {
             "type": "Feature",
             "properties": {
@@ -36,7 +40,9 @@ var school500 = {
                 "institu_address": "JL. Senopati No.2",
                 "institu_descb": "",
                 "institu_image": "",
-                "institu_mark_id": "2"
+                "institu_mark_id": "2",
+                "created_at": "",
+                "updated_at": ""
             },
             "geometry": {
                 "type": "Point",
@@ -46,6 +52,9 @@ var school500 = {
                 ]
             }
         },
+
+
+
         {
             "type": "Feature",
             "properties": {
@@ -57,7 +66,9 @@ var school500 = {
                 "institu_address": "JL. Senopati No.3",
                 "institu_descb": "",
                 "institu_image": "",
-                "institu_mark_id": "3"
+                "institu_mark_id": "3",
+                "created_at": "",
+                "updated_at": ""
             },
             "geometry": {
                 "type": "Point",
@@ -67,6 +78,9 @@ var school500 = {
                 ]
             }
         },
+
+
+
         {
             "type": "Feature",
             "properties": {
@@ -78,7 +92,9 @@ var school500 = {
                 "institu_address": "JL. Senopati No.4",
                 "institu_descb": "",
                 "institu_image": "",
-                "institu_mark_id": "4"
+                "institu_mark_id": "4",
+                "created_at": "",
+                "updated_at": ""
             },
             "geometry": {
                 "type": "Point",
@@ -88,6 +104,9 @@ var school500 = {
                 ]
             }
         },
+
+
+
         {
             "type": "Feature",
             "properties": {
@@ -99,7 +118,9 @@ var school500 = {
                 "institu_address": "JL. Senopati No.5",
                 "institu_descb": "",
                 "institu_image": "",
-                "institu_mark_id": "5"
+                "institu_mark_id": "5",
+                "created_at": "",
+                "updated_at": ""
             },
             "geometry": {
                 "type": "Point",
