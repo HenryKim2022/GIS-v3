@@ -34,7 +34,6 @@ function addSearchControl(map, markersLayer, propertyNamed) {
         layer: markersLayer,
         position: 'topleft',
         initial: false,
-        marker: false,
         zoom: 48,
         propertyName: propertyNamed,
         textPlaceholder: 'Search by school name'
@@ -49,6 +48,9 @@ function addLocateControl(map) {
         },
         flyTo: true,
         setView: 'always',
+        locateOptions: {
+            enableHighAccuracy: true
+        },
         maxZoom: function (map) {
             return Math.min(map.getZoom(), 1);
         }
@@ -57,7 +59,7 @@ function addLocateControl(map) {
 
 function populateMapWithMarkers(map, markersLayer) {
     school500.features
-        .filter(f => f.properties['institu_address'])
+        .filter(f => f.properties['institu_name'])
         .forEach(f => {
             const coordinates = f.geometry.coordinates.slice().reverse();
             const marker = L.marker(coordinates, {
