@@ -6,6 +6,9 @@
 
 DROP TABLE IF EXISTS tb_institution;
 DROP TABLE IF EXISTS tb_mark;
+DROP TABLE IF EXISTS tb_logins;
+DROP TABLE IF EXISTS tb_users;
+DROP TABLE IF EXISTS tb_levels;
 
 
 CREATE DATABASE IF NOT EXISTS itir9421_gis;
@@ -29,6 +32,25 @@ CREATE TABLE IF NOT EXISTS tb_institution (
 );
 
 
+CREATE TABLE IF NOT EXISTS tb_levels (
+    level_id INT(9) PRIMARY KEY AUTO_INCREMENT,
+    level_name TEXT(45)
+);
+
+CREATE TABLE IF NOT EXISTS tb_users (
+    user_id INT(9) PRIMARY KEY AUTO_INCREMENT,
+    user_name TEXT(45),
+    user_image TEXT(254),
+    level_id INT(9),
+    FOREIGN KEY (level_id) REFERENCES tb_levels(level_id)
+);
+
+CREATE TABLE IF NOT EXISTS tb_logins (
+    login_id INT(9) PRIMARY KEY AUTO_INCREMENT,
+    user_id TEXT(45),
+    user_password TEXT(254),
+    FOREIGN KEY (user_id) REFERENCES tb_users(user_id)
+);
 
 
 
@@ -42,7 +64,7 @@ CREATE TABLE IF NOT EXISTS tb_institution (
 
 
 
-
+-- YG DIBAWAH INI GK DIPAKE:
 -- CREATE TABLE IF NOT EXISTS tb_frontpage_widget(
 	-- id_widget VARCHAR(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	-- widget_name TEXT(50) NOT NULL,

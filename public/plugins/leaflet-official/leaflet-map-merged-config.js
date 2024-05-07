@@ -1,77 +1,136 @@
+var imgu = "";
+var controlSearch;
 
-// /////////////////////////////////////////////////////////////////////////////
-// /////    <!-- CUST SCRIPT: LEAFLET JS -->
-// /////////////////////////////////////////////////////////////////////////////
+function initializeMap() {
+    var map = new L.Map('map', {
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+            position: 'topleft'
+        },
+        gestureHandling: false
+    }).setView([-3.4763993, 115.2211498], 4.50);
 
-//////////////// ALWAYS NEED1:
-let map = new L.Map('map', {
-    fullscreenControl: true,
-    fullscreenControlOptions: {
-        position: 'topleft'
-    },
-    gestureHandling: false
-}).setView([-6.2226432, 106.5910272], 13);
-//////////////// ENDOF: ALWAYS NEED1:                                        
-
-//////////////// ALWAYS NEED2:
-var appName = "GIS";
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: `Map data &copy; <a href="https://www.openstreetmap.org/">${appName}</a>`
-}).addTo(map);
-//////////////// ENDOF: ALWAYS NEED2:
-
-//////////////// ALWAYS NEED3: LOCATE ME
-L.control.locate({
-    strings: {
-        title: "Locate me!"
-    }
-}).addTo(map);
-////////////////  ENDOF: ALWAYS NEED3: LOCATE ME
-
-//////////////// ALWAYS NEED4: SEARCH MARKER
-var markersLayer = new L.LayerGroup();	//layer contain searched elements
-map.addLayer(markersLayer);
-var controlSearch = new L.Control.Search({
-    position: 'topright',
-    layer: markersLayer,
-    initial: false,
-    zoom: 48,
-    marker: false
-});
-map.addControl(controlSearch);
-
-//sample data values for populate map
-var imgu = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg/400px-Logo_of_Ministry_of_Education_and_Culture_of_Republic_of_Indonesia.svg.png";
-var data = [
-    { "loc": [-6.1753924, 106.8271528], "title": "School 1", "imgUrl": imgu },
-    { "loc": [-6.2000000, 106.8166667], "title": "School 2", "imgUrl": imgu },
-    { "loc": [-6.2146207, 106.8451301], "title": "School 3", "imgUrl": imgu },
-    { "loc": [-6.2348972, 106.9899802], "title": "School 4", "imgUrl": imgu },
-    { "loc": [-6.1714402, 106.8384527], "title": "School 5", "imgUrl": imgu },
-    // Add more school locations with image URLs here
-];
-
-//// populate map with markers from sample data
-for (i in data) {
-    var title = data[i].title,
-        loc = data[i].loc,
-        imgUrl = data[i].imgUrl,
-        marker = new L.Marker(new L.latLng(loc), { title: title });
-
-    // Create a custom popup content with the title and image
-    var popupContent = `
-    <div>
-        <h4 class="text-sm text-mute m-0"> ${title}: </h4>
-        <a class="font-fs text-sm text-mute"> Lat:${loc[0]} | Lon: ${loc[1]}</a>
-        <p>
-            <div class="d-flex align-content-center align-items-center justify-content-around w-100">
-                <img src="${imgUrl}" alt="${title} Image" width="50">
-            </div>
-        </p>
-    </div>
-    `;
-
-    marker.bindPopup(popupContent);
-    markersLayer.addLayer(marker);
+    return map;
 }
-//////////////// ENDOF: ALWAYS NEED4: SEARCH MARKER
+
+function addResetViewControl(map) {
+    L.control.resetView({
+        position: "topright",
+        title: "Reset view",
+        latlng: L.latLng([-3.4763993, 115.2211498]),
+        zoom: 4.50,
+    }).addTo(map);
+}
+
+function addTileLayer(map) {
+    var appName = "GIS";
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: `Map data &copy; <a href="https://www.openstreetmap.org/">${appName}</a>`
+    }).addTo(map);
+}
+
+function addSearchControl(map, markersLayer, propertyNamed) {
+    L.control.search({
+        layer: markersLayer,
+        position: 'topleft',
+        initial: false,
+        marker: false,
+        zoom: 48,
+        propertyName: propertyNamed,
+        textPlaceholder: 'Search by school name'
+    }).addTo(map);
+}
+
+function addLocateControl(map) {
+    L.control.locate({
+        position: 'topright',
+        strings: {
+            title: "Locate me!"
+        },
+        flyTo: true,
+        setView: 'always',
+        maxZoom: function (map) {
+            return Math.min(map.getZoom(), 1);
+        }
+    }).addTo(map);
+}
+
+function populateMapWithMarkers(map, markersLayer) {
+    school500.features
+        .filter(f => f.properties['institu_address'])
+        .forEach(f => {
+            const coordinates = f.geometry.coordinates.slice().reverse();
+            const marker = L.marker(coordinates, {
+                title: f.properties.institu_name,
+                address: f.properties.institu_address
+            });
+
+            // Membuat konten marker yang berisi semua atribut
+            let content = "<div name='" + f.properties['institu_address']  +"'>";
+            content += "<strong>coordinates: </strong> " + coordinates + "<br>";
+
+            for (let key in f.properties) {
+                content += "<strong>" + key + ":</strong> " + f.properties[key] + "<br>";
+            }
+            content += "</div>";
+
+            marker.bindPopup(content);
+            marker.options.popupText = marker._popup._content;
+            markersLayer.addLayer(marker);
+        });
+
+    addSearchControl(map, markersLayer, 'title');
+}
+
+function addMarkerOnContextMenu(map, markersLayer) {
+    map.on('contextmenu taphold', function (e) {
+        var LAT = e.latlng.lat.toFixed(7);
+        var LNG = e.latlng.lng.toFixed(7);
+        var title = 'New Marker',
+            address = 'Fill the address',
+            imgUrl = imgu,
+            fromRightClick_PopupContent = `
+                    <div>
+                        <h4 class="text-sm text-mute m-0">
+                            <div class="d-flex align-content-center align-items-center justify-center w-100">
+                                <img src="${imgUrl}" alt="" width="20" style="margin-right: 0.2rem;">
+                                <span>${title}:</span>
+                            </div>
+                        </h4>
+                        <a class="font-fs text-sm text-mute"> Lat:${LAT} | Lon: ${LNG}</a>
+                        <p>
+                            <div class="d-flex align-content-center align-items-center justify-content-around w-100">
+                                <img src="${imgUrl}" alt="${title} Logo" width="80">
+                                <a>Address: ${address}</a>
+                            </div>
+                        </p>
+                        <button class="mark-edit-btn">Edit</button>
+                    </div>
+                `;
+
+        var marker = new L.Marker(new L.latLng([LAT, LNG]), { title: title });
+        marker.bindPopup(fromRightClick_PopupContent);
+        markersLayer.addLayer(marker);
+        console.log("New marker added at Lat: " + LAT + " | Lon: " + LNG);
+        // Remove the existing search control
+        map.removeControl(controlSearch);
+        // Create a new search control with the updated markersLayer
+        addSearchControl(map, markersLayer);
+    });
+}
+
+// The main function to initialize the map and its components
+function initializeMapApp() {
+    var map = initializeMap();
+    var markersLayer = L.layerGroup();
+
+    // addSearchControl(map, markersLayer);
+    populateMapWithMarkers(map, markersLayer);
+    addResetViewControl(map);
+    addTileLayer(map);
+    addLocateControl(map);
+    addMarkerOnContextMenu(map, markersLayer);
+}
+
+// Call the main function to initialize the map
+initializeMapApp();

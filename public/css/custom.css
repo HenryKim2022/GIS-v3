@@ -33,7 +33,7 @@ html {
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 9999;
+    /* z-index: 9999; */
 }
 #leaflet_card {
     transform: scale(1, 1);
@@ -49,7 +49,7 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1050;
+    z-index: 1102;
 }
 .no-scroll {
     overflow: hidden;
@@ -75,7 +75,7 @@ html {
 /* CUST CSS: MODALS */
 /*  */
 .modal {
-    z-index: 1102 !important;
+    z-index: 1103 !important;
 }
 
 /*  */
@@ -113,7 +113,7 @@ html {
 @media (max-width: 1199.98px) {
     /* ABOUT US MODAL */
     .modal {
-        z-index: 1102 !important;
+        z-index: 1103 !important;
     }
     /* ABOUT US MODAL BACKDROP PART */
     .modal-backdrop.custom-backdrop {

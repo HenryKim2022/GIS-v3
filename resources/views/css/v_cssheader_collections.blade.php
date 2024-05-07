@@ -68,6 +68,7 @@
 <link rel="stylesheet" href="{{ asset('public/plugins/leaflet-official/leaflet.base.v1.9.4/leaflet.css') }}" />
 <script src="{{ asset('public/plugins/leaflet-official/leaflet.base.v1.9.4/leaflet.js') }}"></script>
 
+
 {{-- LeafletFullscreen: For Old Browser --}}
 {{-- <link rel="stylesheet"
 href="{{ asset('public/plugins/leaflet-official/leaflet.fullscreen.v1.0.1/dist/leaflet.fullscreen.css') }}" />
@@ -104,3 +105,10 @@ href="{{ asset('public/plugins/leaflet-official/leaflet.search.vlastest/src/leaf
 <script src="{{ asset('public/plugins/leaflet-official/leaflet.search.vlastest/src/leaflet-search.js') }}">
 </script>
 
+{{-- LeafletViewReset (addons) --}}
+<link rel="stylesheet"
+href="{{ asset('public/plugins/leaflet-official/leaflet.resetview/dist/L.Control.ResetView.min.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.resetview/dist/L.Control.ResetView.min.js') }}">
+</script>
+
+{{-- LeafletControlModals (addons) --}}
