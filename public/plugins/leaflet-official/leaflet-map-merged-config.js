@@ -34,7 +34,7 @@ function addSearchControl(map, markersLayer, propertyNamed) {
         layer: markersLayer,
         position: 'topleft',
         initial: false,
-        marker: false,
+        // marker: true,
         zoom: 48,
         propertyName: propertyNamed,
         textPlaceholder: 'Search by school name'
