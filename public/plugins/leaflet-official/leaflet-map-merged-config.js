@@ -32,7 +32,7 @@ function addTileLayer(map) {
     }).addTo(map);
 }
 
-function addSearchControl(map, markersLayer, propertyNamed) {
+function addSchoolnameSearchControl(map, markersLayer, propertyNamed) {
     L.control.search({
         layer: markersLayer,
         position: 'topleft',
@@ -43,7 +43,40 @@ function addSearchControl(map, markersLayer, propertyNamed) {
     }).addTo(map);
 }
 
-function addLocateControl(map, markersLayer) {
+
+function addAddressSearchControl(map, markersLayer) {
+    var searchMarker;
+    L.Control.geocoder({
+        defaultMarkGeocode: false,
+        position: 'topleft',
+        placeholder: 'Search by address',
+        geocoder: L.Control.Geocoder.nominatim(),
+    }).on('markgeocode', function (e) {
+        var latlng = e.geocode.center;
+        map.setView(latlng, 16); // Set the map view to the geocoded location
+        // Remove previous marker and popup, if any
+        if (searchMarker) {
+            map.removeLayer(searchMarker);
+        }
+
+        searchMarker = L.marker(latlng).addTo(map); // Add a marker at the geocoded location
+        if (e.geocode.raw && e.geocode.raw.icon) {
+            var imageUrl = 'https://www.openstreetmap.org' + e.geocode.raw.icon; // Get the URL of the street view image
+            var popupContent = '<img src="' + imageUrl + '" alt="Street View" style="width: 20;">';
+            searchMarker.bindPopup(popupContent).openPopup(); // Bind the popup with the street view image and open it
+        } else {
+            searchMarker.bindPopup('No image available').openPopup(); // Fallback content if image is not available
+        }
+
+        // Remove marker and popup on double-click
+        searchMarker.on('dblclick', function () {
+            map.removeLayer(searchMarker);
+            searchMarker = null;
+        });
+    }).addTo(map);
+}
+
+function addLocateMeControl(map, markersLayer) {
     L.control.locate({
         position: 'topright',
         strings: {
@@ -65,6 +98,13 @@ function addLocateControl(map, markersLayer) {
         mycurrentLat = latitude;
         mycurrentLng = longitude;
         console.log('My Locations >\nLatitude:', mycurrentLat, 'Longitude:', mycurrentLng);
+
+        var popupContent = 'Your location:<br>Latitude: ' + latitude + '<br>Longitude: ' + longitude;
+        L.popup()
+            .setLatLng([latitude, longitude])
+            .setContent(popupContent)
+            .openOn(map);
+
         // geocodeTracks(map, markersLayer);
     });
 
@@ -118,7 +158,7 @@ function populateMapWithMarkers(map, markersLayer) {
 
         });
 
-    addSearchControl(map, markersLayer, 'tobesearch');
+    addSchoolnameSearchControl(map, markersLayer, 'tobesearch');
 }
 
 
@@ -207,9 +247,9 @@ function addMarkerOnContextMenu(map, markersLayer) {
                     </span>
                     <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
                     <div class='d-flex flex-col justify-content-between'>
-                        <button class="mark-cancel-btn mdi mdi-cancel">Cancel</button>
-                        <button class="mark-remove-btn mdi mdi-delete">Remove</button>
-                        <button class="mark-edit-btn mdi mdi-content-edit">Edit</button>
+                        <button class="mark-cancel-btn mdi mdi-cancel p-2 rounded-2"> Cancel</button>
+                        <button class="mark-remove-btn mdi mdi-delete p-2 rounded-2"> Remove</button>
+                        <button class="mark-edit-btn mdi mdi-content-save-all p-2 rounded-2"> Edit & Save</button>
                     </div>
                 </div>
             `;
@@ -296,6 +336,8 @@ function printAddrToConsole(map) {
     });
 }
 
+
+
 function geocodeTracks(map, markersLayer) {
     // const startingPointMarker = L.marker(new L.latLng([mycurrentLat, mycurrentLng]), tooltipData);
     // L.Routing.control({
@@ -306,48 +348,6 @@ function geocodeTracks(map, markersLayer) {
     //     ],
     //     routeWhileDragging: true,
     // }).addTo(map);
-
-
-    // const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
-    // L.Routing.control({
-    //     waypoints: [
-    //         L.latLng(57.74, 11.94),
-    //         L.latLng(57.6792, 11.949)
-    //     ],
-    //     routeWhileDragging: true,
-    //     geocoder: L.Control.Geocoder.nominatim()
-    // }).addTo(map);
-
-
-    var geocoder = L.Control.geocoder({
-        defaultMarkGeocode: false
-    })
-        .on('markgeocode', function (e) {
-            var geocode = e.geocode;
-            if (geocode && geocode.bbox) {
-                var bbox = geocode.bbox;
-                var bounds = L.latLngBounds(bbox.getSouthWest(), bbox.getNorthEast());
-                var poly = L.polygon([
-                    bounds.getSouthEast(),
-                    bounds.getNorthEast(),
-                    bounds.getNorthWest(),
-                    bounds.getSouthWest()
-                ]).addTo(map);
-                map.fitBounds(bounds);
-            } else {
-                console.log('No valid geocode result found.');
-            }
-        })
-        .addTo(map);
-
-    // // L.Routing.control({
-    // //     waypoints: [
-    // //         L.latLng(57.74, 11.94),
-    // //         L.latLng(57.6792, 11.949)
-    // //     ],
-    // //     routeWhileDragging: true,
-    // //     geocoder: L.Control.Geocoder.nominatim()
-    // // }).addTo(map);
 }
 
 // The main function to initialize the map and its components
@@ -355,11 +355,12 @@ function initializeMapApp() {
     var map = initializeMap();
     var markersLayer = L.layerGroup();
 
-    // addSearchControl(map, markersLayer);
+    // addSchoolnameSearchControl(map, markersLayer);
     populateMapWithMarkers(map, markersLayer);
     addResetViewControl(map);
+    addAddressSearchControl(map);
     addTileLayer(map);
-    addLocateControl(map);
+    addLocateMeControl(map);
     addMarkerOnContextMenu(map, markersLayer);
     printAddrToConsole(map);
     geocodeTracks(map, markersLayer);
