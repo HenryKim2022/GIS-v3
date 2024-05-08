@@ -38,9 +38,21 @@
 .leaflet-control-geocoder-form input {
   font-size: 120%;
   border: 0;
-  background-color: transparent;
+  /* background-color: transparent; */
   width: 246px;
 }
+.dark-style .leaflet-control-geocoder-form input {
+    background: #3e415b;
+    color: #fff;
+    border: 1px solid #666;
+}
+.light-style .leaflet-control-geocoder-form input {
+	background: #fff;
+    color: #3e415b;
+	border:1px solid #666;
+}
+
+
 
 .leaflet-control-geocoder-icon {
   border-radius: 4px;
