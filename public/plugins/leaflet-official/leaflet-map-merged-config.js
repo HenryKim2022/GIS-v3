@@ -112,77 +112,134 @@ function addMarkerOnContextMenu(map, markersLayer) {
     map.on('contextmenu taphold', function (e) {
         var LAT = e.latlng.lat.toFixed(7);
         var LNG = e.latlng.lng.toFixed(7);
-        const institu_name = "New Marker";
-        const institu_npsn = "Fill data!";
-        const imgLogo = imgu; // Corrected variable name
-        const institu_addr = "Fill data!";
-        const institu_images = imgu;
-        const last_update = "never";
-
-        const tooltipData = {
-            tobesearch: institu_name
+        var coordinates = {
+            lat: LAT,
+            lng: LNG
         };
-        const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
 
-        const fromRightClick_PopupContent = `
-            <div class='d-flex flex-column p-0'>
-                <span style='padding-bottom:2px;'><strong>Coordinates: </strong>${LAT}, ${LNG}<br></span>
-                <span style='padding-bottom:2px;'><strong>Name: </strong>${institu_name}<br></span>
-                <span style='padding-bottom:2px;'><strong>NPSN: </strong>${institu_npsn}<br></span>
-                <span style='padding-bottom:2px;'><strong>Logo: </strong>
-                    <img src='${imgLogo}' alt='${institu_name} Logo' width='30'><br>
-                </span>
-                <span style='padding-bottom:2px;'><strong>Address:</strong>${institu_addr}<br></span>
-                <span class='d-flex flex-column align-top text-start' style='padding-bottom:2px;'><strong>Images:</strong>
-                    <img src='${institu_images}' alt='${institu_name} Logo' width='80'><br>
-                </span>
-                <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
-                <div class='d-flex flex-col justify-content-between'>
-                    <button class="mark-cancel-btn mdi mdi-cancel">Cancel</button>
-                    <button class="mark-remove-btn mdi mdi-delete">Remove</button>
-                    <button class="mark-edit-btn mdi mdi-content-edit">Edit</button>
+        getAddressFromCoordinates(coordinates)
+            .then(address => {
+                // Define the addr components
+                var componentKeys = [
+                    { key: 'road', label: 'Jl.' },
+                    { key: 'neighbourhood', label: 'Ling.' },
+                    { key: 'hamlet', label: 'Dusun' },
+                    { key: 'village', label: 'Desa' },
+                    { key: 'suburb', label: 'Suburb' },
+                    { key: 'city_district', label: 'Kec.' },
+                    { key: 'town', label: 'Kota' },
+                    { key: 'county', label: 'Kab.' },
+                    { key: 'state_district', label: 'Wilayah' },
+                    { key: 'city', label: 'Kota' },
+                    { key: 'state', label: 'Prov.' },
+                    { key: 'postcode', label: 'Kode Pos' },
+                    { key: 'country', label: 'Negara' }
+                ];
+
+                var province = address['state'];
+                var postcode = address['postcode'];
+                var addressComponents = [];
+
+                componentKeys.forEach(component => {
+                    var key = component.key;
+                    var label = component.label;
+
+                    if (key === 'state') {
+                        if (province && postcode) {
+                            addressComponents.push(label + ' ' + province + ' (' + postcode + ')');
+                        } else if (province) {
+                            addressComponents.push(label + ' ' + province);
+                        }
+                    } else if (key !== 'postcode' && address[key]) {
+                        if (label && address[key].toLowerCase().includes(label.toLowerCase())) {
+                            addressComponents.push(address[key]);
+                        } else {
+                            addressComponents.push(label + ' ' + address[key]);
+                        }
+                    }
+                });
+
+                var fulladdr = addressComponents.join(', ');
+                processIt(fulladdr);
+                console.log(fulladdr);
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
+
+        function processIt(institu_addr) {
+            const institu_name = "New Marker";
+            const institu_npsn = "Fill data!";
+            const imgLogo = imgu; // Corrected variable name
+            const institu_images = imgu;
+            const last_update = "never";
+
+            const tooltipData = {
+                tobesearch: institu_name
+            };
+            const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
+
+            const fromRightClick_PopupContent = `
+                <div class='d-flex flex-column p-0'>
+                    <span style='padding-bottom:2px;'><strong>Coordinates: </strong>${LAT}, ${LNG}<br></span>
+                    <span style='padding-bottom:2px;'><strong>Name: </strong>${institu_name}<br></span>
+                    <span style='padding-bottom:2px;'><strong>NPSN: </strong>${institu_npsn}<br></span>
+                    <span style='padding-bottom:2px;'><strong>Logo: </strong>
+                        <img src='${imgLogo}' alt='${institu_name} Logo' width='30'><br>
+                    </span>
+                    <span style='padding-bottom:2px;'><strong>Address:</strong>${institu_addr}<br></span>
+                    <span class='d-flex flex-column align-top text-start' style='padding-bottom:2px;'><strong>Images:</strong>
+                        <img src='${institu_images}' alt='${institu_name} Logo' width='80'><br>
+                    </span>
+                    <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
+                    <div class='d-flex flex-col justify-content-between'>
+                        <button class="mark-cancel-btn mdi mdi-cancel">Cancel</button>
+                        <button class="mark-remove-btn mdi mdi-delete">Remove</button>
+                        <button class="mark-edit-btn mdi mdi-content-edit">Edit</button>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
 
-        marker.bindTooltip(institu_name + "  ➟  " + institu_addr);
-        marker.bindPopup(fromRightClick_PopupContent);
-        marker.options.popupText = marker._popup._content;
-        markersLayer.addLayer(marker);
+            marker.bindTooltip(institu_name + "  ➟  " + institu_addr);
+            marker.bindPopup(fromRightClick_PopupContent);
+            marker.options.popupText = marker._popup._content;
+            markersLayer.addLayer(marker);
 
 
-        // Handle the "Edit" button click event within the marker's popup
-        marker.on('popupopen', function () {
-            var editButton = document.querySelector('.mark-edit-btn');
-            editButton.addEventListener('click', function () {
-                $('#editMarkModal').modal('show');
-                var saveButton = document.querySelector('.modal-save-btn');
-                if (saveButton) {
-                    saveButton.addEventListener('click', function () {
-                        $('#editMarkModal').modal('hide');
-                        marker.setPopupContent(updatedPopupContent);
-                    });
-                }
+            // Handle the "Edit" button click event within the marker's popup
+            marker.on('popupopen', function () {
+                var editButton = document.querySelector('.mark-edit-btn');
+                editButton.addEventListener('click', function () {
+                    $('#editMarkModal').modal('show');
+                    var saveButton = document.querySelector('.modal-save-btn');
+                    if (saveButton) {
+                        saveButton.addEventListener('click', function () {
+                            $('#editMarkModal').modal('hide');
+                            marker.setPopupContent(updatedPopupContent);
+                        });
+                    }
+                    var cancelButton = document.querySelector('.mark-cancel-btn');
+                    if (cancelButton) {
+                        cancelButton.addEventListener('click', function () {
+                            marker.closePopup();
+                        });
+                    }
+                });
                 var cancelButton = document.querySelector('.mark-cancel-btn');
-                if (cancelButton) {
-                    cancelButton.addEventListener('click', function () {
+                cancelButton.addEventListener('click', function () {
+                    if (cancelButton) {
                         marker.closePopup();
-                    });
-                }
+                    }
+                });
+                var deleteButton = document.querySelector('.mark-remove-btn');
+                deleteButton.addEventListener('click', function () {
+                    if (deleteButton) {
+                        markersLayer.removeLayer(marker); // Remove the marker from the layer
+                    }
+                });
             });
-            var cancelButton = document.querySelector('.mark-cancel-btn');
-            cancelButton.addEventListener('click', function () {
-                if (cancelButton) {
-                    marker.closePopup();
-                }
-            });
-            var deleteButton = document.querySelector('.mark-remove-btn');
-            deleteButton.addEventListener('click', function () {
-                if (deleteButton) {
-                    markersLayer.removeLayer(marker); // Remove the marker from the layer
-                }
-            });
-        });
+        }
+
 
         // Add event listener to the parent container of the popup content
         // marker.on('popupopen', function () {
@@ -200,21 +257,26 @@ function addMarkerOnContextMenu(map, markersLayer) {
 
 
 
-function getAddressFromCoordinates(coordinates, callback) {
+function getAddressFromCoordinates(coordinates) {
     const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${coordinates.lat}&lon=${coordinates.lng}`;
 
-    fetch(url)
-        .then(response => response.json())
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data && data.address) {
                 const address = data.address;
-                callback(null, address);
+                return address;
             } else {
-                callback('Address not found');
+                throw new Error('Address not found');
             }
         })
         .catch(error => {
-            callback('Error retrieving address');
+            throw new Error('Error retrieving address');
         });
 }
 
@@ -222,16 +284,13 @@ function getAddressFromCoordinates(coordinates, callback) {
 function printAddrToConsole(map) {
     map.on('click', function (e) {
         const coordinates = e.latlng;
-        getAddressFromCoordinates(coordinates, function (err, address) {
-            if (err) {
-                console.log(err);
-            } else {
-
-                console.log('Coordinates:', coordinates);
-                console.log('Address:', address);
-                // You can use the address as needed (e.g., display it in a tooltip or popup)
-            }
-        });
+        getAddressFromCoordinates(coordinates)
+            .then(address => {
+                console.log(address);
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
     });
 }
 
