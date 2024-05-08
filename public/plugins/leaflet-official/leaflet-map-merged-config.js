@@ -297,7 +297,7 @@ function printAddrToConsole(map) {
 }
 
 function geocodeTracks(map, markersLayer) {
-    const startingPointMarker = L.marker(new L.latLng([mycurrentLat, mycurrentLng]), tooltipData);
+    // const startingPointMarker = L.marker(new L.latLng([mycurrentLat, mycurrentLng]), tooltipData);
     L.Routing.control({
         waypoints: [
             // L.latLng(mycurrentLat, mycurrentLng),
