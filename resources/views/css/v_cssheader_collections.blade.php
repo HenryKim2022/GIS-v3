@@ -119,15 +119,18 @@ href="{{ asset('public/plugins/leaflet-official/leaflet.resetview/dist/L.Control
 {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
 
+
+{{-- LeafletControlGeocoder (addons) --}}
 <link rel="stylesheet"
 href="{{ asset('public/plugins/leaflet-official/leaflet.control.geocoder/dist/Control.Geocoder.css') }}" />
 <script src="{{ asset('public/plugins/leaflet-official/leaflet.control.geocoder/dist/Control.Geocoder.js') }}">
 </script>
 
 
+{{-- LeafletRoutingMachine (addons) --}}
 <link rel="stylesheet"
-href="{{ asset('public/plugins/leaflet-official/leaflet.routing.machine.v.3.2.12/dist/leaflet-routing-machine.css') }}" />
-<script src="{{ asset('public/plugins/leaflet-official/leaflet.routing.machine.v.3.2.12/dist/leaflet-routing-machine.js') }}">
+href="{{ asset('public/plugins/leaflet-official/leaflet.routing.machine/dist/leaflet-routing-machine.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.routing.machine/dist/leaflet-routing-machine.js') }}">
 </script>
 
 

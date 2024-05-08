@@ -65,7 +65,7 @@ function addLocateControl(map, markersLayer) {
         mycurrentLat = latitude;
         mycurrentLng = longitude;
         console.log('My Locations >\nLatitude:', mycurrentLat, 'Longitude:', mycurrentLng);
-        geocodeTracks(map, markersLayer);
+        // geocodeTracks(map, markersLayer);
     });
 
 
@@ -300,8 +300,9 @@ function geocodeTracks(map, markersLayer) {
     const startingPointMarker = L.marker(new L.latLng([mycurrentLat, mycurrentLng]), tooltipData);
     L.Routing.control({
         waypoints: [
-            L.latLng(mycurrentLat, mycurrentLng),
-            L.latLng(57.6792, 11.949)
+            // L.latLng(mycurrentLat, mycurrentLng),
+            L.latLng(-6.2029824, 106.5811968),
+            L.latLng(-6.2029828, 106.5811978)
         ],
         routeWhileDragging: true,
     }).addTo(map);
@@ -361,7 +362,7 @@ function initializeMapApp() {
     addLocateControl(map);
     addMarkerOnContextMenu(map, markersLayer);
     printAddrToConsole(map);
-
+    geocodeTracks(map, markersLayer);
 }
 
 
