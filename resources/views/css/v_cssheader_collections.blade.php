@@ -71,7 +71,6 @@
 <link rel="stylesheet" href="{{ asset('public/plugins/leaflet-official/leaflet.base.vlastest/dist/leaflet.css') }}" />
 <script src="{{ asset('public/plugins/leaflet-official/leaflet.base.vlastest/dist/leaflet.js') }}"></script>
 <script src="{{ asset('public/plugins/leaflet-official/leaflet.base.vlastest/dist/leaflet-src.js') }}"></script>
-<script src="{{ asset('public/plugins/leaflet-official/leaflet.base.vlastest/dist/leaflet-src.esm.js') }}"></script>
 
 
 {{-- LeafletFullscreen: For Old Browser --}}
