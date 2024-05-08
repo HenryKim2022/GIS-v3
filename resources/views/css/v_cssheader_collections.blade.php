@@ -65,8 +65,13 @@
 <script src="{{ asset('public/materialize/assets/vendor/js/mega-dropdown.js') }}"></script>
 
 {{-- Leaflet from Leaflet Official --}}
-<link rel="stylesheet" href="{{ asset('public/plugins/leaflet-official/leaflet.base.v1.9.4/leaflet.css') }}" />
-<script src="{{ asset('public/plugins/leaflet-official/leaflet.base.v1.9.4/leaflet.js') }}"></script>
+{{-- <link rel="stylesheet" href="{{ asset('public/plugins/leaflet-official/leaflet.base.v1.9.4/leaflet.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.base.v1.9.4/leaflet.js') }}"></script> --}}
+
+<link rel="stylesheet" href="{{ asset('public/plugins/leaflet-official/leaflet.base.vlastest/dist/leaflet.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.base.vlastest/dist/leaflet.js') }}"></script>
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.base.vlastest/dist/leaflet-src.js') }}"></script>
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.base.vlastest/dist/leaflet-src.esm.js') }}"></script>
 
 
 {{-- LeafletFullscreen: For Old Browser --}}
