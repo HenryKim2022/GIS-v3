@@ -319,26 +319,26 @@ function geocodeTracks(map, markersLayer) {
     // }).addTo(map);
 
 
-    // var geocoder = L.Control.geocoder({
-    //     defaultMarkGeocode: false
-    // })
-    //     .on('markgeocode', function (e) {
-    //         var geocode = e.geocode;
-    //         if (geocode && geocode.bbox) {
-    //             var bbox = geocode.bbox;
-    //             var bounds = L.latLngBounds(bbox.getSouthWest(), bbox.getNorthEast());
-    //             var poly = L.polygon([
-    //                 bounds.getSouthEast(),
-    //                 bounds.getNorthEast(),
-    //                 bounds.getNorthWest(),
-    //                 bounds.getSouthWest()
-    //             ]).addTo(map);
-    //             map.fitBounds(bounds);
-    //         } else {
-    //             console.log('No valid geocode result found.');
-    //         }
-    //     })
-    //     .addTo(map);
+    var geocoder = L.Control.geocoder({
+        defaultMarkGeocode: false
+    })
+        .on('markgeocode', function (e) {
+            var geocode = e.geocode;
+            if (geocode && geocode.bbox) {
+                var bbox = geocode.bbox;
+                var bounds = L.latLngBounds(bbox.getSouthWest(), bbox.getNorthEast());
+                var poly = L.polygon([
+                    bounds.getSouthEast(),
+                    bounds.getNorthEast(),
+                    bounds.getNorthWest(),
+                    bounds.getSouthWest()
+                ]).addTo(map);
+                map.fitBounds(bounds);
+            } else {
+                console.log('No valid geocode result found.');
+            }
+        })
+        .addTo(map);
 
     // // L.Routing.control({
     // //     waypoints: [
