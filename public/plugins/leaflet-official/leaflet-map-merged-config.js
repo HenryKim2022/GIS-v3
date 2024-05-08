@@ -168,8 +168,8 @@ function addMarkerOnContextMenu(map, markersLayer) {
             });
 
         function processIt(institu_addr) {
-            const institu_name = "New Marker";
-            const institu_npsn = "Fill data!";
+            const institu_name = "Untitled Marker";
+            const institu_npsn = "fill data!";
             const imgLogo = imgu; // Corrected variable name
             const institu_images = imgu;
             const last_update = "never";
