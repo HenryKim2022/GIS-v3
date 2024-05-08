@@ -298,14 +298,14 @@ function printAddrToConsole(map) {
 
 function geocodeTracks(map, markersLayer) {
     // const startingPointMarker = L.marker(new L.latLng([mycurrentLat, mycurrentLng]), tooltipData);
-    L.Routing.control({
-        waypoints: [
-            // L.latLng(mycurrentLat, mycurrentLng),
-            L.latLng(-6.2029824, 106.5811968),
-            L.latLng(-6.2029828, 106.5811978)
-        ],
-        routeWhileDragging: true,
-    }).addTo(map);
+    // L.Routing.control({
+    //     waypoints: [
+    //         // L.latLng(mycurrentLat, mycurrentLng),
+    //         L.latLng(-6.2029824, 106.5811968),
+    //         L.latLng(-6.2029828, 106.5811978)
+    //     ],
+    //     routeWhileDragging: true,
+    // }).addTo(map);
 
 
     // const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
