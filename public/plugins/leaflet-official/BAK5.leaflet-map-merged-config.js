@@ -57,13 +57,6 @@ function addLocateControl(map) {
             return Math.min(map.getZoom(), 1);
         }
     }).addTo(map);
-
-    map.on('locationfound', function (e) {
-        var latitude = e.latitude;
-        var longitude = e.longitude;
-        console.log('Latitude:', latitude);
-        console.log('Longitude:', longitude);
-    });
 }
 
 function populateMapWithMarkers(map, markersLayer) {
@@ -291,47 +284,27 @@ function printAddrToConsole(map) {
     });
 }
 
-function geocodeTracks(map, markersLayerp) {
-    // const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
-    // L.Routing.control({
-    //     waypoints: [
-    //         L.latLng(57.74, 11.94),
-    //         L.latLng(57.6792, 11.949)
-    //     ],
-    //     routeWhileDragging: true,
-    //     geocoder: L.Control.Geocoder.nominatim()
-    // }).addTo(map);
-
-
-    // var geocoder = L.Control.geocoder({
-    //     defaultMarkGeocode: false
-    // })
-    //     .on('markgeocode', function (e) {
-    //         var geocode = e.geocode;
-    //         if (geocode && geocode.bbox) {
-    //             var bbox = geocode.bbox;
-    //             var bounds = L.latLngBounds(bbox.getSouthWest(), bbox.getNorthEast());
-    //             var poly = L.polygon([
-    //                 bounds.getSouthEast(),
-    //                 bounds.getNorthEast(),
-    //                 bounds.getNorthWest(),
-    //                 bounds.getSouthWest()
-    //             ]).addTo(map);
-    //             map.fitBounds(bounds);
-    //         } else {
-    //             console.log('No valid geocode result found.');
-    //         }
-    //     })
-    //     .addTo(map);
-
-    // // L.Routing.control({
-    // //     waypoints: [
-    // //         L.latLng(57.74, 11.94),
-    // //         L.latLng(57.6792, 11.949)
-    // //     ],
-    // //     routeWhileDragging: true,
-    // //     geocoder: L.Control.Geocoder.nominatim()
-    // // }).addTo(map);
+function geocodeTracks(map) {
+    var geocoder = L.Control.geocoder({
+      defaultMarkGeocode: false
+    })
+      .on('markgeocode', function(e) {
+        var geocode = e.geocode;
+        if (geocode && geocode.bbox) {
+          var bbox = geocode.bbox;
+          var bounds = L.latLngBounds(bbox.getSouthWest(), bbox.getNorthEast());
+          var poly = L.polygon([
+            bounds.getSouthEast(),
+            bounds.getNorthEast(),
+            bounds.getNorthWest(),
+            bounds.getSouthWest()
+          ]).addTo(map);
+          map.fitBounds(bounds);
+        } else {
+          console.log('No valid geocode result found.');
+        }
+      })
+      .addTo(map);
 }
 
 // The main function to initialize the map and its components
@@ -346,7 +319,7 @@ function initializeMapApp() {
     addLocateControl(map);
     addMarkerOnContextMenu(map, markersLayer);
     printAddrToConsole(map);
-    geocodeTracks(map, markersLayer);
+    geocodeTracks(map);
 }
 
 

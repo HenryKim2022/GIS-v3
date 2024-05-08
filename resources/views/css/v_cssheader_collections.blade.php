@@ -112,3 +112,20 @@ href="{{ asset('public/plugins/leaflet-official/leaflet.resetview/dist/L.Control
 </script>
 
 {{-- LeafletControlModals (addons) --}}
+{{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
+
+<link rel="stylesheet"
+href="{{ asset('public/plugins/leaflet-official/leaflet.control.geocoder/dist/Control.Geocoder.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.control.geocoder/dist/Control.Geocoder.js') }}">
+</script>
+
+
+<link rel="stylesheet"
+href="{{ asset('public/plugins/leaflet-official/leaflet.routing.machine.v.3.2.12/dist/leaflet-routing-machine.css') }}" />
+<script src="{{ asset('public/plugins/leaflet-official/leaflet.routing.machine.v.3.2.12/dist/leaflet-routing-machine.js') }}">
+</script>
+
+
+{{-- <link rel="stylesheet" href="https://unpkg.com/@geoapify/leaflet-address-search-plugin@^1/dist/L.Control.GeoapifyAddressSearch.min.css" />
+<script src="https://unpkg.com/@geoapify/leaflet-address-search-plugin@^1/dist/L.Control.GeoapifyAddressSearch.min.js"></script> --}}
