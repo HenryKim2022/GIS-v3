@@ -43,7 +43,7 @@ function addSearchControl(map, markersLayer, propertyNamed) {
     }).addTo(map);
 }
 
-function addLocateControl(map) {
+function addLocateControl(map, markersLayer) {
     L.control.locate({
         position: 'topright',
         strings: {
@@ -65,7 +65,10 @@ function addLocateControl(map) {
         mycurrentLat = latitude;
         mycurrentLng = longitude;
         console.log('My Locations >\nLatitude:', mycurrentLat, 'Longitude:', mycurrentLng);
+        geocodeTracks(map, markersLayer);
     });
+
+
 }
 
 function populateMapWithMarkers(map, markersLayer) {
@@ -358,7 +361,7 @@ function initializeMapApp() {
     addLocateControl(map);
     addMarkerOnContextMenu(map, markersLayer);
     printAddrToConsole(map);
-    geocodeTracks(map, markersLayer);
+
 }
 
 
