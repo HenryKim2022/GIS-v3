@@ -1,5 +1,6 @@
 var imgu = "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png";
 var controlSearch;
+var mycurrentLat, mycurrentLng;
 
 function initializeMap() {
     var map = new L.Map('map', {
@@ -61,7 +62,9 @@ function addLocateControl(map) {
     map.on('locationfound', function (e) {
         var latitude = e.latitude;
         var longitude = e.longitude;
-        console.log('My Locations >\nLatitude:', latitude, 'Longitude:', longitude);
+        mycurrentLat = latitude;
+        mycurrentLng = longitude;
+        console.log('My Locations >\nLatitude:', mycurrentLat, 'Longitude:', mycurrentLng);
     });
 }
 
@@ -290,7 +293,17 @@ function printAddrToConsole(map) {
     });
 }
 
-function geocodeTracks(map, markersLayerp) {
+function geocodeTracks(map, markersLayer) {
+    const startingPointMarker = L.marker(new L.latLng([mycurrentLat, mycurrentLng]), tooltipData);
+    L.Routing.control({
+        waypoints: [
+            L.latLng(mycurrentLat, mycurrentLng),
+            L.latLng(57.6792, 11.949)
+        ],
+        routeWhileDragging: true,
+    }).addTo(map);
+
+
     // const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
     // L.Routing.control({
     //     waypoints: [
