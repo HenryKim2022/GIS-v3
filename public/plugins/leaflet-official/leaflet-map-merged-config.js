@@ -240,18 +240,6 @@ function addMarkerOnContextMenu(map, markersLayer) {
             });
         }
 
-
-        // Add event listener to the parent container of the popup content
-        // marker.on('popupopen', function () {
-        //     const popupContent = marker.getPopup().getContent();
-        //     const cancelBtn = popupContent.getElementsByClassName('mark-cancel-btn')[0];
-
-        //     cancelBtn.addEventListener('click', function () {
-        //         markersLayer.removeLayer(marker);
-        //     });
-        // });
-
-
     });
 }
 
