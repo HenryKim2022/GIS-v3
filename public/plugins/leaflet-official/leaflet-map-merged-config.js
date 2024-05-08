@@ -49,7 +49,7 @@ function addLocateControl(map) {
             title: "Locate me!"
         },
         flyTo: true,
-        setView: 'always',
+        setView: 'untilPan',  //untilPan or always
         locateOptions: {
             enableHighAccuracy: true
         },
@@ -61,8 +61,7 @@ function addLocateControl(map) {
     map.on('locationfound', function (e) {
         var latitude = e.latitude;
         var longitude = e.longitude;
-        console.log('My Locations >');
-        console.log('Latitude:', latitude, 'Longitude:', longitude);
+        console.log('My Locations >\nLatitude:', latitude, 'Longitude:', longitude);
     });
 }
 
