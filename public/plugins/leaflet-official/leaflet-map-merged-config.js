@@ -61,8 +61,8 @@ function addLocateControl(map) {
     map.on('locationfound', function (e) {
         var latitude = e.latitude;
         var longitude = e.longitude;
-        console.log('Latitude:', latitude);
-        console.log('Longitude:', longitude);
+        console.log('My Locations >');
+        console.log('Latitude:', latitude, 'Longitude:', longitude);
     });
 }
 
