@@ -172,6 +172,9 @@
                                 </div>
                                 <div class="card-body" id="leaflet_card_body">
                                     <div id="map" class="leaflet-map leaflet_wrapper" id="userLocation">
+                                        {{-- MERGED MODALS: v_editmark_modal --}}
+                                        @include('userpanels.modals.v_editmark_modal')
+                                        <!-- / v_editmark_modal -->
                                     </div>
                                 </div>
 
@@ -186,9 +189,7 @@
                 </div>
             </div>
 
-            {{-- MERGED MODALS: v_editmark_modal --}}
-            @include('userpanels.modals.v_editmark_modal')
-            <!-- / v_editmark_modal -->
+
 
 
         </section>
@@ -1128,11 +1129,11 @@
     <!-- Footer: End -->
 
     {{-- CST: WHEN MODAL ACTIVE --}}
-    <div class="content-backdrop fade"></div>
+    {{-- <div class="content-backdrop fade"></div> --}}
 
 
     {{-- MERGED MODALS: v_modals --}}
-    @include('userpanels.modals.v_aboutus_modal')
+    {{-- @include('userpanels.modals.v_aboutus_modal') --}}
     <!-- / v_modals -->
 
 

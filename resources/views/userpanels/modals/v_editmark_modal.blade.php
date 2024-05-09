@@ -1,5 +1,5 @@
 <!-- Modal: EditProfile / edit profile modal -->
-<div class="modal fade" id="editMarkModal" data-bs-backdrop="static" tabindex="-1">
+<div class="modal fade" id="editMarkModal" data-bs-backdrop="false" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <form class="modal-content">
             <div class="modal-header">
@@ -85,9 +85,14 @@
 
 
             </div>
-            {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-                </div> --}}
+            <div class="modal-footer">
+                {{-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button> --}}
+                <div class="d-flex flex-col justify-content-between">
+                    <button class="modal-mark-cancel-btn btn btn-primary me-2" data-bs-dismiss="modal">Cancel</button>
+                    <button class="modal-mark-remove-btn btn btn-secondary me-2">Remove</button>
+                    <button class="modal-mark-save-btn btn btn-success me-2">Save</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>

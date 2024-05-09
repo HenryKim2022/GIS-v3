@@ -34,7 +34,7 @@
     transition: all 0.2s ease;
 }
 
-.leaflet-control-container .leaflet-routing-container-hide .leaflet-routing-alt, 
+.leaflet-control-container .leaflet-routing-container-hide .leaflet-routing-alt,
 .leaflet-control-container .leaflet-routing-container-hide .leaflet-routing-geocoders {
     display: none;
 }
@@ -104,7 +104,7 @@
 }
 
 .leaflet-routing-geocoders input {
-    width: 303px;
+    /* width: 303px; */
     width: calc(100% - 4px);
     line-height: 1.67;
     border: 1px solid #ccc;
@@ -112,14 +112,32 @@
 
 .leaflet-routing-geocoders button {
     font: bold 18px 'Lucida Console', Monaco, monospace;
-    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: white;
+    /* border: 1px solid #ccc;
+    background-color: white; */
     margin: 0;
     margin-right: 3px;
     float: right;
     cursor: pointer;
     transition: background-color 0.2s ease;
+}
+
+.light-style .leaflet-routing-geocoders button {
+    background: #fff;
+    color: #3e415b;
+	border:1px solid #ccc;
+}
+.dark-style .leaflet-routing-geocoders button {
+	background: #3e415b;
+    color: #fff;
+	border:1px solid #ccc;
+}
+
+.leaflet-routing-add-waypoint{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .leaflet-routing-add-waypoint:after {
@@ -145,7 +163,7 @@
     max-height: 0;
     overflow: hidden;
     transition: all 0.5s ease;
-    z-index: 1000; /* Arbitrary, but try to be above "most" things. */
+    z-index: 1102; /* Arbitrary, but try to be above "most" things. */
 }
 
 .leaflet-routing-geocoder-result table {
@@ -158,6 +176,7 @@
 
 .leaflet-routing-geocoder-result-open {
     max-height: 800px;
+    z-index: 1102;
 }
 
 .leaflet-routing-geocoder-selected, .leaflet-routing-geocoder-result tr:hover {
@@ -194,9 +213,10 @@
     cursor: pointer;
     color: #ccc;
     background: white;
-    padding-bottom: 16px;
+    padding-bottom: 20px;
     margin-top: -16px;
-    padding-right: 4px;
+    padding-right: 16px;
+    padding-left: 7px;
     line-height: 1;
 }
 

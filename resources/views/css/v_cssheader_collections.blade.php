@@ -134,5 +134,5 @@ href="{{ asset('public/plugins/leaflet-official/leaflet.routing.machine/dist/lea
 </script>
 
 
-{{-- <link rel="stylesheet" href="https://unpkg.com/@geoapify/leaflet-address-search-plugin@^1/dist/L.Control.GeoapifyAddressSearch.min.css" />
-<script src="https://unpkg.com/@geoapify/leaflet-address-search-plugin@^1/dist/L.Control.GeoapifyAddressSearch.min.js"></script> --}}
+{{-- LeafletDialog (addons) --}}
+

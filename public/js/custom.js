@@ -76,6 +76,16 @@ if (aboutUsModal) {
     });
 }
 
+// var editMarkModal = document.getElementById("editMarkModal");
+// if (editMarkModal) {
+//     editMarkModal.addEventListener("shown.bs.modal", function () {
+//         var modalBackdrop = document.querySelector(".modal-backdrop");
+//         modalBackdrop.classList.add("custom-backdrop");
+//     });
+// }
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////////
 /////    <!-- CUST SCRIPT: ADD DARKEN BACKGROUND WHILE PRIVACY-POLICY MODAL SHOW JS -->
 //////////////////////////////////////////////////////////////////////////////////////////
