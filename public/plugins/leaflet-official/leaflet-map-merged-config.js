@@ -6,9 +6,10 @@ function initializeMap() {
     var map = new L.Map('map', {
         fullscreenControl: true,
         fullscreenControlOptions: {
-            position: 'topleft'
+            position: 'topleft',
+            forcePseudoFullscreen: false,
         },
-        gestureHandling: false
+        gestureHandling: true,
     }).setView([-3.4763993, 115.2211498], 4.50);
 
     // L.Control.geocoder().addTo(map);
@@ -22,7 +23,6 @@ function initializeMap() {
     // map.on('exitFullscreen', function () {
     //     document.getElementById('map').classList.remove('fullscreen-map');
     // });
-
 
     return map;
 }
@@ -124,7 +124,7 @@ function populateMapWithMarkers(map, markersLayer) {
             const tooltipData = {
                 tobesearch: f.properties.institu_name,
             }
-            const marker = L.marker(coordinates, tooltipData);
+            const populateMarker = L.marker(coordinates, tooltipData);
 
             const institu_name = f.properties['institu_name'] || "none";
             const institu_npsn = f.properties['institu_npsn'] || "none";
@@ -159,14 +159,14 @@ function populateMapWithMarkers(map, markersLayer) {
                     </div>
                 `;
 
-                marker.bindTooltip(institu_name + "  ➟  " + final_addr);
-                marker.bindPopup(content);
-                marker.options.popupText = marker._popup._content;
-                markersLayer.addLayer(marker);
+                populateMarker.bindTooltip(institu_name + "  ➟  " + final_addr);
+                populateMarker.bindPopup(content);
+                populateMarker.options.popupText = populateMarker._popup._content;
+                markersLayer.addLayer(populateMarker);
 
 
                 // Handle the "Edit" button click event within the marker's popup
-                marker.on('popupopen', function () {
+                populateMarker.on('popupopen', function () {
                     var editButton = document.querySelector('.mark-edit-btn');
                     editButton.addEventListener('click', function () {
                         $('#editMarkModal').modal('show');
@@ -174,14 +174,14 @@ function populateMapWithMarkers(map, markersLayer) {
                         if (modalSaveButton) {
                             modalSaveButton.addEventListener('click', function () {
                                 $('#editMarkModal').modal('hide');
-                                marker.setPopupContent(updatedPopupContent);
+                                populateMarker.setPopupContent(updatedPopupContent);
                             });
                         }
                         var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
                         if (modalRemoveButton) {
                             modalRemoveButton.addEventListener('click', function () {
-                                markersLayer.removeLayer(marker);
-                                marker.closePopup();
+                                markersLayer.removeLayer(populateMarker);
+                                populateMarker.closePopup();
                                 $('#editMarkModal').modal('hide');
                             });
                         }
@@ -195,7 +195,7 @@ function populateMapWithMarkers(map, markersLayer) {
                     var cancelButton = document.querySelector('.mark-cancel-btn');
                     cancelButton.addEventListener('click', function () {
                         if (cancelButton) {
-                            marker.closePopup();
+                            populateMarker.closePopup();
                         }
                     });
 
@@ -213,6 +213,7 @@ function populateMapWithMarkers(map, markersLayer) {
 
 
 
+// VER 1
 function addMarkerOnContextMenu(map, markersLayer) {
     map.on('contextmenu taphold', function (e) {
         var LAT = e.latlng.lat.toFixed(7);
@@ -313,6 +314,7 @@ function addMarkerOnContextMenu(map, markersLayer) {
             // Handle the "Edit" button click event within the marker's popup
             marker.on('popupopen', function () {
                 var editButton = document.querySelector('.mark-edit-btn');
+
                 editButton.addEventListener('click', function () {
                     $('#editMarkModal').modal('show');
                     var modalSaveButton = document.querySelector('.modal-mark-save-btn');
@@ -352,8 +354,7 @@ function addMarkerOnContextMenu(map, markersLayer) {
 }
 
 
-
-
+// VER 0
 // function addMarkerOnContextMenu(map, markersLayer) {
 //     map.on('contextmenu taphold', function (e) {
 //         var LAT = e.latlng.lat.toFixed(7);
