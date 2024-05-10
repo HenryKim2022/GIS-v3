@@ -10031,13 +10031,16 @@
   		var content = (typeof this._content === 'function') ? this._content(this._source || this) : this._content;
 
   		if (typeof content === 'string') {
-  			node.innerHTML = content;
-  		} else {
-  			while (node.hasChildNodes()) {
-  				node.removeChild(node.firstChild);
-  			}
-  			node.appendChild(content);
-  		}
+            node.innerHTML = content;
+        } else if (content instanceof Node) { // Add a check for valid DOM node
+            while (node.hasChildNodes()) {
+                node.removeChild(node.firstChild);
+            }
+            node.appendChild(content);
+        } else {
+            // Handle the case when `content` is not a valid string or DOM node
+            console.error('Invalid content:', content);
+        }
 
   		// @namespace DivOverlay
   		// @section DivOverlay events
