@@ -135,6 +135,3 @@ href="{{ asset('public/plugins/leaflet-official/leaflet.routing.machine/dist/lea
 
 
 {{-- LeafletControlWindow (addons) --}}
-<link rel="stylesheet"
-{{-- href="{{ asset('public/plugins/leaflet-official/leaflet-control-window/src/L.Control.Window.css') }}" /> --}}
-{{-- <script src="https://unpkg.com/leaflet-control-window"></script> --}}
