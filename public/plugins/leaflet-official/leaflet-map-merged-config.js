@@ -665,9 +665,9 @@ function addGeocodeTracksControl(map, markersLayer) {
                 console.log("Selecting StartPoint");
                 console.log(address);
             })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
+            // .catch(error => {
+                // console.error('Error:', error.message);
+            // });
     }
 
     // Define the event handler for the map click event to handle the end point selection
@@ -683,9 +683,9 @@ function addGeocodeTracksControl(map, markersLayer) {
                 // Update the routing control with the new end point
                 control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
             })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
+            // .catch(error => {
+                // console.error('Error:', error.message);
+            // });
     }
 
 
