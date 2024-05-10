@@ -69,7 +69,8 @@ html {
     transform: translateY(-4%);
     transform: translateX(-4%);
 } */
-#map { height: 58vh;
+#map {
+    height: 90vh;
     z-index: 1102;
 }
 
@@ -106,7 +107,7 @@ html {
     .leaflet-map {
         height: 25vh;
     }
-    #map { height: 25vh; }
+    #map { height: 57vh; }
 }
 
 /*  ------------------------------------  */

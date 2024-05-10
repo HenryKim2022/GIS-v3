@@ -2,14 +2,27 @@ var imgu = "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geoj
 var controlSearch;
 var mycurrentLat, mycurrentLng;
 
+let isModalActive = false;
+const modal = document.getElementById('editMarkModal');
+var fullscreenControl;
+var fullscreenElement;
+
+function openModal() {
+    isModalActive = true;
+}
+function closeModal() {
+    isModalActive = false;
+}
+
+
 function initializeMap() {
     var map = new L.Map('map', {
         fullscreenControl: true,
         fullscreenControlOptions: {
             position: 'topleft',
-            forcePseudoFullscreen: false,
+            forcePseudoFullscreen: false
         },
-        gestureHandling: false,
+        gestureHandling: true,
     }).setView([-3.4763993, 115.2211498], 4.50);
 
     // L.Control.geocoder().addTo(map);
@@ -23,6 +36,23 @@ function initializeMap() {
     // map.on('exitFullscreen', function () {
     //     document.getElementById('map').classList.remove('fullscreen-map');
     // });
+
+    fullscreenControl = map.fullscreenControl;
+    fullscreenElement = fullscreenControl.getContainer();
+    // Override scroll behavior for the fullscreen element when modal is active
+    fullscreenElement.addEventListener('scroll', function (event) {
+        if (isModalActive) {
+            event.stopPropagation();
+        }
+    });
+
+    // Override scroll behavior for the map container when modal is active
+    map.addEventListener('wheel', function (event) {
+        if (isModalActive) {
+            event.stopPropagation();
+        }
+    }, { passive: false });
+
 
     return map;
 }
@@ -154,7 +184,7 @@ function populateMapWithMarkers(map, markersLayer) {
                         <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
                         <div class='d-flex flex-col justify-content-between'>
                             <button class="mark-cancel-btn mdi mdi-delete p-2 rounded-2"> Cancel</button>
-                            <button class="mark-edit-btn mdi mdi-content-save-all p-2 rounded-2"> Edit & Save</button>
+                            <button class="mark-edit-btn mdi mdi-content-save-all p-2 rounded-2" onclick="openModal()"> Edit & Save</button>
                         </div>
                     </div>
                 `;
@@ -170,11 +200,13 @@ function populateMapWithMarkers(map, markersLayer) {
                     var editButton = document.querySelector('.mark-edit-btn');
                     editButton.addEventListener('click', function () {
                         $('#editMarkModal').modal('show');
+                        isModalActive = true;
                         var modalSaveButton = document.querySelector('.modal-mark-save-btn');
                         if (modalSaveButton) {
                             modalSaveButton.addEventListener('click', function () {
-                                $('#editMarkModal').modal('hide');
-                                populateMarker.setPopupContent(updatedPopupContent);
+                                // $('#editMarkModal').modal('hide');
+                                isModalActive = false;
+                                // populateMarker.setPopupContent(updatedPopupContent);
                             });
                         }
                         var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
@@ -183,12 +215,14 @@ function populateMapWithMarkers(map, markersLayer) {
                                 markersLayer.removeLayer(populateMarker);
                                 populateMarker.closePopup();
                                 $('#editMarkModal').modal('hide');
+                                isModalActive = false;
                             });
                         }
                         var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
                         if (modalCancelButton) {
                             modalCancelButton.addEventListener('click', function () {
                                 $('#editMarkModal').modal('hide');
+                                isModalActive = false;
                             });
                         }
                     });
@@ -216,6 +250,11 @@ function populateMapWithMarkers(map, markersLayer) {
 // VER 1
 function addMarkerOnContextMenu(map, markersLayer) {
     map.on('contextmenu taphold', function (e) {
+        if (isModalActive && !modal.contains(e.target)) {
+            e.preventDefault();
+        }
+
+
         var LAT = e.latlng.lat.toFixed(7);
         var LNG = e.latlng.lng.toFixed(7);
         var coordinates = {
@@ -271,6 +310,8 @@ function addMarkerOnContextMenu(map, markersLayer) {
             })
             .catch(error => {
                 console.error('Error:', error.message);
+                processIt("We're using OSRM's demo server, sometimes wont get address automatically :)");
+
             });
 
         function processIt(institu_addr) {
@@ -286,24 +327,24 @@ function addMarkerOnContextMenu(map, markersLayer) {
             const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
 
             const fromRightClick_PopupContent = `
-                <div class='d-flex flex-column p-0'>
-                    <span style='padding-bottom:2px;'><strong>Coordinates: </strong>${LAT}, ${LNG}<br></span>
-                    <span style='padding-bottom:2px;'><strong>Name: </strong>${institu_name}<br></span>
-                    <span style='padding-bottom:2px;'><strong>NPSN: </strong>${institu_npsn}<br></span>
-                    <span style='padding-bottom:2px;'><strong>Logo: </strong>
-                        <img src='${imgLogo}' alt='${institu_name} Logo' width='30'><br>
-                    </span>
-                    <span style='padding-bottom:2px;'><strong>Address: </strong>${institu_addr}<br></span>
-                    <span class='d-flex flex-column align-top text-start' style='padding-bottom:2px;'><strong>Images:</strong>
-                        <img src='${institu_images}' alt='${institu_name} Logo' width='80'><br>
-                    </span>
-                    <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
-                    <div class='d-flex flex-col justify-content-between'>
-                        <button class="mark-cancel-remove-btn mdi mdi-delete p-2 rounded-2"> Cancel & Remove</button>
-                        <button class="mark-edit-btn mdi mdi-content-save-all p-2 rounded-2"> Edit & Save</button>
-                    </div>
-                </div>
-            `;
+                        <div class='d-flex flex-column p-0'>
+                            <span style='padding-bottom:2px;'><strong>Coordinates: </strong>${LAT}, ${LNG}<br></span>
+                            <span style='padding-bottom:2px;'><strong>Name: </strong>${institu_name}<br></span>
+                            <span style='padding-bottom:2px;'><strong>NPSN: </strong>${institu_npsn}<br></span>
+                            <span style='padding-bottom:2px;'><strong>Logo: </strong>
+                                <img src='${imgLogo}' alt='${institu_name} Logo' width='30'><br>
+                            </span>
+                            <span style='padding-bottom:2px;'><strong>Address: </strong>${institu_addr}<br></span>
+                            <span class='d-flex flex-column align-top text-start' style='padding-bottom:2px;'><strong>Images:</strong>
+                                <img src='${institu_images}' alt='${institu_name} Logo' width='80'><br>
+                            </span>
+                            <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
+                            <div class='d-flex flex-col justify-content-between'>
+                                <button class="mark-cancel-remove-btn mdi mdi-delete p-2 rounded-2"> Cancel & Remove</button>
+                                <button class="mark-edit-btn mdi mdi-content-save-all p-2 rounded-2" onclick="openModal()"> Edit & Save</button>
+                            </div>
+                        </div>
+                    `;
 
             marker.bindTooltip(institu_name + "  ➟  " + institu_addr);
             marker.bindPopup(fromRightClick_PopupContent);
@@ -318,11 +359,12 @@ function addMarkerOnContextMenu(map, markersLayer) {
                 editButton.addEventListener('click', function () {
                     marker.closePopup();
                     $('#editMarkModal').modal('show');
+                    isModalActive = true;
                     var modalSaveButton = document.querySelector('.modal-mark-save-btn');
                     if (modalSaveButton) {
                         modalSaveButton.addEventListener('click', function () {
-                            $('#editMarkModal').modal('hide');
-                            marker.setPopupContent(updatedPopupContent);
+                            // $('#editMarkModal').modal('hide');
+                            // marker.setPopupContent(updatedPopupContent);
                         });
                     }
                     var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
@@ -331,12 +373,14 @@ function addMarkerOnContextMenu(map, markersLayer) {
                             markersLayer.removeLayer(marker);
                             marker.closePopup();
                             $('#editMarkModal').modal('hide');
+                            isModalActive = false;
                         });
                     }
                     var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
                     if (modalCancelButton) {
                         modalCancelButton.addEventListener('click', function () {
                             $('#editMarkModal').modal('hide');
+                            isModalActive = false;
                         });
                     }
                 });
@@ -351,7 +395,12 @@ function addMarkerOnContextMenu(map, markersLayer) {
             });
         }
 
+
     });
+
+    // }
+
+
 }
 
 

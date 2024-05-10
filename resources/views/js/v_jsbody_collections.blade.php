@@ -20,6 +20,16 @@
 <script src="{{ asset('public/materialize/assets/vendor/libs/leaflet/leaflet.js') }}"></script>
 <script src="{{ asset('public/materialize/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 
+<script src="{{ asset('public/materialize/assets/vendor/libs/select2/select2.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/vendor/libs/moment/moment.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/vendor/libs/tagify/tagify.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/vendor/libs/@form-validation/popular.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/vendor/libs/@form-validation/bootstrap5.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/vendor/libs/@form-validation/auto-focus.js') }}"></script>
+
+
 
 <!-- alert:js assets vendor & page -->
 <script src="{{ asset('public/materialize/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
@@ -30,6 +40,7 @@
 <!-- Main JS -->
 <script src="{{ asset('public/materialize/assets/js/front-main.js') }}"></script>
 <script src="{{ asset('public/materialize/assets/js/main.js') }}"></script>
+<script src="{{ asset('public/materialize/assets/js/form-validation.js') }}"></script>
 
 {{-- Custom JS --}}
 <script src="{{ asset('public/js/custom.js') }}"></script>

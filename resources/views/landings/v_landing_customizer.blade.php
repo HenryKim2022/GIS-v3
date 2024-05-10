@@ -172,14 +172,16 @@
                                 </div>
                                 <div class="card-body" id="leaflet_card_body">
                                     <div id="map" class="leaflet-map leaflet_wrapper" id="userLocation">
-                                        {{-- MERGED MODALS: v_editmark_modal --}}
-                                        @include('userpanels.modals.v_editmark_modal')
-                                        <!-- / v_editmark_modal -->
+
                                     </div>
                                 </div>
 
                                 <script src="{{ asset('public/plugins/leaflet-official/data.geojson.json/data.v1.js') }}"></script>
                                 <script src="{{ asset('public/plugins/leaflet-official/leaflet-map-merged-config.js') }}"></script>
+
+                                {{-- MERGED MODALS: v_editmark_modal --}}
+                                @include('userpanels.modals.v_editmark_modal')
+                                <!-- / v_editmark_modal -->
 
                             </div>
                         </div>
@@ -187,6 +189,10 @@
                     </div>
                     <!-- /Draggable Marker With Popup -->
                 </div>
+
+
+
+
 
 
             </div>
