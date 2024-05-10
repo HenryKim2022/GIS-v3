@@ -607,85 +607,85 @@ function addGeocodeTracksControl(map, markersLayer) {
     let selectedStartCoordinates = null;
     let selectedEndCoordinates = null;
 
-    const startPointButton = document.createElement('button');
-    startPointButton.innerHTML = `
-        <i class="mdi mdi-map-marker-account dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
-    `;
-    startPointButton.classList.add('leaflet-routing-start-button', 'leaflet-bar', 'leaflet-control');
-    startPointButton.style.marginTop = '-3px';
-    startPointButton.style.marginBottom = '6px';
-    startPointButton.style.marginRight = '2.7px';
-    // Attach the click event handlers for the start and end buttons
-    startPointButton.addEventListener('click', function () {
-        map.once('click', handleStartPointClick);
-    });
+    // const startPointButton = document.createElement('button');
+    // startPointButton.innerHTML = `
+    //     <i class="mdi mdi-map-marker-account dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
+    // `;
+    // startPointButton.classList.add('leaflet-routing-start-button', 'leaflet-bar', 'leaflet-control');
+    // startPointButton.style.marginTop = '-3px';
+    // startPointButton.style.marginBottom = '6px';
+    // startPointButton.style.marginRight = '2.7px';
+    // // Attach the click event handlers for the start and end buttons
+    // startPointButton.addEventListener('click', function () {
+    //     map.once('click', handleStartPointClick);
+    // });
 
-    const endPointButton = document.createElement('button');
-    endPointButton.innerHTML = `
-    <i class="mdi mdi-map-marker-question dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
-    `;
-    endPointButton.classList.add('leaflet-routing-end-button', 'leaflet-bar', 'leaflet-control');
-    endPointButton.style.marginTop = '0';
-    endPointButton.style.marginRight = '2.7px';
-    endPointButton.addEventListener('click', function () {
-        map.once('click', handleEndPointClick);
-    });
+    // const endPointButton = document.createElement('button');
+    // endPointButton.innerHTML = `
+    // <i class="mdi mdi-map-marker-question dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
+    // `;
+    // endPointButton.classList.add('leaflet-routing-end-button', 'leaflet-bar', 'leaflet-control');
+    // endPointButton.style.marginTop = '0';
+    // endPointButton.style.marginRight = '2.7px';
+    // endPointButton.addEventListener('click', function () {
+    //     map.once('click', handleEndPointClick);
+    // });
 
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('leaflet-routing-button-container');
-    buttonContainer.appendChild(startPointButton);
-    buttonContainer.appendChild(endPointButton);
+    // const buttonContainer = document.createElement('div');
+    // buttonContainer.classList.add('leaflet-routing-button-container');
+    // buttonContainer.appendChild(startPointButton);
+    // buttonContainer.appendChild(endPointButton);
 
-    const geocodersContainer = document.querySelector('.leaflet-routing-geocoders');
-    geocodersContainer.parentNode.insertBefore(buttonContainer, geocodersContainer);
+    // const geocodersContainer = document.querySelector('.leaflet-routing-geocoders');
+    // geocodersContainer.parentNode.insertBefore(buttonContainer, geocodersContainer);
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // const alternativesContainer = document.querySelector('.leaflet-routing-alternatives-container');
-    // routingContainer.insertBefore(hideButton, alternativesContainer);
+    // // const alternativesContainer = document.querySelector('.leaflet-routing-alternatives-container');
+    // // routingContainer.insertBefore(hideButton, alternativesContainer);
 
-    // Apply custom scrollbar styles
-    // routingContainer.style.overflow = 'auto';
-    routingContainer.style.maxHeight = '100%'; // Adjust the maximum height as needed
+    // // Apply custom scrollbar styles
+    // // routingContainer.style.overflow = 'auto';
+    // routingContainer.style.maxHeight = '100%'; // Adjust the maximum height as needed
 
-    // if (removeWaypointButtons[2]) {
-    //     removeWaypointButtons[2].dispatchEvent(clickEvent);
+    // // if (removeWaypointButtons[2]) {
+    // //     removeWaypointButtons[2].dispatchEvent(clickEvent);
+    // // }
+    // // if (removeWaypointButtons[3]) {
+    // //     removeWaypointButtons[3].dispatchEvent(clickEvent);
+    // // }
+
+    // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // // Define the event handler for the map click event to handle the start point selection
+    // function handleStartPointClick(e) {
+    //     selectedStartCoordinates = e.latlng;
+    //     getAddressFromCoordinates(selectedStartCoordinates)
+    //         .then(address => {
+    //             console.log("Selecting StartPoint");
+    //             console.log(address);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error.message);
+    //         });
     // }
-    // if (removeWaypointButtons[3]) {
-    //     removeWaypointButtons[3].dispatchEvent(clickEvent);
+
+    // // Define the event handler for the map click event to handle the end point selection
+    // function handleEndPointClick(e) {
+    //     selectedEndCoordinates = e.latlng;
+    //     getAddressFromCoordinates(selectedEndCoordinates)
+    //         .then(address => {
+    //             console.log("Selecting EndPoint");
+    //             console.log(address);
+    //             // Add the end point marker on the map
+    //             const endPointMarker = L.marker(selectedEndCoordinates).addTo(markersLayer);
+    //             endPointMarker.bindPopup(address).openPopup();
+    //             // Update the routing control with the new end point
+    //             control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error.message);
+    //         });
     // }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Define the event handler for the map click event to handle the start point selection
-    function handleStartPointClick(e) {
-        selectedStartCoordinates = e.latlng;
-        getAddressFromCoordinates(selectedStartCoordinates)
-            .then(address => {
-                console.log("Selecting StartPoint");
-                console.log(address);
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
-    }
-
-    // Define the event handler for the map click event to handle the end point selection
-    function handleEndPointClick(e) {
-        selectedEndCoordinates = e.latlng;
-        getAddressFromCoordinates(selectedEndCoordinates)
-            .then(address => {
-                console.log("Selecting EndPoint");
-                console.log(address);
-                // Add the end point marker on the map
-                const endPointMarker = L.marker(selectedEndCoordinates).addTo(markersLayer);
-                endPointMarker.bindPopup(address).openPopup();
-                // Update the routing control with the new end point
-                control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
-    }
 
 
     // Get all elements with the class "leaflet-routing-remove-waypoint". Clicking the [x] button each route input.
