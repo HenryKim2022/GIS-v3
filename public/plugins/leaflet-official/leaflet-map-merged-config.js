@@ -573,8 +573,7 @@ function addGeocodeTracksControl(map, markersLayer) {
     });
     map.addControl(new showButton());
 
-    tooltipData = `Tracks me`;
-    const startingPointMarker = L.marker(new L.latLng([-6.2029824, 106.5811968]), tooltipData);
+    const startingPointMarker = L.marker(new L.latLng([-6.2029824, 106.5811968]), { title: "Tracks me" }).addTo(map);
     const control = L.Routing.control({
         waypoints: [
             // L.latLng(mycurrentLat, mycurrentLng),
@@ -665,9 +664,9 @@ function addGeocodeTracksControl(map, markersLayer) {
                 console.log("Selecting StartPoint");
                 console.log(address);
             })
-            // .catch(error => {
-                // console.error('Error:', error.message);
-            // });
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
     }
 
     // Define the event handler for the map click event to handle the end point selection
@@ -683,9 +682,9 @@ function addGeocodeTracksControl(map, markersLayer) {
                 // Update the routing control with the new end point
                 control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
             })
-            // .catch(error => {
-                // console.error('Error:', error.message);
-            // });
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
     }
 
 
