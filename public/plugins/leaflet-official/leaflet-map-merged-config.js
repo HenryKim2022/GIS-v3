@@ -631,6 +631,7 @@ function addGeocodeTracksControl(map, markersLayer) {
         map.once('click', handleEndPointClick);
     });
 
+
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('leaflet-routing-button-container');
     buttonContainer.appendChild(startPointButton);
@@ -663,6 +664,8 @@ function addGeocodeTracksControl(map, markersLayer) {
             .then(address => {
                 console.log("Selecting StartPoint");
                 console.log(address);
+                const startInput = document.querySelector('.leaflet-routing-geocoder input[placeholder="Start"]');
+                startInput.value = address;
             })
             .catch(error => {
                 console.error('Error:', error.message);
@@ -676,11 +679,13 @@ function addGeocodeTracksControl(map, markersLayer) {
             .then(address => {
                 console.log("Selecting EndPoint");
                 console.log(address);
-                // Add the end point marker on the map
-                const endPointMarker = L.marker(selectedEndCoordinates).addTo(markersLayer);
-                endPointMarker.bindPopup(address).openPopup();
-                // Update the routing control with the new end point
-                control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
+                // // Add the end point marker on the map
+                // const endPointMarker = L.marker(selectedEndCoordinates).addTo(markersLayer);
+                // endPointMarker.bindPopup(address).openPopup();
+                // // Update the routing control with the new end point
+                // control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
+                const endInput = document.querySelector('.leaflet-routing-geocoder input[placeholder="End"]');
+                endInput.value = address;
             })
             .catch(error => {
                 console.error('Error:', error.message);
