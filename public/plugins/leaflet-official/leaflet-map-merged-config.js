@@ -608,8 +608,6 @@ function addGeocodeTracksControl(map, markersLayer) {
     let selectedStartCoordinates = null;
     let selectedEndCoordinates = null;
 
-
-
     const startPointButton = document.createElement('button');
     startPointButton.innerHTML = `
         <i class="mdi mdi-map-marker-account dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
@@ -642,32 +640,21 @@ function addGeocodeTracksControl(map, markersLayer) {
     const geocodersContainer = document.querySelector('.leaflet-routing-geocoders');
     geocodersContainer.parentNode.insertBefore(buttonContainer, geocodersContainer);
 
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // const alternativesContainer = document.querySelector('.leaflet-routing-alternatives-container');
     // routingContainer.insertBefore(hideButton, alternativesContainer);
 
-
     // Apply custom scrollbar styles
     // routingContainer.style.overflow = 'auto';
     routingContainer.style.maxHeight = '100%'; // Adjust the maximum height as needed
 
-    // Get all elements with the class "leaflet-routing-remove-waypoint". Clicking the [x] button each route input.
-    const removeWaypointButtons = Array.from(document.querySelectorAll('.leaflet-routing-remove-waypoint'));
-    const clickEvent = new Event('click');
-    if (removeWaypointButtons[0]) {
-        removeWaypointButtons[0].dispatchEvent(clickEvent);
-    }
-    if (removeWaypointButtons[1]) {
-        removeWaypointButtons[1].dispatchEvent(clickEvent);
-    }
-    if (removeWaypointButtons[2]) {
-        removeWaypointButtons[2].dispatchEvent(clickEvent);
-    }
-    if (removeWaypointButtons[3]) {
-        removeWaypointButtons[3].dispatchEvent(clickEvent);
-    }
+    // if (removeWaypointButtons[2]) {
+    //     removeWaypointButtons[2].dispatchEvent(clickEvent);
+    // }
+    // if (removeWaypointButtons[3]) {
+    //     removeWaypointButtons[3].dispatchEvent(clickEvent);
+    // }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Define the event handler for the map click event to handle the start point selection
@@ -690,13 +677,28 @@ function addGeocodeTracksControl(map, markersLayer) {
             .then(address => {
                 console.log("Selecting EndPoint");
                 console.log(address);
+                // Add the end point marker on the map
+                const endPointMarker = L.marker(selectedEndCoordinates).addTo(markersLayer);
+                endPointMarker.bindPopup(address).openPopup();
+                // Update the routing control with the new end point
+                control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
             })
             .catch(error => {
                 console.error('Error:', error.message);
             });
     }
-}
 
+
+    // Get all elements with the class "leaflet-routing-remove-waypoint". Clicking the [x] button each route input.
+    const removeWaypointButtons = Array.from(document.querySelectorAll('.leaflet-routing-remove-waypoint'));
+    const clickEvent = new Event('click');
+    if (removeWaypointButtons[0]) {
+        removeWaypointButtons[0].dispatchEvent(clickEvent);
+    }
+    if (removeWaypointButtons[1]) {
+        removeWaypointButtons[1].dispatchEvent(clickEvent);
+    }
+}
 
 
 // function addGeocodeTracksControl(map, markersLayer) {
