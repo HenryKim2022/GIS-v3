@@ -657,35 +657,35 @@ function addGeocodeTracksControl(map, markersLayer) {
 
     // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // // Define the event handler for the map click event to handle the start point selection
-    // function handleStartPointClick(e) {
-    //     selectedStartCoordinates = e.latlng;
-    //     getAddressFromCoordinates(selectedStartCoordinates)
-    //         .then(address => {
-    //             console.log("Selecting StartPoint");
-    //             console.log(address);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error:', error.message);
-    //         });
-    // }
+    function handleStartPointClick(e) {
+        selectedStartCoordinates = e.latlng;
+        getAddressFromCoordinates(selectedStartCoordinates)
+            .then(address => {
+                console.log("Selecting StartPoint");
+                console.log(address);
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
+    }
 
     // // Define the event handler for the map click event to handle the end point selection
-    // function handleEndPointClick(e) {
-    //     selectedEndCoordinates = e.latlng;
-    //     getAddressFromCoordinates(selectedEndCoordinates)
-    //         .then(address => {
-    //             console.log("Selecting EndPoint");
-    //             console.log(address);
-    //             // Add the end point marker on the map
-    //             const endPointMarker = L.marker(selectedEndCoordinates).addTo(markersLayer);
-    //             endPointMarker.bindPopup(address).openPopup();
-    //             // Update the routing control with the new end point
-    //             control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error:', error.message);
-    //         });
-    // }
+    function handleEndPointClick(e) {
+        selectedEndCoordinates = e.latlng;
+        getAddressFromCoordinates(selectedEndCoordinates)
+            .then(address => {
+                console.log("Selecting EndPoint");
+                console.log(address);
+                // Add the end point marker on the map
+                const endPointMarker = L.marker(selectedEndCoordinates).addTo(markersLayer);
+                endPointMarker.bindPopup(address).openPopup();
+                // Update the routing control with the new end point
+                control.spliceWaypoints(control.getWaypoints().length - 1, 1, selectedEndCoordinates);
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
+    }
 
 
     // Get all elements with the class "leaflet-routing-remove-waypoint". Clicking the [x] button each route input.
