@@ -104,8 +104,9 @@
 }
 
 .leaflet-routing-geocoders input {
-    /* width: 303px; */
-    width: calc(100% - 4px);
+    width: 303px;
+    /* width: calc(100% - 4px); */
+    width: calc(100% - 58px);
     line-height: 1.67;
     border: 1px solid #ccc;
 }
@@ -193,6 +194,8 @@
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
+    left: 22px;
+    position: relative;
 }
 
 .leaflet-routing-remove-waypoint:after {

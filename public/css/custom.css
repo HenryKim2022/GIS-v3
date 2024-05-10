@@ -209,3 +209,9 @@ html {
     background: black;
     z-index: -1;
 } */
+
+.leaflet-routing-button-container {
+    position: absolute;
+    top: 19px;
+    right: 6px;
+}
