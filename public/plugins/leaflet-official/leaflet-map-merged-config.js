@@ -607,37 +607,37 @@ function addGeocodeTracksControl(map, markersLayer) {
     let selectedStartCoordinates = null;
     let selectedEndCoordinates = null;
 
-    // const startPointButton = document.createElement('button');
-    // startPointButton.innerHTML = `
-    //     <i class="mdi mdi-map-marker-account dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
-    // `;
-    // startPointButton.classList.add('leaflet-routing-start-button', 'leaflet-bar', 'leaflet-control');
-    // startPointButton.style.marginTop = '-3px';
-    // startPointButton.style.marginBottom = '6px';
-    // startPointButton.style.marginRight = '2.7px';
-    // // Attach the click event handlers for the start and end buttons
-    // startPointButton.addEventListener('click', function () {
-    //     map.once('click', handleStartPointClick);
-    // });
+    const startPointButton = document.createElement('button');
+    startPointButton.innerHTML = `
+        <i class="mdi mdi-map-marker-account dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
+    `;
+    startPointButton.classList.add('leaflet-routing-start-button', 'leaflet-bar', 'leaflet-control');
+    startPointButton.style.marginTop = '-3px';
+    startPointButton.style.marginBottom = '6px';
+    startPointButton.style.marginRight = '2.7px';
+    // Attach the click event handlers for the start and end buttons
+    startPointButton.addEventListener('click', function () {
+        map.once('click', handleStartPointClick);
+    });
 
-    // const endPointButton = document.createElement('button');
-    // endPointButton.innerHTML = `
-    // <i class="mdi mdi-map-marker-question dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
-    // `;
-    // endPointButton.classList.add('leaflet-routing-end-button', 'leaflet-bar', 'leaflet-control');
-    // endPointButton.style.marginTop = '0';
-    // endPointButton.style.marginRight = '2.7px';
-    // endPointButton.addEventListener('click', function () {
-    //     map.once('click', handleEndPointClick);
-    // });
+    const endPointButton = document.createElement('button');
+    endPointButton.innerHTML = `
+    <i class="mdi mdi-map-marker-question dark-mode" style="position: relative; z-index: 1; color: var(--bs-dark);"></i>
+    `;
+    endPointButton.classList.add('leaflet-routing-end-button', 'leaflet-bar', 'leaflet-control');
+    endPointButton.style.marginTop = '0';
+    endPointButton.style.marginRight = '2.7px';
+    endPointButton.addEventListener('click', function () {
+        map.once('click', handleEndPointClick);
+    });
 
-    // const buttonContainer = document.createElement('div');
-    // buttonContainer.classList.add('leaflet-routing-button-container');
-    // buttonContainer.appendChild(startPointButton);
-    // buttonContainer.appendChild(endPointButton);
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('leaflet-routing-button-container');
+    buttonContainer.appendChild(startPointButton);
+    buttonContainer.appendChild(endPointButton);
 
-    // const geocodersContainer = document.querySelector('.leaflet-routing-geocoders');
-    // geocodersContainer.parentNode.insertBefore(buttonContainer, geocodersContainer);
+    const geocodersContainer = document.querySelector('.leaflet-routing-geocoders');
+    geocodersContainer.parentNode.insertBefore(buttonContainer, geocodersContainer);
 
     // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
