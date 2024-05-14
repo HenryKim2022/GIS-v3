@@ -170,65 +170,81 @@ function populateMapWithMarkers(map, markersLayer) {
                 // const isImgsExist = institu_images.endsWith('.png') || institu_images.endsWith('.jpg') ? institu_images : '';
                 const isImgsExist = Array.isArray(institu_images) && institu_images.length > 0 && (institu_images[0].endsWith('.png') || institu_images[0].endsWith('.jpg')) ? institu_images[0] : '';
                 const imgWidth = imgLogo.endsWith('.png') || imgLogo.endsWith('.jpg') ? '30' : '80';
+                let content = `
+                    <div class='d-flex flex-column p-0'>
+                        <span style='padding-bottom:2px;'><strong>Coordinates: </strong>${coordinates}<br></span>
+                        <span style='padding-bottom:2px;'><strong>Name: </strong>${institu_name}<br></span>
+                        <span style='padding-bottom:2px;'><strong>NPSN: </strong>${institu_npsn}<br></span>
+                        <span style='padding-bottom:2px;'><strong>Logo: </strong>
+                            <img src='${isImgLogoExist}' alt='${institu_name} Logo' width='30'><br>
+                        </span>
+                        <span style='padding-bottom:2px;'><strong>Address: </strong>${institu_addr}<br></span>
+                        <span class='d-flex flex-column align-top text-start' style='padding-bottom:2px;'><strong>Images:</strong>
+                            <img src='${isImgsExist}' alt='${institu_name} Logo' width='80'><br>
+                        </span>
+                        <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
+                        <div class='d-flex flex-col justify-content-between'>
+                            <button class="mark-cancel-btn mdi mdi-delete p-2 rounded-2"> Cancel</button>
+                            <button class="mark-edit-btn mdi mdi-content-save-all p-2 rounded-2" onclick="openModal()"> Edit & Save</button>
+                        </div>
+                    </div>
+                `;
 
-                var markModalID = "viewMarkModal";
+
                 populateMarker.bindTooltip(institu_name + "  ➟  " + final_addr);
+                populateMarker.bindPopup(content);
+                populateMarker.options.popupText = populateMarker._popup._content;
+                markersLayer.addLayer(populateMarker);
 
-                document.addEventListener('DOMContentLoaded', function() {
-                    populateMarker.on('click', function () {
-                        var markModal = document.getElementById(markModalID);
-                        $(markModal).modal("show");
-                        // $('#viewMarkModal').modal('show');  // Replace 'myModal' with the ID of your Bootstrap modal
+
+                // Handle the "Edit" button click event within the marker's popup
+                populateMarker.on('popupopen', function () {
+                    var editButton = document.querySelector('.mark-edit-btn');
+                    editButton.addEventListener('click', function () {
+                        $('#editMarkModal').modal('show');
                         isModalActive = true;
-                        var modalViewLatitude = document.getElementById('modalViewLatitude');
-                        modalViewLatitude.value = coordinates[0];
-                        var modalViewLongitude = document.getElementById('modalViewLongitude');
-                        modalViewLongitude.value = coordinates[1];
-                        var modalViewInstitutionName = document.getElementById('modalViewInstitutionName');
-                        modalViewInstitutionName.value = institu_name;
-                        var modalViewNPSN = document.getElementById('modalViewNPSN');
-                        modalViewNPSN.value = institu_npsn;
-                        var modalViewAddress = document.getElementById('modalViewAddress');
-                        modalViewAddress.value = institu_addr;
 
-                        addLogo2Modal(LogoPreviewId = "modalViewLogoPreview");
-                        addImages2Modal();
-
-                    });
-                    markersLayer.addLayer(populateMarker);
-                })
+                        var modalEditLatitude = document.getElementById('modalEditLatitude');
+                        modalEditLatitude.value = coordinates[0];
+                        var modalEditLongitude = document.getElementById('modalEditLongitude');
+                        modalEditLongitude.value = coordinates[1];
+                        var modalEditInstitutionName = document.getElementById('modalEditInstitutionName');
+                        modalEditInstitutionName.value = institu_name;
+                        var modalEditNPSN = document.getElementById('modalEditNPSN');
+                        modalEditNPSN.value = institu_npsn;
+                        var modalEditAddress = document.getElementById('modalEditAddress');
+                        modalEditAddress.value = institu_addr;
 
 
-                function addLogo2Modal(LogoPreviewId = "") {
-                    setLogo();
-                    function setLogo() {
-                        var modalLogoPreview = document.getElementById(LogoPreviewId);
-                        // Check if logo already exists
-                        if (modalLogoPreview.childElementCount === 0) {
+
+
+                        /////////// LOGO PART
+                        setLogo();
+                        function setLogo() {
+                            var modalEditLogoPreview = document.getElementById('modalEditLogoPreview');
+                            var modalEditLogo = document.getElementById('modalEditLogo');
                             updateLogoPreview(imgLogo);
-                        }
-                        function updateLogoPreview(imageSrc) {
-                            var logoImage = document.createElement('img');
-                            logoImage.src = imageSrc;
-                            logoImage.classList.add('logo-preview');
-                            logoImage.style.width = '48px';
-                            logoImage.style.height = '48px';
+                            function updateLogoPreview(imageSrc) {
+                                var logoImage = document.createElement('img');
+                                logoImage.src = imageSrc;
+                                logoImage.classList.add('logo-preview');
+                                logoImage.style.width = '48px';
+                                logoImage.style.height = '48px';
 
-                            modalLogoPreview.appendChild(logoImage);
+                                modalEditLogoPreview.appendChild(logoImage);
+                            }
                         }
-                    }
-                }
+                        /////////// ENDOF: LOGO PART
 
-                function addImages2Modal() {
-                    setImages()
-                    function setImages() {
+
+                        /////////// IMAGES PART
                         setSwiperSlider();
                         function setSwiperSlider() {
                             // Initialize Swiper
                             const swiper = new Swiper('.swiper-container', {
                                 // Configuration options
                                 slidesPerView: 1,
-                                spaceBetween: 1,
+                                spaceBetween: 10,
                                 loop: true,
                                 navigation: {
                                     nextEl: '.swiper-images-btn-next',
@@ -240,188 +256,96 @@ function populateMapWithMarkers(map, markersLayer) {
                             const swiperWrapper = document.querySelector('.swiper-wrapper');
                             swiperWrapper.innerHTML = '';
 
-                            genSliderItem();
-                            function genSliderItem() {
-                                // Generate the slider items
-                                institu_images.forEach((image, imageIndex) => {
-                                    const slide = document.createElement('div');
-                                    slide.classList.add('swiper-slide');
-                                    slide.classList.add('d-flex');
-                                    slide.classList.add('justify-content-center');
-                                    slide.classList.add('align-items-center');
+                            // Generate the slider items
+                            institu_images.forEach((image, imageIndex) => {
+                                const slide = document.createElement('div');
+                                slide.classList.add('swiper-slide');
+                                slide.classList.add('d-flex');
+                                slide.classList.add('justify-content-center');
+                                slide.classList.add('align-items-center');
 
-                                    const imgElement = document.createElement('img');
-                                    imgElement.src = image;
-                                    imgElement.alt = `Image ${imageIndex + 1}`;
-                                    imgElement.style.height = '48px'; // Set the height directly
-                                    imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
+                                const imgElement = document.createElement('img');
+                                imgElement.src = image;
+                                imgElement.alt = `Image ${imageIndex + 1}`;
+                                imgElement.style.height = '48px'; // Set the height directly
+                                imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
 
-                                    slide.appendChild(imgElement);
+                                slide.appendChild(imgElement);
 
-                                    swiperWrapper.appendChild(slide);
-                                });
-                            }
+                                swiperWrapper.appendChild(slide);
+                            });
+
+                            // Update the slider
+                            swiper.update();
                         }
-                    }
-                }
+                        /////////// ENDOF: IMAGES PART
 
-                document.addEventListener('DOMContentLoaded', function() {
-                    $('#markModalID').on('hidden.bs.modal', function() {
-                        isModalActive = false;
+
+
+                        var modalSaveButton = document.querySelector('.modal-mark-save-btn');
+                        if (modalSaveButton) {
+                            modalSaveButton.addEventListener('click', function () {
+                                // $('#editMarkModal').modal('hide');
+                                isModalActive = false;
+                                // populateMarker.setPopupContent(updatedPopupContent);
+                            });
+                        }
+                        var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
+                        if (modalRemoveButton) {
+                            modalRemoveButton.addEventListener('click', function () {
+                                markersLayer.removeLayer(populateMarker);
+                                populateMarker.closePopup();
+                                $('#editMarkModal').modal('hide');
+                                isModalActive = false;
+                            });
+                        }
+                        var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
+                        if (modalCancelButton) {
+                            modalCancelButton.addEventListener('click', function () {
+                                $('#editMarkModal').modal('hide');
+                                isModalActive = false;
+                            });
+                        }
                     });
-                })
+                    var cancelButton = document.querySelector('.mark-cancel-btn');
+                    cancelButton.addEventListener('click', function () {
+                        if (cancelButton) {
+                            populateMarker.closePopup();
+                        }
+                    });
 
 
 
-                // // Handle the "Edit" button click event within the marker's popup
-                // populateMarker.on('popupopen', function () {
-                //     var editButton = document.querySelector('.mark-edit-btn');
-                //     editButton.addEventListener('click', function () {
-                //         $('#editMarkModal').modal('show');
-                //         isModalActive = true;
+                    // Add event listeners to dynamically generated images
+                    document.getElementById('swiperImagesContainer').addEventListener('mouseenter', function(event) {
+                        var zoomIcon = document.createElement('i');
+                        zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
+                        event.target.appendChild(zoomIcon);
+                    });
 
-                //         var modalEditLatitude = document.getElementById('modalEditLatitude');
-                //         modalEditLatitude.value = coordinates[0];
-                //         var modalEditLongitude = document.getElementById('modalEditLongitude');
-                //         modalEditLongitude.value = coordinates[1];
-                //         var modalEditInstitutionName = document.getElementById('modalEditInstitutionName');
-                //         modalEditInstitutionName.value = institu_name;
-                //         var modalEditNPSN = document.getElementById('modalEditNPSN');
-                //         modalEditNPSN.value = institu_npsn;
-                //         var modalEditAddress = document.getElementById('modalEditAddress');
-                //         modalEditAddress.value = institu_addr;
+                    document.getElementById('swiperImagesContainer').addEventListener('mouseleave', function(event) {
+                        var zoomIcon = event.target.querySelector('.magnify-icon');
+                        if (zoomIcon) {
+                            zoomIcon.remove();
+                        }
+                    });
+                    // Add event listeners to dynamically generated images
+                    document.getElementById('swiperImagesContainer').addEventListener('click', function(event) {
+                        var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
+                        var modalImageContent = document.getElementById('modalImageContent');
 
-
-
-
-                //         /////////// LOGO PART
-                //         setLogo();
-                //         function setLogo() {
-                //             var modalEditLogoPreview = document.getElementById('modalEditLogoPreview');
-                //             var modalEditLogo = document.getElementById('modalEditLogo');
-                //             updateLogoPreview(imgLogo);
-                //             function updateLogoPreview(imageSrc) {
-                //                 var logoImage = document.createElement('img');
-                //                 logoImage.src = imageSrc;
-                //                 logoImage.classList.add('logo-preview');
-                //                 logoImage.style.width = '48px';
-                //                 logoImage.style.height = '48px';
-
-                //                 modalEditLogoPreview.appendChild(logoImage);
-                //             }
-                //         }
-                //         /////////// ENDOF: LOGO PART
-
-
-                //         /////////// IMAGES PART
-                //         setSwiperSlider();
-                //         function setSwiperSlider() {
-                //             // Initialize Swiper
-                //             const swiper = new Swiper('.swiper-container', {
-                //                 // Configuration options
-                //                 slidesPerView: 1,
-                //                 spaceBetween: 10,
-                //                 loop: true,
-                //                 navigation: {
-                //                     nextEl: '.swiper-images-btn-next',
-                //                     prevEl: '.swiper-images-btn-prev',
-                //                 },
-                //             });
-
-                //             // Clear existing slider items
-                //             const swiperWrapper = document.querySelector('.swiper-wrapper');
-                //             swiperWrapper.innerHTML = '';
-
-                //             // Generate the slider items
-                //             institu_images.forEach((image, imageIndex) => {
-                //                 const slide = document.createElement('div');
-                //                 slide.classList.add('swiper-slide');
-                //                 slide.classList.add('d-flex');
-                //                 slide.classList.add('justify-content-center');
-                //                 slide.classList.add('align-items-center');
-
-                //                 const imgElement = document.createElement('img');
-                //                 imgElement.src = image;
-                //                 imgElement.alt = `Image ${imageIndex + 1}`;
-                //                 imgElement.style.height = '48px'; // Set the height directly
-                //                 imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
-
-                //                 slide.appendChild(imgElement);
-
-                //                 swiperWrapper.appendChild(slide);
-                //             });
-
-                //             // Update the slider
-                //             swiper.update();
-                //         }
-                //         /////////// ENDOF: IMAGES PART
-
-
-
-                //         var modalSaveButton = document.querySelector('.modal-mark-save-btn');
-                //         if (modalSaveButton) {
-                //             modalSaveButton.addEventListener('click', function () {
-                //                 // $('#editMarkModal').modal('hide');
-                //                 isModalActive = false;
-                //                 // populateMarker.setPopupContent(updatedPopupContent);
-                //             });
-                //         }
-                //         var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
-                //         if (modalRemoveButton) {
-                //             modalRemoveButton.addEventListener('click', function () {
-                //                 markersLayer.removeLayer(populateMarker);
-                //                 populateMarker.closePopup();
-                //                 $('#editMarkModal').modal('hide');
-                //                 isModalActive = false;
-                //             });
-                //         }
-                //         var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
-                //         if (modalCancelButton) {
-                //             modalCancelButton.addEventListener('click', function () {
-                //                 $('#editMarkModal').modal('hide');
-                //                 isModalActive = false;
-                //             });
-                //         }
-                //     });
-                //     var cancelButton = document.querySelector('.mark-cancel-btn');
-                //     cancelButton.addEventListener('click', function () {
-                //         if (cancelButton) {
-                //             populateMarker.closePopup();
-                //         }
-                //     });
-
-
-
-                //     // Add event listeners to dynamically generated images
-                //     document.getElementById('swiperImagesContainer').addEventListener('mouseenter', function(event) {
-                //         var zoomIcon = document.createElement('i');
-                //         zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
-                //         event.target.appendChild(zoomIcon);
-                //     });
-
-                //     document.getElementById('swiperImagesContainer').addEventListener('mouseleave', function(event) {
-                //         var zoomIcon = event.target.querySelector('.magnify-icon');
-                //         if (zoomIcon) {
-                //             zoomIcon.remove();
-                //         }
-                //     });
-                //     // Add event listeners to dynamically generated images
-                //     document.getElementById('swiperImagesContainer').addEventListener('click', function(event) {
-                //         var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
-                //         var modalImageContent = document.getElementById('modalImageContent');
-
-                //         var clickedImage = event.target.closest('img');
-                //         if (clickedImage) {
-                //             var clickedImageUrl = clickedImage.src;
-                //             modalImageContent.src = clickedImageUrl;
-                //             modalImage.show();
-                //         }
-                //     });
+                        var clickedImage = event.target.closest('img');
+                        if (clickedImage) {
+                            var clickedImageUrl = clickedImage.src;
+                            modalImageContent.src = clickedImageUrl;
+                            modalImage.show();
+                        }
+                    });
 
 
 
 
-                // });
+                });
 
 
 

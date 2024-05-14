@@ -10,7 +10,7 @@
                 </div>
                 {{-- <form id="editUserForm" class="row g-4 needs-validation" onsubmit="return false" novalidate> --}}
                 {{-- <form id="editUserForm" class="row g-4 needs-validation" onsubmit="return false" novalidate> --}}
-                <form id="editUserForm" class="row g-2 needs-validation" novalidate>
+                <form id="editUserForm" class="row g-4 needs-validation" novalidate>
                     <div class="col-12 col-md-6">
                         <div class="form-floating form-floating-outline">
                             <input type="text" id="modalEditLatitude" name="modalEditLatitude" class="form-control"

@@ -178,6 +178,25 @@ html {
 
 
 /*  */
+/* CUST CSS: SWIPER SLIDER */
+/*  */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-family: 'Material Design Icons';
+    font-size: 16px;
+    font-weight: normal;
+    content: '\e5cc';
+}
+
+.swiper-button-prev::after {
+    content: '\e5cb';
+}
+
+
+
+
+
+/*  */
 /* CUST RANDOM CSS */
 /*  */
 .custom-justify-between {
@@ -215,4 +234,9 @@ html {
     position: absolute;
     top: 19px;
     right: 6px;
+}
+
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0px !important;
 }

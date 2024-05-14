@@ -179,6 +179,9 @@
                                 <script src="{{ asset('public/plugins/leaflet-official/data.geojson.json/data.v1.js') }}"></script>
                                 <script src="{{ asset('public/plugins/leaflet-official/leaflet-map-merged-config.js') }}"></script>
 
+                                {{-- MERGED MODALS: v_viewmark_modal --}}
+                                @include('userpanels.modals.v_viewmark_modal')
+                                <!-- / v_viewmark_modal -->
                                 {{-- MERGED MODALS: v_editmark_modal --}}
                                 @include('userpanels.modals.v_editmark_modal')
                                 <!-- / v_editmark_modal -->
