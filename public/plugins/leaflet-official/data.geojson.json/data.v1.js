@@ -14,7 +14,10 @@ var school500 = {
                 "institu_logo": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
                 "institu_address": "JL. Senopati No.1",
                 "institu_descb": "",
-                "institu_image": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                "institu_image": [
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png"
+                ],
                 "institu_mark_id": "1",
                 "created_at": "",
                 "updated_at": ""
@@ -37,7 +40,10 @@ var school500 = {
                 "institu_logo": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
                 "institu_address": "JL. Senopati No.2",
                 "institu_descb": "",
-                "institu_image": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                "institu_image": [
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png"
+                ],
                 "institu_mark_id": "2",
                 "created_at": "",
                 "updated_at": ""
@@ -60,7 +66,10 @@ var school500 = {
                 "institu_logo": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
                 "institu_address": "JL. Senopati No.3",
                 "institu_descb": "",
-                "institu_image": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                "institu_image": [
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png"
+                ],
                 "institu_mark_id": "3",
                 "created_at": "",
                 "updated_at": ""
@@ -83,7 +92,10 @@ var school500 = {
                 "institu_logo": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
                 "institu_address": "JL. Senopati No.4",
                 "institu_descb": "",
-                "institu_image": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                "institu_image": [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9043oEqAvli_tCApwcDEzR0YHZpP10yWxTXK5CdvoHg&s",
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png"
+                ],
                 "institu_mark_id": "4",
                 "created_at": "",
                 "updated_at": ""
@@ -106,7 +118,10 @@ var school500 = {
                 "institu_logo": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
                 "institu_address": "JL. Senopati No.5",
                 "institu_descb": "",
-                "institu_image": "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                "institu_image": [
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png",
+                    "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png"
+                ],
                 "institu_mark_id": "5",
                 "created_at": "",
                 "updated_at": ""

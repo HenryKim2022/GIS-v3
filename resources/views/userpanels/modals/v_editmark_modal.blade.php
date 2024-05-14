@@ -13,16 +13,16 @@
                 <form id="editUserForm" class="row g-4 needs-validation" novalidate>
                     <div class="col-12 col-md-6">
                         <div class="form-floating form-floating-outline">
-                            <input type="text" id="modalEditLatitudes" name="modalEditLatitudes" class="form-control"
+                            <input type="text" id="modalEditLatitude" name="modalEditLatitude" class="form-control"
                                 placeholder="latitude" required />
-                            <label for="modalEditLatitudes">Latitude</label>
+                            <label for="modalEditLatitude">Latitude</label>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-floating form-floating-outline">
-                            <input type="text" id="modalEditLogitude" name="modalEditLogitude" class="form-control"
+                            <input type="text" id="modalEditLongitude" name="modalEditLongitude" class="form-control"
                                 placeholder="longitude" required />
-                            <label for="modalEditLogitude">Logitude</label>
+                            <label for="modalEditLongitude">Logitude</label>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
@@ -64,39 +64,135 @@
                                 required />
                             <label for="modalEditLogo">Logo</label>
                         </div>
+                        {{-- <div id="modalEditLogoPreview" class="position-relative" data-bs-target="#modalEditLogoPopUp"></div> --}}
+                        {{-- <div id="modalEditLogoPreview" class="position-relative"></div> --}}
 
+
+                        <div class="form-floating form-floating-outline mb-4">
+                            <div id="modalEditLogoPreview" class="logo-preview-container">
+                                <!-- Initial Image -->
+                                {{-- the img (commented was appended from the js i mean !!) --}}
+                                {{-- <img src="{{ imgLogo }}" class="logo-preview"
+                                    style="width: 48px; height: 48px;" /> --}}
+
+                                <!-- Magnifying Icon (Added on hover) -->
+                                {{-- <i class="mdi mdi-magnify magnify-icon"></i> --}}
+                            </div>
+                        </div>
+
+                        <script>
+                            var modalEditLogoPreview = document.getElementById('modalEditLogoPreview');
+
+                            // Add magnifying icon on hover
+                            modalEditLogoPreview.addEventListener('mouseenter', function() {
+                                var zoomIcon = document.createElement('i');
+                                zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
+                                modalEditLogoPreview.appendChild(zoomIcon);
+                            });
+
+                            // Remove magnifying icon on hover out
+                            modalEditLogoPreview.addEventListener('mouseleave', function() {
+                                var zoomIcon = modalEditLogoPreview.querySelector('.magnify-icon');
+                                if (zoomIcon) {
+                                    zoomIcon.remove();
+                                }
+                            });
+
+                            // Add click event listener to open the image in a Bootstrap 5 image modal
+                            modalEditLogoPreview.addEventListener('click', function() {
+                                var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
+                                var modalImageContent = document.getElementById('modalImageContent');
+                                modalImageContent.src = modalEditLogoPreview.querySelector('.logo-preview').src;
+                                modalImage.show();
+                            });
+                        </script>
                     </div>
+
+
                     <div class="col-12">
                         <div class="input-group input-group-merge">
                             <div class="form-floating form-floating-outline mb-4">
                                 <input type="file" class="form-control" id="modalEditImages" name="modalEditImages"
                                     required />
                                 <label for="modalEditImages">Images</label>
-                                {{-- <div class="card border-1">
-                                    <label class="card-header" for="modalEditImages">Images</label>
-                                    <div class="card-body">
-                                        <form action="/upload" class="dropzone needsclick" id="dropzone-multi">
-                                            <div class="dz-message needsclick">
-                                                Drop files here or click to upload
-                                                <span class="note needsclick">(This is just a demo dropzone. Selected
-                                                    files are
-                                                    <span class="fw-medium">not</span> actually uploaded.)</span>
-                                            </div>
-                                            <div class="fallback">
-                                                <input name="file" type="file" id="modalEditImages"
-                                                    name="modalEditImages" required />
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div> --}}
                             </div>
-
                         </div>
+
+
+                        <style>
+                            .swiper-button-next::after,
+                            .swiper-button-prev::after {
+                                font-family: 'Material Design Icons';
+                                font-size: 16px;
+                                font-weight: normal;
+                                content: '\e5cc';
+                            }
+
+                            .swiper-button-prev::after {
+                                content: '\e5cb';
+                            }
+                        </style>
+                        <div class="form-floating form-floating-outline mb-4">
+                            <div class="swiper-container overflow-hidden">
+                                <div class="swiper-wrapper" id="swiperImagesContainer">
+                                    <!-- Slides will be dynamically generated here -->
+                                </div>
+
+                                <!-- Navigation buttons -->
+                                <div class="swiper-button-next swiper-images-btn-next">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </div>
+                                <div class="swiper-button-prev swiper-images-btn-prev">
+                                    <i class="mdi mdi-chevron-left"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            // Add event listeners to dynamically generated images
+                            document.getElementById('swiperImagesContainer').addEventListener('mouseenter', function(event) {
+                                var zoomIcon = document.createElement('i');
+                                zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
+                                event.target.appendChild(zoomIcon);
+                            });
+
+                            document.getElementById('swiperImagesContainer').addEventListener('mouseleave', function(event) {
+                                var zoomIcon = event.target.querySelector('.magnify-icon');
+                                if (zoomIcon) {
+                                    zoomIcon.remove();
+                                }
+                            });
+
+                            // document.getElementById('swiperImagesContainer').addEventListener('click', function(event) {
+                            //     var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
+                            //     var modalImageContent = document.getElementById('modalImageContent');
+
+                            //     var clickedImage = event.target.closest('img');
+                            //     if (clickedImage) {
+                            //         var clickedImageId = clickedImage.id;
+                            //         modalImageContent.alt = clickedImageId;
+                            //         modalImage.show();
+                            //     }
+                            // });
+
+                            // Add event listeners to dynamically generated images
+                            document.getElementById('swiperImagesContainer').addEventListener('click', function(event) {
+                                var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
+                                var modalImageContent = document.getElementById('modalImageContent');
+
+                                var clickedImage = event.target.closest('img');
+                                if (clickedImage) {
+                                    var clickedImageUrl = clickedImage.src;
+                                    modalImageContent.src = clickedImageUrl;
+                                    modalImage.show();
+                                }
+                            });
+                        </script>
 
 
 
                     </div>
-                    <div class="col-12 col-md-6">
+                    {{-- <div class="col-12 col-md-6">
                         <div class="input-group input-group-merge">
                             <span class="input-group-text">US (+1)</span>
                             <div class="form-floating form-floating-outline">
@@ -105,7 +201,7 @@
                                 <label for="modalEditUserPhone">Phone Number</label>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="col-12 col-md-6">
                         <div class="form-floating form-floating-outline">
                             <select id="modalEditUserLanguage" name="modalEditUserLanguage" class="select2 form-select"
@@ -188,5 +284,25 @@
     </div>
 </div>
 
+<div class="modal fade" id="modalEditLogoPopUp" data-bs-backdrop="false" tabindex="-1"
+    style="z-index: 1104 !important">
+    <div class="modal-dialog modal-sm modal-simple modal-edit-user modal-dialog-centered">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body py-3 py-md-0 d-flex align-content-around justify-content-around">
+                <button type="button" class="btn-close" aria-label="Close"
+                    onclick="close_modalEditLogoPopUp()"></button>
+                <img id="modalImageContent" class="align-self-center" src="" alt="Modal Image"
+                    style="width: 148px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function close_modalEditLogoPopUp() {
+        var modalEditLogoPopUp = document.getElementById('modalEditLogoPopUp');
+        modalEditLogoPopUp.style.display = 'none';
+    }
+</script>
 
 <!-- / CONTENT: EDIT PROFILE -->

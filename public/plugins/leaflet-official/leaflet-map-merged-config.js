@@ -160,14 +160,15 @@ function populateMapWithMarkers(map, markersLayer) {
             const institu_npsn = f.properties['institu_npsn'] || "none";
             const imgLogo = f.properties['institu_logo'] || "none";
             const institu_addr = f.properties['institu_address'] || "none";
-            const institu_images = f.properties['institu_image'] || "none";
+            const institu_images = f.properties['institu_image'] || [];
             const last_update = f.properties['updated_at'] || "never";
 
 
             continueTOprocess(institu_addr);
             function continueTOprocess(final_addr) {
                 const isImgLogoExist = imgLogo.endsWith('.png') || imgLogo.endsWith('.jpg') ? imgLogo : '';
-                const isImgsExist = institu_images.endsWith('.png') || institu_images.endsWith('.jpg') ? institu_images : '';
+                // const isImgsExist = institu_images.endsWith('.png') || institu_images.endsWith('.jpg') ? institu_images : '';
+                const isImgsExist = Array.isArray(institu_images) && institu_images.length > 0 && (institu_images[0].endsWith('.png') || institu_images[0].endsWith('.jpg')) ? institu_images[0] : '';
                 const imgWidth = imgLogo.endsWith('.png') || imgLogo.endsWith('.jpg') ? '30' : '80';
                 let content = `
                     <div class='d-flex flex-column p-0'>
@@ -201,6 +202,85 @@ function populateMapWithMarkers(map, markersLayer) {
                     editButton.addEventListener('click', function () {
                         $('#editMarkModal').modal('show');
                         isModalActive = true;
+
+                        var modalEditLatitude = document.getElementById('modalEditLatitude');
+                        modalEditLatitude.value = coordinates[0];
+                        var modalEditLongitude = document.getElementById('modalEditLongitude');
+                        modalEditLongitude.value = coordinates[1];
+                        var modalEditInstitutionName = document.getElementById('modalEditInstitutionName');
+                        modalEditInstitutionName.value = institu_name;
+                        var modalEditNPSN = document.getElementById('modalEditNPSN');
+                        modalEditNPSN.value = institu_npsn;
+                        var modalEditAddress = document.getElementById('modalEditAddress');
+                        modalEditAddress.value = institu_addr;
+
+
+
+
+                        /////////// LOGO PART
+                        setLogo();
+                        function setLogo() {
+                            var modalEditLogoPreview = document.getElementById('modalEditLogoPreview');
+                            var modalEditLogo = document.getElementById('modalEditLogo');
+                            updateLogoPreview(imgLogo);
+                            function updateLogoPreview(imageSrc) {
+                                var logoImage = document.createElement('img');
+                                logoImage.src = imageSrc;
+                                logoImage.classList.add('logo-preview');
+                                logoImage.style.width = '48px';
+                                logoImage.style.height = '48px';
+
+                                modalEditLogoPreview.appendChild(logoImage);
+                            }
+                        }
+                        /////////// ENDOF: LOGO PART
+
+
+                        /////////// IMAGES PART
+                        setSwiperSlider();
+                        function setSwiperSlider() {
+                            // Initialize Swiper
+                            const swiper = new Swiper('.swiper-container', {
+                                // Configuration options
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                                loop: true,
+                                navigation: {
+                                    nextEl: '.swiper-images-btn-next',
+                                    prevEl: '.swiper-images-btn-prev',
+                                },
+                            });
+
+                            // Clear existing slider items
+                            const swiperWrapper = document.querySelector('.swiper-wrapper');
+                            swiperWrapper.innerHTML = '';
+
+                            // Generate the slider items
+                            institu_images.forEach((image, imageIndex) => {
+                                const slide = document.createElement('div');
+                                slide.classList.add('swiper-slide');
+                                slide.classList.add('d-flex');
+                                slide.classList.add('justify-content-center');
+                                slide.classList.add('align-items-center');
+
+                                const imgElement = document.createElement('img');
+                                imgElement.src = image;
+                                imgElement.alt = `Image ${imageIndex + 1}`;
+                                imgElement.style.height = '48px'; // Set the height directly
+                                imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
+
+                                slide.appendChild(imgElement);
+
+                                swiperWrapper.appendChild(slide);
+                            });
+
+                            // Update the slider
+                            swiper.update();
+                        }
+                        /////////// ENDOF: IMAGES PART
+
+
+
                         var modalSaveButton = document.querySelector('.modal-mark-save-btn');
                         if (modalSaveButton) {
                             modalSaveButton.addEventListener('click', function () {
@@ -245,6 +325,10 @@ function populateMapWithMarkers(map, markersLayer) {
     addSchoolnameSearchControl(map, markersLayer, 'tobesearch');
 }
 
+// Detect touch devices
+if ('ontouchstart' in window || navigator.maxTouchPoints) {
+    document.body.classList.add('touch-device');
+}
 
 
 // VER 1
