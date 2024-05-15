@@ -133,21 +133,6 @@
 
                         <script>
                             // Add event listeners to dynamically generated images
-                            // document.getElementById('swiperImagesContainerView').addEventListener('mouseenter', function(event) {
-                            //     var zoomIcon = document.createElement('i');
-                            //     zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
-                            //     event.target.appendChild(zoomIcon);
-                            // });
-
-                            // document.getElementById('swiperImagesContainerView').addEventListener('mouseleave', function(event) {
-                            //     var zoomIcon = event.target.querySelector('.magnify-icon');
-                            //     if (zoomIcon) {
-                            //         zoomIcon.remove();
-                            //     }
-                            // });
-
-
-                            // Add event listeners to dynamically generated images
                             document.getElementById('swiperImagesContainerView').addEventListener('click', function(event) {
                                 var modalImage = new bootstrap.Modal(document.getElementById('modalLogoPopUp'));
                                 var modalImageContent = document.getElementById('modalImageContent');
