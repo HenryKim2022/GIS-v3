@@ -1,7 +1,7 @@
 <!-- Modal: EditProfile / edit profile modal -->
 <div class="modal fade" id="viewMarkModal" data-bs-backdrop="false" tabindex="-1" style="z-index: 1104 !important;">
     <div class="modal-dialog modal-lg modal-simple modal-edit-user modal-dialog-scrollable modal-dialog-centered">
-        <div class="modal-content p-3 p-md-5">
+        <div class="modal-content p-3 p-md-1 pt-md-5">
             <div class="modal-body py-3 py-md-0">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center mb-4">
@@ -43,14 +43,17 @@
                             <label for="modalViewAddress">Address</label>
                         </div>
                     </div>
+                    <style>
+                        .form-floating.form-control{
+                            height: fit-content !important;
+                        }
+                    </style>
                     <div class="col-12">
-                        <div class="form-floating form-floating-outline mb-4">
-                            <div>
-                                <label id="modalViewLogo" name="modalViewLogo" disabled>Logo</label>
+                        <div class="form-floating form-floating-outline form-control">
+                            <div class="mb-2">
+                                <label id="modalViewLogo" name="modalViewLogo" for="modalViewLogoPreview" disabled>Logo</label>
                             </div>
-                        </div>
-                        <div class="form-floating form-floating-outline mb-4">
-                            <div id="modalViewLogoPreview" class="logo-preview-container">
+                            <div id="modalViewLogoPreview" class="logo-preview-container mb-2">
                                 <!-- Initial Image -->
                             </div>
                         </div>
@@ -86,13 +89,30 @@
 
 
                     <div class="col-12">
-                        <div class="input-group input-group-merge">
-                            <div class="form-floating form-floating-outline mb-4">
-                                <div>
-                                    <div for="modalViewImages" class="form-control" id="modalViewImages"
-                                        name="modalViewImages" disabled>Images</div>
+                        <div class="input-group input-group-merge form-control">
+                            <div class="form-floating form-floating-outline mb-2">
+                                <div >
+                                </div>
+                                <div for="modalViewImages" class="mb-2" id="modalViewImages"
+                                    name="modalViewImages" disabled>Images</div>
+                                <div class="form-floating form-floating-outline">
+                                    <div class="swiper-container overflow-hidden">
+                                        <div class="swiper-wrapper" id="swiperImagesContainerView">
+                                            <!-- Slides will be dynamically generated here -->
+                                        </div>
+
+                                        <!-- Navigation buttons -->
+                                        <div class="swiper-button-next swiper-images-btn-next">
+                                            <i class="mdi mdi-chevron-right"></i>
+                                        </div>
+                                        <div class="swiper-button-prev swiper-images-btn-prev">
+                                            <i class="mdi mdi-chevron-left"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
 
 
@@ -109,21 +129,7 @@
                                 content: '\e5cb';
                             }
                         </style>
-                        <div class="form-floating form-floating-outline mb-4">
-                            <div class="swiper-container overflow-hidden">
-                                <div class="swiper-wrapper" id="swiperImagesContainerView">
-                                    <!-- Slides will be dynamically generated here -->
-                                </div>
 
-                                <!-- Navigation buttons -->
-                                <div class="swiper-button-next swiper-images-btn-next">
-                                    <i class="mdi mdi-chevron-right"></i>
-                                </div>
-                                <div class="swiper-button-prev swiper-images-btn-prev">
-                                    <i class="mdi mdi-chevron-left"></i>
-                                </div>
-                            </div>
-                        </div>
 
                         <script>
                             // Add event listeners to dynamically generated images
@@ -156,10 +162,19 @@
                         </script>
                     </div>
 
-                    <div class="modal-footer">
+
+                    <div class="col-12">
+                        <div class="form-floating form-floating-outline">
+                            <input type="text" id="modalViewLastUpdate" name="modalViewLastUpdate"
+                                class="form-control" placeholder="last update" disabled />
+                            <label for="modalViewLastUpdate">Last update</label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer p-0 pl-4 pt-4 pb-4">
                         <div class="col-12 text-center">
                             <div class="d-flex flex-col justify-content-end">
-                                <button class="modal-view-mark-cancel-btn btn btn-primary me-2" data-bs-dismiss="modal"
+                                <button class="modal-view-mark-cancel-btn btn btn-primary" data-bs-dismiss="modal"
                                     id="close_modalViewMarkModal">Close</button>
 
                             </div>
@@ -176,15 +191,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalLogoPopUp" data-bs-backdrop="false" tabindex="-1"
-    style="z-index: 1105 !important">
+<div class="modal fade" id="modalLogoPopUp" data-bs-backdrop="false" tabindex="-1" style="z-index: 1105 !important">
     <div class="modal-dialog modal-md modal-simple modal-edit-user modal-dialog-centered">
         <div class="modal-content p-3 p-md-5">
             <div class="modal-body py-3 py-md-0 d-flex align-content-around justify-content-around">
-                <button type="button" class="btn-close" aria-label="Close"
-                    id="close_modalLogoPopUp"></button>
-                <img id="modalImageContent" class="align-self-center" src="" alt="Modal Image"
-                    style="width: 400px;">
+                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" id="close_modalLogoPopUp"></button>
+                <img id="modalImageContent" class="align-self-center col-12 col-lg-6 col-md-12" src=""
+                    alt="Modal Image">
             </div>
         </div>
     </div>
@@ -198,12 +211,11 @@
     });
 
 
-    const modalViewLogoPopUp = document.getElementById('close_modalLogoPopUp');
-    modalViewLogoPopUp.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent form submission
-        $('#modalLogoPopUp').modal('hide');
-    });
-
+    // const modalViewLogoPopUp = document.getElementById('close_modalLogoPopUp');
+    // modalViewLogoPopUp.addEventListener('click', function(event) {
+    //     event.preventDefault(); // Prevent form submission
+    //     $('#modalLogoPopUp').modal('hide');
+    // });
 </script>
 
 <!-- / CONTENT: EDIT PROFILE -->

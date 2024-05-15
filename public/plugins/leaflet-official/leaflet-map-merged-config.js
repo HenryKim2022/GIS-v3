@@ -179,6 +179,7 @@ function populateMapWithMarkers(map, markersLayer) {
                         var markModal = document.getElementById(markModalID);
                         $(markModal).modal("show");
                         // $('#viewMarkModal').modal('show');  // Replace 'myModal' with the ID of your Bootstrap modal
+
                         isModalActive = true;
                         var modalViewLatitude = document.getElementById('modalViewLatitude');
                         modalViewLatitude.value = coordinates[0];
@@ -190,6 +191,8 @@ function populateMapWithMarkers(map, markersLayer) {
                         modalViewNPSN.value = institu_npsn;
                         var modalViewAddress = document.getElementById('modalViewAddress');
                         modalViewAddress.value = institu_addr;
+                        var modalViewLastUpdate = document.getElementById('modalViewLastUpdate');
+                        modalViewLastUpdate.value = last_update;
 
                         addLogo2Modal(LogoPreviewId = "modalViewLogoPreview");
                         addImages2Modal();
@@ -265,165 +268,31 @@ function populateMapWithMarkers(map, markersLayer) {
                     }
                 }
 
-                document.addEventListener('DOMContentLoaded', function() {
-                    $('#markModalID').on('hidden.bs.modal', function() {
-                        isModalActive = false;
+                function addModalPreviewLogoJS(){
+                    var modalLogoPreview = document.getElementById('modalViewLogoPreview');
+                    // Add magnifying icon on hover
+                    modalLogoPreview.addEventListener('mouseenter', function() {
+                        var zoomIcon = document.createElement('i');
+                        zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
+                        modalLogoPreview.appendChild(zoomIcon);
                     });
-                })
 
+                    // Remove magnifying icon on hover out
+                    modalLogoPreview.addEventListener('mouseleave', function() {
+                        var zoomIcon = modalLogoPreview.querySelector('.magnify-icon');
+                        if (zoomIcon) {
+                            zoomIcon.remove();
+                        }
+                    });
 
-
-                // // Handle the "Edit" button click event within the marker's popup
-                // populateMarker.on('popupopen', function () {
-                //     var editButton = document.querySelector('.mark-edit-btn');
-                //     editButton.addEventListener('click', function () {
-                //         $('#editMarkModal').modal('show');
-                //         isModalActive = true;
-
-                //         var modalEditLatitude = document.getElementById('modalEditLatitude');
-                //         modalEditLatitude.value = coordinates[0];
-                //         var modalEditLongitude = document.getElementById('modalEditLongitude');
-                //         modalEditLongitude.value = coordinates[1];
-                //         var modalEditInstitutionName = document.getElementById('modalEditInstitutionName');
-                //         modalEditInstitutionName.value = institu_name;
-                //         var modalEditNPSN = document.getElementById('modalEditNPSN');
-                //         modalEditNPSN.value = institu_npsn;
-                //         var modalEditAddress = document.getElementById('modalEditAddress');
-                //         modalEditAddress.value = institu_addr;
-
-
-
-
-                //         /////////// LOGO PART
-                //         setLogo();
-                //         function setLogo() {
-                //             var modalEditLogoPreview = document.getElementById('modalEditLogoPreview');
-                //             var modalEditLogo = document.getElementById('modalEditLogo');
-                //             updateLogoPreview(imgLogo);
-                //             function updateLogoPreview(imageSrc) {
-                //                 var logoImage = document.createElement('img');
-                //                 logoImage.src = imageSrc;
-                //                 logoImage.classList.add('logo-preview');
-                //                 logoImage.style.width = '48px';
-                //                 logoImage.style.height = '48px';
-
-                //                 modalEditLogoPreview.appendChild(logoImage);
-                //             }
-                //         }
-                //         /////////// ENDOF: LOGO PART
-
-
-                //         /////////// IMAGES PART
-                //         setSwiperSlider();
-                //         function setSwiperSlider() {
-                //             // Initialize Swiper
-                //             const swiper = new Swiper('.swiper-container', {
-                //                 // Configuration options
-                //                 slidesPerView: 1,
-                //                 spaceBetween: 10,
-                //                 loop: true,
-                //                 navigation: {
-                //                     nextEl: '.swiper-images-btn-next',
-                //                     prevEl: '.swiper-images-btn-prev',
-                //                 },
-                //             });
-
-                //             // Clear existing slider items
-                //             const swiperWrapper = document.querySelector('.swiper-wrapper');
-                //             swiperWrapper.innerHTML = '';
-
-                //             // Generate the slider items
-                //             institu_images.forEach((image, imageIndex) => {
-                //                 const slide = document.createElement('div');
-                //                 slide.classList.add('swiper-slide');
-                //                 slide.classList.add('d-flex');
-                //                 slide.classList.add('justify-content-center');
-                //                 slide.classList.add('align-items-center');
-
-                //                 const imgElement = document.createElement('img');
-                //                 imgElement.src = image;
-                //                 imgElement.alt = `Image ${imageIndex + 1}`;
-                //                 imgElement.style.height = '48px'; // Set the height directly
-                //                 imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
-
-                //                 slide.appendChild(imgElement);
-
-                //                 swiperWrapper.appendChild(slide);
-                //             });
-
-                //             // Update the slider
-                //             swiper.update();
-                //         }
-                //         /////////// ENDOF: IMAGES PART
-
-
-
-                //         var modalSaveButton = document.querySelector('.modal-mark-save-btn');
-                //         if (modalSaveButton) {
-                //             modalSaveButton.addEventListener('click', function () {
-                //                 // $('#editMarkModal').modal('hide');
-                //                 isModalActive = false;
-                //                 // populateMarker.setPopupContent(updatedPopupContent);
-                //             });
-                //         }
-                //         var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
-                //         if (modalRemoveButton) {
-                //             modalRemoveButton.addEventListener('click', function () {
-                //                 markersLayer.removeLayer(populateMarker);
-                //                 populateMarker.closePopup();
-                //                 $('#editMarkModal').modal('hide');
-                //                 isModalActive = false;
-                //             });
-                //         }
-                //         var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
-                //         if (modalCancelButton) {
-                //             modalCancelButton.addEventListener('click', function () {
-                //                 $('#editMarkModal').modal('hide');
-                //                 isModalActive = false;
-                //             });
-                //         }
-                //     });
-                //     var cancelButton = document.querySelector('.mark-cancel-btn');
-                //     cancelButton.addEventListener('click', function () {
-                //         if (cancelButton) {
-                //             populateMarker.closePopup();
-                //         }
-                //     });
-
-
-
-                //     // Add event listeners to dynamically generated images
-                //     document.getElementById('swiperImagesContainer').addEventListener('mouseenter', function(event) {
-                //         var zoomIcon = document.createElement('i');
-                //         zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
-                //         event.target.appendChild(zoomIcon);
-                //     });
-
-                //     document.getElementById('swiperImagesContainer').addEventListener('mouseleave', function(event) {
-                //         var zoomIcon = event.target.querySelector('.magnify-icon');
-                //         if (zoomIcon) {
-                //             zoomIcon.remove();
-                //         }
-                //     });
-                //     // Add event listeners to dynamically generated images
-                //     document.getElementById('swiperImagesContainer').addEventListener('click', function(event) {
-                //         var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
-                //         var modalImageContent = document.getElementById('modalImageContent');
-
-                //         var clickedImage = event.target.closest('img');
-                //         if (clickedImage) {
-                //             var clickedImageUrl = clickedImage.src;
-                //             modalImageContent.src = clickedImageUrl;
-                //             modalImage.show();
-                //         }
-                //     });
-
-
-
-
-                // });
-
-
+                    // Add click event listener to open the image in a Bootstrap 5 image modal
+                    modalLogoPreview.addEventListener('click', function() {
+                        var modalImage = new bootstrap.Modal(document.getElementById('modalLogoPopUp'));
+                        var modalImageContent = document.getElementById('modalImageContent');
+                        modalImageContent.src = modalLogoPreview.querySelector('.logo-preview').src;
+                        modalImage.show();
+                    });
+                }
 
 
             }
@@ -442,8 +311,9 @@ if ('ontouchstart' in window || navigator.maxTouchPoints) {
 // VER 1
 function addMarkerOnContextMenu(map, markersLayer) {
     map.on('contextmenu taphold', function (e) {
-        if (isModalActive && !modal.contains(e.target)) {
-            e.preventDefault();
+        // if (isModalActive && !modal.contains(e.target)) {
+        if (isModalActive) {
+            // e.preventDefault();
         }
 
 

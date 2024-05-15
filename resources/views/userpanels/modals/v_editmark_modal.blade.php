@@ -1,7 +1,8 @@
 <!-- Modal: EditProfile / edit profile modal -->
 <div class="modal fade" id="editMarkModal" data-bs-backdrop="false" tabindex="-1">
     <div class="modal-dialog modal-lg modal-simple modal-edit-user modal-dialog-scrollable modal-dialog-centered">
-        <div class="modal-content p-3 p-md-5">
+        {{-- <div class="modal-content p-3 p-md-5"> --}}
+        <div class="modal-content p-3 p-md-1 pt-md-5">
             <div class="modal-body py-3 py-md-0">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="text-center mb-4">
@@ -245,7 +246,7 @@
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="bs-validation-checkbox" required />
                             <label class="form-check-label" for="bs-validation-checkbox">Proceced to save</label>
-                            <div class="invalid-feedback">You must agree before submitting.</div>
+                            <div class="invalid-feedback">You must agree before saving.</div>
                         </div>
                     </div>
 

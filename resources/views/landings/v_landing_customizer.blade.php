@@ -1,7 +1,8 @@
 <!doctype html>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-    class="dark-style layout-navbar-fixed layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
+    {{-- class="dark-style layout-navbar-fixed layout-wide customizer-hide" dir="ltr" data-theme="theme-default" --}}
+    class="dark-style layout-navbar layout-wide customizer-hide" dir="ltr" data-theme="theme-default"
     {{-- data-assets-path="../../assets/" --}} data-assets-path="public/materialize/assets/" data-template="front-pages">
 
 {{-- MERGED HEADER: v_header --}}
