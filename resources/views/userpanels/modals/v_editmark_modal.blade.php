@@ -250,14 +250,14 @@
                         </div>
                     </div>
 
-                    <div class="modal-footer">
+                    <div class="modal-footer p-0 pl-4 pt-4 pb-4">
                         <div class="col-12 text-center">
                             <div class="d-flex flex-col justify-content-end">
                                 <button class="modal-mark-cancel-btn btn btn-primary me-2" data-bs-dismiss="modal"
                                     onclick="closeModal()">Cancel</button>
                                 <button class="modal-mark-remove-btn btn btn-secondary me-2"
                                     onclick="closeModal()">Remove</button>
-                                <button class="modal-mark-save-btn btn btn-success me-2" type="submit"
+                                <button class="modal-mark-save-btn btn btn-success" type="submit"
                                     onclick="closeModal()">Save</button>
                             </div>
                         </div>
@@ -315,18 +315,41 @@
         });
     });
 
+    // Get the modal labels
+    var modalLabels = document.querySelectorAll('form label');
+    modalLabels.forEach(function(label) {
+        label.addEventListener('click', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+    });
+
     // Get the modal buttons
     var modalButtons = document.querySelectorAll('button');
     modalButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
             event.stopPropagation(); // Stop the event from bubbling up
-            event.preventDefault();
+            // event.preventDefault();
         });
 
         button.addEventListener('change', function(event) {
             event.stopPropagation(); // Stop the event from bubbling up
         });
     });
+
+
+    // Get the modal forms
+    var modalForms = document.querySelectorAll('form');
+    modalForms.forEach(function(form) {
+        form.addEventListener('click', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+
+        form.addEventListener('change', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+    });
+
+
 
     // function close_modalEditLogoPopUp() {
     //     var modalEditLogoPopUp = document.getElementById('modalEditLogoPopUp');
