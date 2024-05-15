@@ -61,23 +61,13 @@
                     </div>
                     <div class="col-12">
                         <div class="form-floating form-floating-outline mb-4">
-                            <input type="file" class="form-control" id="modalEditLogo" name="modalEditLogo"
-                                required />
+                            <input type="file" class="form-control" id="modalEditLogo" name="modalEditLogo" />
                             <label for="modalEditLogo">Logo</label>
                         </div>
-                        {{-- <div id="modalEditLogoPreview" class="position-relative" data-bs-target="#modalEditLogoPopUp"></div> --}}
-                        {{-- <div id="modalEditLogoPreview" class="position-relative"></div> --}}
-
 
                         <div class="form-floating form-floating-outline mb-4">
-                            <div id="modalEditLogoPreview" class="logo-preview-container">
+                            <div id="modalEditLogoPreview" class="logo-preview-container d-flex justify-content-center">
                                 <!-- Initial Image -->
-                                {{-- the img (commented was appended from the js i mean !!) --}}
-                                {{-- <img src="{{ imgLogo }}" class="logo-preview"
-                                    style="width: 48px; height: 48px;" /> --}}
-
-                                <!-- Magnifying Icon (Added on hover) -->
-                                {{-- <i class="mdi mdi-magnify magnify-icon"></i> --}}
                             </div>
                         </div>
 
@@ -85,10 +75,23 @@
                             var modalEditLogoPreview = document.getElementById('modalEditLogoPreview');
 
                             // Add magnifying icon on hover
+                            var logoPreviewImg = modalEditLogoPreview.querySelector('.logo-preview');
                             modalEditLogoPreview.addEventListener('mouseenter', function() {
-                                var zoomIcon = document.createElement('i');
                                 zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
-                                modalEditLogoPreview.appendChild(zoomIcon);
+                                zoomIcon.style.position = 'absolute';
+                                zoomIcon.style.top = '0';
+                                zoomIcon.style.left = '0';
+                                zoomIcon.style.width = '100%';
+                                zoomIcon.style.height = '100%';
+                                zoomIcon.style.display = 'flex';
+                                zoomIcon.style.justifyContent = 'center';
+                                zoomIcon.style.alignItems = 'center';
+                                zoomIcon.style.fontSize = '24px';
+                                zoomIcon.style.color = 'white';
+                                zoomIcon.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                                zoomIcon.style.borderRadius = '50%';
+                                zoomIcon.style.padding = '8px';
+                                logoPreviewImg.parentNode.insertBefore(zoomIcon, logoPreviewImg.nextSibling);
                             });
 
                             // Remove magnifying icon on hover out
@@ -113,8 +116,7 @@
                     <div class="col-12">
                         <div class="input-group input-group-merge">
                             <div class="form-floating form-floating-outline mb-4">
-                                <input type="file" class="form-control" id="modalEditImages" name="modalEditImages"
-                                    required />
+                                <input type="file" class="form-control" id="modalEditImages" name="modalEditImages" />
                                 <label for="modalEditImages">Images</label>
                             </div>
                         </div>
@@ -242,6 +244,17 @@
                             <label for="modalEditUserCountry">Country</label>
                         </div>
                     </div> --}}
+
+
+                    <div class="col-12">
+                        <div class="form-floating form-floating-outline">
+                            <input type="text" id="modalEditLastUpdate" name="modalEditLastUpdate"
+                                class="form-control" placeholder="last update" disabled />
+                            <label for="modalEditLastUpdate">Last update</label>
+                        </div>
+                    </div>
+
+
                     <div class="col-12 mb-3">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="bs-validation-checkbox" required />

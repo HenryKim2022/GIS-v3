@@ -44,16 +44,18 @@
                         </div>
                     </div>
                     <style>
-                        .form-floating.form-control{
+                        .form-floating.form-control {
                             height: fit-content !important;
                         }
                     </style>
-                    <div class="col-12">
+                    <div class="col-12 col-lg-3 col-md-12">
                         <div class="form-floating form-floating-outline form-control">
                             <div class="mb-2">
-                                <label id="modalViewLogo" name="modalViewLogo" for="modalViewLogoPreview" disabled>Logo</label>
+                                <label id="modalViewLogo" name="modalViewLogo" for="modalViewLogoPreview"
+                                    disabled>Logo</label>
                             </div>
-                            <div id="modalViewLogoPreview" class="logo-preview-container mb-2">
+                            <div id="modalViewLogoPreview"
+                                class="logo-preview-container mb-2 d-flex justify-content-center">
                                 <!-- Initial Image -->
                             </div>
                         </div>
@@ -65,6 +67,19 @@
                             modalLogoPreview.addEventListener('mouseenter', function() {
                                 var zoomIcon = document.createElement('i');
                                 zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
+                                zoomIcon.style.position = 'absolute';
+                                zoomIcon.style.top = '50%';
+                                zoomIcon.style.left = '50%';
+                                zoomIcon.style.transform = 'translate(-50%, -26%)';
+                                zoomIcon.style.display = 'flex';
+                                zoomIcon.style.justifyContent = 'center';
+                                zoomIcon.style.alignItems = 'center';
+                                zoomIcon.style.fontSize = '24px';
+                                zoomIcon.style.color = 'white';
+                                zoomIcon.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                                zoomIcon.style.borderRadius = '50%';
+                                zoomIcon.style.padding = '8px';
+                                zoomIcon.style.zIndex = '1';
                                 modalLogoPreview.appendChild(zoomIcon);
                             });
 
@@ -88,13 +103,13 @@
                     </div>
 
 
-                    <div class="col-12">
+                    <div class="col-12 col-lg-9 col-md-12">
                         <div class="input-group input-group-merge form-control">
                             <div class="form-floating form-floating-outline mb-2">
-                                <div >
+                                <div>
                                 </div>
-                                <div for="modalViewImages" class="mb-2" id="modalViewImages"
-                                    name="modalViewImages" disabled>Images</div>
+                                <div for="modalViewImages" class="mb-2" id="modalViewImages" name="modalViewImages"
+                                    disabled>Images</div>
                                 <div class="form-floating form-floating-outline">
                                     <div class="swiper-container overflow-hidden">
                                         <div class="swiper-wrapper" id="swiperImagesContainerView">
@@ -102,10 +117,10 @@
                                         </div>
 
                                         <!-- Navigation buttons -->
-                                        <div class="swiper-button-next swiper-images-btn-next">
+                                        <div class="swiper-nav swiper-button-next swiper-images-btn-next">
                                             <i class="mdi mdi-chevron-right"></i>
                                         </div>
-                                        <div class="swiper-button-prev swiper-images-btn-prev">
+                                        <div class="swiper-nav swiper-button-prev swiper-images-btn-prev">
                                             <i class="mdi mdi-chevron-left"></i>
                                         </div>
                                     </div>
@@ -134,6 +149,7 @@
                         <script>
                             // Add event listeners to dynamically generated images
                             document.getElementById('swiperImagesContainerView').addEventListener('click', function(event) {
+                                var modalImagesPreview = document.getElementById('swiperImagesContainerView');
                                 var modalImage = new bootstrap.Modal(document.getElementById('modalLogoPopUp'));
                                 var modalImageContent = document.getElementById('modalImageContent');
 
@@ -144,8 +160,16 @@
                                     modalImage.show();
                                 }
                             });
+
+                            // Get the swiperNavs
+                            var swiperNavs = document.getElementById('swiperImagesContainerView');
+                            swiperNavs.addEventListener('change', function(event) {
+                                event.stopPropagation(); // Stop the event from bubbling up
+                            });
                         </script>
                     </div>
+
+
 
 
                     <div class="col-12">
@@ -180,7 +204,8 @@
     <div class="modal-dialog modal-md modal-simple modal-edit-user modal-dialog-centered">
         <div class="modal-content p-3 p-md-5">
             <div class="modal-body py-3 py-md-0 d-flex align-content-around justify-content-around">
-                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" id="close_modalLogoPopUp"></button>
+                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
+                    id="close_modalLogoPopUp"></button>
                 <img id="modalImageContent" class="align-self-center col-12 col-lg-6 col-md-12" src=""
                     alt="Modal Image">
             </div>
@@ -220,6 +245,7 @@
     });
 
 
+
     // const viewMarkModalCloseBtn = document.getElementById('close_modalViewMarkModal');
     // viewMarkModalCloseBtn.addEventListener('click', function(event) {
     //     event.preventDefault(); // Prevent form submission
@@ -233,5 +259,6 @@
     //     $('#modalLogoPopUp').modal('hide');
     // });
 </script>
+
 
 <!-- / CONTENT: EDIT PROFILE -->

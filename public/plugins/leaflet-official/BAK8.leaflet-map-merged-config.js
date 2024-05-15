@@ -174,7 +174,7 @@ function populateMapWithMarkers(map, markersLayer) {
                 var markModalID = "viewMarkModal";
                 populateMarker.bindTooltip(institu_name + "  ➟  " + final_addr);
 
-                document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('DOMContentLoaded', function() {
                     populateMarker.on('click', function () {
                         var markModal = document.getElementById(markModalID);
                         $(markModal).modal("show");
@@ -201,6 +201,7 @@ function populateMapWithMarkers(map, markersLayer) {
                     markersLayer.addLayer(populateMarker);
                 })
 
+
                 function addLogo2Modal(LogoPreviewId = "") {
                     setLogo();
                     function setLogo() {
@@ -213,8 +214,8 @@ function populateMapWithMarkers(map, markersLayer) {
                             var logoImage = document.createElement('img');
                             logoImage.src = imageSrc;
                             logoImage.classList.add('logo-preview');
-                            logoImage.style.width = '96px';
-                            logoImage.style.height = '96px';
+                            logoImage.style.width = '48px';
+                            logoImage.style.height = '48px';
 
                             modalLogoPreview.appendChild(logoImage);
                         }
@@ -227,7 +228,7 @@ function populateMapWithMarkers(map, markersLayer) {
                         setSwiperSlider();
                         function setSwiperSlider() {
                             // Initialize Swiper
-                            const swiperInstance = new Swiper('.swiper-container', {
+                            const swiper = new Swiper('.swiper-container', {
                                 // Configuration options
                                 slidesPerView: 1,
                                 spaceBetween: 1,
@@ -236,26 +237,6 @@ function populateMapWithMarkers(map, markersLayer) {
                                     nextEl: '.swiper-images-btn-next',
                                     prevEl: '.swiper-images-btn-prev',
                                 },
-                                breakpoints: {
-                                    // When the viewport width is less than or equal to 640px
-                                    640: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 1,
-                                    },
-                                    // When the viewport width is greater than 640px and less than or equal to 1024px
-                                    1024: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 2,
-                                    },
-                                    // When the viewport width is greater than 1024px
-                                    1024: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 3,
-                                    },
-                                },
-                                observer: true,
-                                observeParents: true,
-                                observeSlideChildren: true,
                             });
 
                             // Clear existing slider items
@@ -283,12 +264,34 @@ function populateMapWithMarkers(map, markersLayer) {
                                     swiperWrapper.appendChild(slide);
                                 });
                             }
-
-
-
-
                         }
                     }
+                }
+
+                function addModalPreviewLogoJS(){
+                    var modalLogoPreview = document.getElementById('modalViewLogoPreview');
+                    // Add magnifying icon on hover
+                    modalLogoPreview.addEventListener('mouseenter', function() {
+                        var zoomIcon = document.createElement('i');
+                        zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
+                        modalLogoPreview.appendChild(zoomIcon);
+                    });
+
+                    // Remove magnifying icon on hover out
+                    modalLogoPreview.addEventListener('mouseleave', function() {
+                        var zoomIcon = modalLogoPreview.querySelector('.magnify-icon');
+                        if (zoomIcon) {
+                            zoomIcon.remove();
+                        }
+                    });
+
+                    // Add click event listener to open the image in a Bootstrap 5 image modal
+                    modalLogoPreview.addEventListener('click', function() {
+                        var modalImage = new bootstrap.Modal(document.getElementById('modalLogoPopUp'));
+                        var modalImageContent = document.getElementById('modalImageContent');
+                        modalImageContent.src = modalLogoPreview.querySelector('.logo-preview').src;
+                        modalImage.show();
+                    });
                 }
 
 
@@ -299,22 +302,20 @@ function populateMapWithMarkers(map, markersLayer) {
     addSchoolnameSearchControl(map, markersLayer, 'tobesearch');
 }
 
-
 // Detect touch devices
 if ('ontouchstart' in window || navigator.maxTouchPoints) {
     document.body.classList.add('touch-device');
 }
 
 
-
-
-
-// // // VER 2
+// VER 1
 function addMarkerOnContextMenu(map, markersLayer) {
     map.on('contextmenu taphold', function (e) {
+        // if (isModalActive && !modal.contains(e.target)) {
         if (isModalActive) {
             // e.preventDefault();
         }
+
 
         var LAT = e.latlng.lat.toFixed(7);
         var LNG = e.latlng.lng.toFixed(7);
@@ -372,6 +373,7 @@ function addMarkerOnContextMenu(map, markersLayer) {
             .catch(error => {
                 console.error('Error:', error.message);
                 processIt("We're using OSRM's demo server, sometimes wont get address automatically :)");
+
             });
 
         function processIt(institu_addr) {
@@ -386,230 +388,82 @@ function addMarkerOnContextMenu(map, markersLayer) {
             };
             const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
 
-            var markModalID = "editMarkModal";
+            const fromRightClick_PopupContent = `
+                        <div class='d-flex flex-column p-0'>
+                            <span style='padding-bottom:2px;'><strong>Coordinates: </strong>${LAT}, ${LNG}<br></span>
+                            <span style='padding-bottom:2px;'><strong>Name: </strong>${institu_name}<br></span>
+                            <span style='padding-bottom:2px;'><strong>NPSN: </strong>${institu_npsn}<br></span>
+                            <span style='padding-bottom:2px;'><strong>Logo: </strong>
+                                <img src='${imgLogo}' alt='${institu_name} Logo' width='30'><br>
+                            </span>
+                            <span style='padding-bottom:2px;'><strong>Address: </strong>${institu_addr}<br></span>
+                            <span class='d-flex flex-column align-top text-start' style='padding-bottom:2px;'><strong>Images:</strong>
+                                <img src='${institu_images}' alt='${institu_name} Logo' width='80'><br>
+                            </span>
+                            <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
+                            <div class='d-flex flex-col justify-content-between'>
+                                <button class="mark-cancel-remove-btn mdi mdi-delete p-2 rounded-2"> Cancel & Remove</button>
+                                <button class="mark-edit-btn mdi mdi-content-save-all p-2 rounded-2" onclick="openModal()"> Edit & Save</button>
+                            </div>
+                        </div>
+                    `;
+
             marker.bindTooltip(institu_name + "  ➟  " + institu_addr);
-            marker.on('click', function () {
-                var markModal = document.getElementById(markModalID);
-                $(markModal).modal("show");
-                isModalActive = true;
-
-                var modalViewLatitude = document.getElementById('modalEditLatitude');
-                modalViewLatitude.value = coordinates['lat'];
-                var modalViewLongitude = document.getElementById('modalEditLongitude');
-                modalViewLongitude.value = coordinates['lng'];
-                var modalViewInstitutionName = document.getElementById('modalEditInstitutionName');
-                modalViewInstitutionName.value = institu_name;
-                var modalViewNPSN = document.getElementById('modalEditNPSN');
-                modalViewNPSN.value = institu_npsn;
-                var modalViewAddress = document.getElementById('modalEditAddress');
-                modalViewAddress.value = institu_addr;
-                var modalViewLastUpdate = document.getElementById('modalEditLastUpdate');
-                modalViewLastUpdate.value = last_update;
-
-                // addLogo2Modal(LogoPreviewId = "modalEditLogoPreview");
-                // addImages2Modal();
+            marker.bindPopup(fromRightClick_PopupContent);
+            marker.options.popupText = marker._popup._content;
+            markersLayer.addLayer(marker);
 
 
-                var modalSaveButton = document.querySelector('.modal-mark-save-btn');
-                if (modalSaveButton) {
-                    modalSaveButton.addEventListener('click', function () {
-                        // $('#editMarkModal').modal('hide');
-                        // newMarker.setPopupContent(updatedPopupContent);
-                        // $(markModal).modal("hide");
-                    });
-                }
-                var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
-                if (modalRemoveButton) {
-                    modalRemoveButton.addEventListener('click', function () {
-                        markersLayer.removeLayer(marker);
-                        $(markModal).modal("hide");
-                        isModalActive = false;
-                    });
-                }
-                var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
-                if (modalCancelButton) {
-                    modalCancelButton.addEventListener('click', function () {
-                        // $('#editMarkModal').modal('hide');
-                        $(markModal).modal("hide");
-                        isModalActive = false;
-                    });
-                }
+            // Handle the "Edit" button click event within the marker's popup
+            marker.on('popupopen', function () {
+                var editButton = document.querySelector('.mark-edit-btn');
 
-
+                editButton.addEventListener('click', function () {
+                    marker.closePopup();
+                    $('#editMarkModal').modal('show');
+                    isModalActive = true;
+                    var modalSaveButton = document.querySelector('.modal-mark-save-btn');
+                    if (modalSaveButton) {
+                        modalSaveButton.addEventListener('click', function () {
+                            // $('#editMarkModal').modal('hide');
+                            // marker.setPopupContent(updatedPopupContent);
+                        });
+                    }
+                    var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
+                    if (modalRemoveButton) {
+                        modalRemoveButton.addEventListener('click', function () {
+                            markersLayer.removeLayer(marker);
+                            marker.closePopup();
+                            $('#editMarkModal').modal('hide');
+                            isModalActive = false;
+                        });
+                    }
+                    var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
+                    if (modalCancelButton) {
+                        modalCancelButton.addEventListener('click', function () {
+                            $('#editMarkModal').modal('hide');
+                            isModalActive = false;
+                        });
+                    }
+                });
+                var cancelandRemoveButton = document.querySelector('.mark-cancel-remove-btn');
+                cancelandRemoveButton.addEventListener('click', function () {
+                    if (cancelandRemoveButton) {
+                        marker.closePopup();
+                        markersLayer.removeLayer(marker); // Remove the marker from the layer
+                    }
+                });
 
             });
-
-            markersLayer.addLayer(marker);
         }
+
+
     });
+
+    // }
+
+
 }
-
-
-
-
-
-
-
-// // // VER 1
-// function addMarkerOnContextMenu(map, markersLayer) {
-//     map.on('contextmenu taphold', function (e) {
-//         // if (isModalActive && !modal.contains(e.target)) {
-//         if (isModalActive) {
-//             // e.preventDefault();
-//         }
-
-
-//         var LAT = e.latlng.lat.toFixed(7);
-//         var LNG = e.latlng.lng.toFixed(7);
-//         var coordinates = {
-//             lat: LAT,
-//             lng: LNG
-//         };
-
-//         getAddressFromCoordinates(coordinates)
-//             .then(address => {
-//                 // Define the addr components
-//                 var componentKeys = [
-//                     { key: 'road', label: 'Jl.' },
-//                     { key: 'neighbourhood', label: 'Ling.' },
-//                     { key: 'hamlet', label: 'Dusun' },
-//                     { key: 'village', label: 'Desa' },
-//                     { key: 'suburb', label: 'Suburb' },
-//                     { key: 'city_district', label: 'Kec.' },
-//                     { key: 'town', label: 'Kota' },
-//                     { key: 'county', label: 'Kab.' },
-//                     { key: 'state_district', label: 'Wilayah' },
-//                     { key: 'city', label: 'Kota' },
-//                     { key: 'state', label: 'Prov.' },
-//                     { key: 'postcode', label: 'Kode Pos' },
-//                     { key: 'country', label: 'Negara' }
-//                 ];
-
-//                 var province = address['state'];
-//                 var postcode = address['postcode'];
-//                 var addressComponents = [];
-
-//                 componentKeys.forEach(component => {
-//                     var key = component.key;
-//                     var label = component.label;
-
-//                     if (key === 'state') {
-//                         if (province && postcode) {
-//                             addressComponents.push(label + ' ' + province + ' (' + postcode + ')');
-//                         } else if (province) {
-//                             addressComponents.push(label + ' ' + province);
-//                         }
-//                     } else if (key !== 'postcode' && address[key]) {
-//                         if (label && address[key].toLowerCase().includes(label.toLowerCase())) {
-//                             addressComponents.push(address[key]);
-//                         } else {
-//                             addressComponents.push(label + ' ' + address[key]);
-//                         }
-//                     }
-//                 });
-
-//                 var fulladdr = addressComponents.join(', ');
-//                 processIt(fulladdr);
-//                 console.log(fulladdr);
-//             })
-//             .catch(error => {
-//                 console.error('Error:', error.message);
-//                 processIt("We're using OSRM's demo server, sometimes wont get address automatically :)");
-
-//             });
-
-//         function processIt(institu_addr) {
-//             const institu_name = "Untitled Marker";
-//             const institu_npsn = "fill data!";
-//             const imgLogo = imgu; // Corrected variable name
-//             const institu_images = imgu;
-//             const last_update = "never";
-
-//             const tooltipData = {
-//                 tobesearch: institu_name
-//             };
-//             const marker = L.marker(new L.latLng([LAT, LNG]), tooltipData);
-
-//             const fromRightClick_PopupContent = `
-//                         <div class='d-flex flex-column p-0'>
-//                             <span style='padding-bottom:2px;'><strong>Coordinates: </strong>${LAT}, ${LNG}<br></span>
-//                             <span style='padding-bottom:2px;'><strong>Name: </strong>${institu_name}<br></span>
-//                             <span style='padding-bottom:2px;'><strong>NPSN: </strong>${institu_npsn}<br></span>
-//                             <span style='padding-bottom:2px;'><strong>Logo: </strong>
-//                                 <img src='${imgLogo}' alt='${institu_name} Logo' width='30'><br>
-//                             </span>
-//                             <span style='padding-bottom:2px;'><strong>Address: </strong>${institu_addr}<br></span>
-//                             <span class='d-flex flex-column align-top text-start' style='padding-bottom:2px;'><strong>Images:</strong>
-//                                 <img src='${institu_images}' alt='${institu_name} Logo' width='80'><br>
-//                             </span>
-//                             <span style='padding-bottom:2px;'><strong>Last Update: </strong>${last_update}<br></span>
-//                             <div class='d-flex flex-col justify-content-between'>
-//                                 <button class="mark-cancel-remove-btn mdi mdi-delete p-2 rounded-2"> Cancel & Remove</button>
-//                                 <button class="mark-edit-btn mdi mdi-content-save-all p-2 rounded-2" onclick="openModal()"> Edit & Save</button>
-//                             </div>
-//                         </div>
-//                     `;
-
-//             marker.bindTooltip(institu_name + "  ➟  " + institu_addr);
-//             marker.bindPopup(fromRightClick_PopupContent);
-//             marker.options.popupText = marker._popup._content;
-//             markersLayer.addLayer(marker);
-
-
-//             // Handle the "Edit" button click event within the marker's popup
-//             marker.on('popupopen', function () {
-//                 var editButton = document.querySelector('.mark-edit-btn');
-
-//                 editButton.addEventListener('click', function () {
-//                     marker.closePopup();
-//                     $('#editMarkModal').modal('show');
-//                     isModalActive = true;
-//                     var modalSaveButton = document.querySelector('.modal-mark-save-btn');
-//                     if (modalSaveButton) {
-//                         modalSaveButton.addEventListener('click', function () {
-//                             // $('#editMarkModal').modal('hide');
-//                             // marker.setPopupContent(updatedPopupContent);
-//                         });
-//                     }
-//                     var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
-//                     if (modalRemoveButton) {
-//                         modalRemoveButton.addEventListener('click', function () {
-//                             markersLayer.removeLayer(marker);
-//                             marker.closePopup();
-//                             $('#editMarkModal').modal('hide');
-//                             isModalActive = false;
-//                         });
-//                     }
-//                     var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
-//                     if (modalCancelButton) {
-//                         modalCancelButton.addEventListener('click', function () {
-//                             $('#editMarkModal').modal('hide');
-//                             isModalActive = false;
-//                         });
-//                     }
-//                 });
-//                 var cancelandRemoveButton = document.querySelector('.mark-cancel-remove-btn');
-//                 cancelandRemoveButton.addEventListener('click', function () {
-//                     if (cancelandRemoveButton) {
-//                         marker.closePopup();
-//                         markersLayer.removeLayer(marker); // Remove the marker from the layer
-//                     }
-//                 });
-
-//             });
-//         }
-
-
-//     });
-
-//     // }
-
-
-// }
-
-
-
-
 
 
 // VER 0
