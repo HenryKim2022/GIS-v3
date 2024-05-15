@@ -189,11 +189,42 @@
 </div>
 
 <script>
-    const viewMarkModal = document.getElementById('close_modalViewMarkModal');
+    const viewMarkModal = document.getElementById('viewMarkModal');
     viewMarkModal.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent form submission
-        $('#viewMarkModal').modal('hide');
+        event.preventDefault(); // Prevent autoscroll & prevent leaflet auto-exit fullscreen
     });
+
+    // Get the modal inputs
+    var modalInputs = document.querySelectorAll('.form-floating');
+    modalInputs.forEach(function(input) {
+        input.addEventListener('click', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+
+        input.addEventListener('change', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+    });
+
+    // Get the modal buttons
+    var modalButtons = document.querySelectorAll('button');
+    modalButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+            event.preventDefault();
+        });
+
+        button.addEventListener('change', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+    });
+
+
+    // const viewMarkModalCloseBtn = document.getElementById('close_modalViewMarkModal');
+    // viewMarkModalCloseBtn.addEventListener('click', function(event) {
+    //     event.preventDefault(); // Prevent form submission
+    //     $('#viewMarkModal').modal('hide');
+    // });
 
 
     // const modalViewLogoPopUp = document.getElementById('close_modalLogoPopUp');

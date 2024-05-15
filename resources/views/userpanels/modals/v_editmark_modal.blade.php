@@ -245,7 +245,7 @@
                     <div class="col-12 mb-3">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="bs-validation-checkbox" required />
-                            <label class="form-check-label" for="bs-validation-checkbox">Proceced to save</label>
+                            <label class="form-check-label" for="bs-validation-checkbox">Procced to save</label>
                             <div class="invalid-feedback">You must agree before saving.</div>
                         </div>
                     </div>
@@ -278,7 +278,7 @@
     <div class="modal-dialog modal-sm modal-simple modal-edit-user modal-dialog-centered">
         <div class="modal-content p-3 p-md-5">
             <div class="modal-body py-3 py-md-0 d-flex align-content-around justify-content-around">
-                <button type="button" class="btn-close" aria-label="Close"
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     onclick="close_modalEditLogoPopUp()"></button>
                 <img id="modalImageContent" class="align-self-center" src="" alt="Modal Image"
                     style="width: 148px;">
@@ -287,11 +287,51 @@
     </div>
 </div>
 
+
+
 <script>
-    function close_modalEditLogoPopUp() {
-        var modalEditLogoPopUp = document.getElementById('modalEditLogoPopUp');
-        modalEditLogoPopUp.style.display = 'none';
-    }
+    const editMarkModal = document.getElementById('editMarkModal');
+    editMarkModal.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default scrolling behavior
+        // event.stopPropagation();
+    });
+
+    // Get the checkbox element
+    var checkbox = document.querySelector('.form-check');
+    checkbox.addEventListener('click', function(event) {
+        event.stopPropagation(); // Stop the event from bubbling up
+    });
+
+
+    // Get the modal inputs
+    var modalInputs = document.querySelectorAll('.form-floating');
+    modalInputs.forEach(function(input) {
+        input.addEventListener('click', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+
+        input.addEventListener('change', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+    });
+
+    // Get the modal buttons
+    var modalButtons = document.querySelectorAll('button');
+    modalButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+            event.preventDefault();
+        });
+
+        button.addEventListener('change', function(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+        });
+    });
+
+    // function close_modalEditLogoPopUp() {
+    //     var modalEditLogoPopUp = document.getElementById('modalEditLogoPopUp');
+    //     modalEditLogoPopUp.style.display = 'none';
+    // }
 </script>
 
 <!-- / CONTENT: EDIT PROFILE -->
