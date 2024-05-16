@@ -51,12 +51,12 @@
                     <div class="col-12 col-lg-3 col-md-12">
                         <div class="form-floating form-floating-outline form-control">
                             <div class="mb-2">
-                                <label for="modalViewLogoPreview"
-                                    disabled>Logo</label>
-                            </div>
-                            <div id="modalViewLogoPreview"
-                                class="logo-view-preview-container mb-2 d-flex justify-content-center">
-                                <!-- Initial Image -->
+                                <label for="modalViewLogoPreview" disabled>Logo</label>
+                                <div id="modalViewLogoPreview"
+                                    name="modalViewLogoPreview"
+                                    class="logo-view-preview-container mb-2 d-flex justify-content-center">
+                                    <!-- Initial Image -->
+                                </div>
                             </div>
                         </div>
 
@@ -103,11 +103,110 @@
                     </div>
 
 
-                    <div class="col-12 col-lg-9 col-md-12">
-                        <div class="input-group input-group-merge form-control">
-                            <div class="form-floating form-floating-outline mb-2">
-                                <div>
+                    {{-- <div class="col-12 col-lg-12 col-md-12">
+                        <div class="input-group input-group-merge">
+                            <div class="form-floating form-control form-floating-outline mb-2">
+                                <div for="modalViewImages" class="mb-2" id="modalViewImages" name="modalViewImages"
+                                    disabled>Images</div>
+                                  <div class="form-floating form-floating-outline">
+                                    <div id="carouselExampleDark"
+                                        class="carousel carousel-dark slide carousel-fade overflow-hidden"
+                                        data-bs-ride="carousel">
+                                        <div class="carousel-indicators mb-0" id="caro_indicators">
+                                            //-- Slides Indicator --
+                                        </div>
+                                        <div class="carousel-inner" id="caro_items">
+                                            //-- div.carousel-item --
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleDark" role="button"
+                                            data-bs-slide="prev">
+                                            <span class="mdi mdi-chevron-left" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleDark" role="button"
+                                            data-bs-slide="next">
+                                            <span class="mdi mdi-chevron-right" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </a>
+                                    </div>
                                 </div>
+                                <script>
+                                    window.addEventListener('load', function() {
+                                        var modal = document.getElementById('modalViewLogoPopUp');
+                                        modal.addEventListener('shown.bs.modal', function() {
+                                            var carouselItems = modal.querySelectorAll('.carousel .carousel-item img');
+
+                                            carouselItems.forEach(function(imgElement) {
+                                                imgElement.addEventListener('mouseover', function(event) {
+                                                    event.preventDefault(); // Prevent the default behavior of the event
+                                                    event.stopPropagation(); // Stop the event propagation
+
+                                                    const imgId = this.id; // Get the ID of the img element
+                                                    // Use the imgId variable as needed
+                                                    const modalViewZoomImageContent = document.getElementById('modalViewZoomImageContent');
+                                                    modalViewZoomImageContent.src = this.src;
+                                                });
+                                            });
+                                        });
+                                    });
+                                </script>
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                        {{-- <style>
+                            .swiper-button-next::after,
+                            .swiper-button-prev::after {
+                                font-family: 'Material Design Icons';
+                                font-size: 16px;
+                                font-weight: normal;
+                                content: '\e5cc';
+                            }
+
+                            .swiper-button-prev::after {
+                                content: '\e5cb';
+                            }
+                        </style> --}}
+
+
+                        {{-- <script>
+                            // Add event listeners to dynamically generated images
+                            document.getElementById('swiperImagesContainerView').addEventListener('click', function(event) {
+                                // var modalImagesPreview = document.getElementById('swiperImagesContainerView');
+                                var modalViewImage = new bootstrap.Modal(document.getElementById('modalViewLogoPopUp'));
+                                var modalViewZoomImageContent = document.getElementById('modalViewZoomImageContent');
+
+                                var clickedImage = event.target.closest('img');
+                                if (clickedImage) {
+                                    var clickedImageUrl = clickedImage.src;
+                                    modalViewZoomImageContent.src = clickedImageUrl;
+                                    modalViewImage.show();
+                                }
+                            });
+
+                            // Get the swiperNavs
+                            var swiperNavs = document.getElementById('swiperImagesContainerView');
+                            swiperNavs.addEventListener('change', function(event) {
+                                event.stopPropagation(); // Stop the event from bubbling up
+                            });
+                        </script>
+                    </div> --}}
+
+
+
+                    <div class="col-12 col-lg-9 col-md-12">
+                        <div class="input-group input-group-merge">
+                            <div class="form-floating form-floating-outline mb-2">
+                                {{-- <div class="form-control">
+
+                                </div> --}}
                                 <div for="modalViewImages" class="mb-2" id="modalViewImages" name="modalViewImages"
                                     disabled>Images</div>
                                 <div class="form-floating form-floating-outline">
@@ -126,6 +225,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
 
 
                         </div>
@@ -171,7 +272,6 @@
 
 
 
-
                     <div class="col-12">
                         <div class="form-floating form-floating-outline">
                             <input type="text" id="modalViewLastUpdate" name="modalViewLastUpdate"
@@ -200,23 +300,30 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalViewLogoPopUp" data-bs-backdrop="false" tabindex="-1" style="z-index: 1105 !important">
+<div class="modal fade" id="modalViewLogoPopUp" data-bs-backdrop="false" tabindex="-1"
+    style="z-index: 1105 !important">
     <div class="modal-dialog modal-md modal-simple modal-edit-user modal-dialog-centered">
         <div class="modal-content p-3 p-md-5">
             <div class="modal-body py-3 py-md-0 d-flex align-content-around justify-content-around">
                 <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
                     id="close_modalViewLogoPopUp"></button>
-                <img id="modalViewZoomImageContent" class="align-self-center col-12 col-lg-6 col-md-12" alt="Modal Image">
+                <img id="modalViewZoomImageContent" class="align-self-center col-12 col-lg-6 col-md-12"
+                    alt="Modal Image">
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <script>
     const viewMarkModal = document.getElementById('viewMarkModal');
     viewMarkModal.addEventListener('click', function(event) {
         event.preventDefault(); // Prevent autoscroll & prevent leaflet auto-exit fullscreen
     });
+
+
 
     // Get the modal inputs
     var modalInputs = document.querySelectorAll('.form-floating');
@@ -245,6 +352,7 @@
 
 
 
+
     // const viewMarkModalCloseBtn = document.getElementById('close_modalViewMarkModal');
     // viewMarkModalCloseBtn.addEventListener('click', function(event) {
     //     event.preventDefault(); // Prevent form submission
@@ -258,6 +366,94 @@
     //     $('#modalViewLogoPopUp').modal('hide');
     // });
 </script>
+
+{{--
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let swiperInstance;
+
+        function initSwiper() {
+            swiperInstance = new Swiper('.swiper-container', {
+                // Configuration options
+                slidesPerView: 1,
+                spaceBetween: 1,
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-images-btn-next',
+                    prevEl: '.swiper-images-btn-prev',
+                },
+                breakpoints: {
+                    // When the viewport width is less than or equal to 640px
+                    640: {
+                        slidesPerView: 1,
+                        spaceBetween: 1,
+                    },
+                    // When the viewport width is greater than 640px and less than or equal to 1024px
+                    1024: {
+                        slidesPerView: 1,
+                        spaceBetween: 2,
+                    },
+                    // When the viewport width is greater than 1024px
+                    1024: {
+                        slidesPerView: 1,
+                        spaceBetween: 3,
+                    },
+                },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true,
+            });
+
+            // Get the modal swiper-navs
+            // var nextBtn = document.querySelector('.swiper-images-btn-next');
+            // nextBtn.addEventListener('click', function (event) {
+            //     event.stopPropagation(); // Stop the event from bubbling up
+            //     swiperInstance.slideNext();
+            // });
+
+            // var prevBtn = document.querySelector('.swiper-images-btn-prev');
+            // prevBtn.addEventListener('click', function (event) {
+            //     event.stopPropagation(); // Stop the event from bubbling up
+            //     swiperInstance.slidePrev();
+            // });
+
+            var nextBtn = document.querySelector('.swiper-images-btn-next');
+            var prevBtn = document.querySelector('.swiper-images-btn-prev');
+
+            // Use the separate event handler functions
+            nextBtn.addEventListener('click', swiperNextClickHandler);
+            prevBtn.addEventListener('click', swiperPrevClickHandler);
+        }
+
+        function swiperNextClickHandler(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+            swiperInstance.slideNext();
+        }
+
+        function swiperPrevClickHandler(event) {
+            event.stopPropagation(); // Stop the event from bubbling up
+            swiperInstance.slidePrev();
+        }
+
+        modalListener("viewMarkModal");
+
+        function modalListener(modalGeneralID) {
+            var modal = document.getElementById(modalGeneralID);
+            modal.addEventListener('show.bs.modal', function() {
+                initSwiper();
+            });
+            modal.addEventListener('hide.bs.modal', function() {
+                swiperInstance.destroy();
+                // Remove event listeners for the Swiper navigation buttons
+                var nextBtn = document.querySelector('.swiper-images-btn-next');
+                var prevBtn = document.querySelector('.swiper-images-btn-prev');
+                nextBtn.removeEventListener('click', swiperNextClickHandler);
+                prevBtn.removeEventListener('click', swiperPrevClickHandler);
+            });
+        }
+    });
+</script>
+ --}}
 
 
 <!-- / CONTENT: EDIT PROFILE -->

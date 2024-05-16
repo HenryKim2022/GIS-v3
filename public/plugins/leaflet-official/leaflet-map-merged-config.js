@@ -178,6 +178,7 @@ function populateMapWithMarkers(map, markersLayer) {
                     populateMarker.on('click', function () {
                         var markModal = document.getElementById(markModalID);
                         $(markModal).modal("show");
+                        openModal();
                         // $('#viewMarkModal').modal('show');  // Replace 'myModal' with the ID of your Bootstrap modal
 
                         isModalActive = true;
@@ -224,6 +225,50 @@ function populateMapWithMarkers(map, markersLayer) {
                 function addImages2Modal() {
                     setImages()
                     function setImages() {
+                        // setBS5Slider("carouselExampleDark");
+                        // function setBS5Slider(BS5SliderID) {
+                        //     const carouselIndicators = document.getElementById('caro_indicators');
+                        //     const carouselInner = document.getElementById('caro_items');
+
+                        //     institu_images.forEach((image, imageIndex) => {
+                        //         // Create indicator button
+                        //         const slideIndiBtn = document.createElement('button');
+                        //         slideIndiBtn.type = 'button';
+                        //         slideIndiBtn.setAttribute('data-bs-target', '#' + BS5SliderID);
+                        //         slideIndiBtn.setAttribute('data-bs-slide-to', imageIndex);
+
+                        //         if (imageIndex === 0) {
+                        //             slideIndiBtn.classList.add('active');
+                        //         }
+                        //         carouselIndicators.appendChild(slideIndiBtn);
+
+
+                        //         // Create carousel item
+                        //         const carouselItem = document.createElement('div');
+                        //         carouselItem.classList.add('carousel-item');
+                        //         carouselItem.classList.add('d-flex');
+                        //         carouselItem.classList.add('justify-content-center');
+                        //         carouselItem.classList.add('align-items-center');
+
+                        //         if (imageIndex === 0) {
+                        //             carouselItem.classList.add('active');
+                        //         }
+
+                        //         const img = document.createElement('img');
+                        //         img.classList.add('d-block', 'w-8');
+                        //         img.id = "caro_img_" + imageIndex;
+                        //         img.type = 'button';
+                        //         img.style.width = '101px';
+                        //         img.style.height = '101px';
+                        //         img.src = image;
+                        //         carouselItem.appendChild(img);
+
+                        //         carouselInner.appendChild(carouselItem);
+                        //     });
+                        // }
+
+
+
                         setSwiperSlider();
                         function setSwiperSlider() {
                             // Initialize Swiper
@@ -231,7 +276,7 @@ function populateMapWithMarkers(map, markersLayer) {
                                 // Configuration options
                                 slidesPerView: 1,
                                 spaceBetween: 1,
-                                loop: true,
+                                loop: false,
                                 navigation: {
                                     nextEl: '.swiper-images-btn-next',
                                     prevEl: '.swiper-images-btn-prev',
@@ -240,12 +285,12 @@ function populateMapWithMarkers(map, markersLayer) {
                                     // When the viewport width is less than or equal to 640px
                                     640: {
                                         slidesPerView: 1,
-                                        spaceBetween: 1,
+                                        spaceBetween: 3,
                                     },
                                     // When the viewport width is greater than 640px and less than or equal to 1024px
                                     1024: {
                                         slidesPerView: 1,
-                                        spaceBetween: 2,
+                                        spaceBetween: 3,
                                     },
                                     // When the viewport width is greater than 1024px
                                     1024: {
@@ -283,12 +328,79 @@ function populateMapWithMarkers(map, markersLayer) {
                                     swiperWrapper.appendChild(slide);
                                 });
                             }
-
-
-
-
                         }
+
+
+
+
                     }
+
+                    // function setImages() {
+                    //     setSwiperSlider();
+                    //     function setSwiperSlider() {
+                    //         // Initialize Swiper
+                    //         const swiperInstance = new Swiper('.swiper-container', {
+                    //             // Configuration options
+                    //             slidesPerView: 1,
+                    //             spaceBetween: 1,
+                    //             loop: true,
+                    //             navigation: {
+                    //                 nextEl: '.swiper-images-btn-next',
+                    //                 prevEl: '.swiper-images-btn-prev',
+                    //             },
+                    //             breakpoints: {
+                    //                 // When the viewport width is less than or equal to 640px
+                    //                 640: {
+                    //                     slidesPerView: 1,
+                    //                     spaceBetween: 1,
+                    //                 },
+                    //                 // When the viewport width is greater than 640px and less than or equal to 1024px
+                    //                 1024: {
+                    //                     slidesPerView: 1,
+                    //                     spaceBetween: 2,
+                    //                 },
+                    //                 // When the viewport width is greater than 1024px
+                    //                 1024: {
+                    //                     slidesPerView: 1,
+                    //                     spaceBetween: 3,
+                    //                 },
+                    //             },
+                    //             observer: true,
+                    //             observeParents: true,
+                    //             observeSlideChildren: true,
+                    //         });
+
+                    //         // Clear existing slider items
+                    //         const swiperWrapper = document.querySelector('.swiper-wrapper');
+                    //         swiperWrapper.innerHTML = '';
+
+                    //         genSliderItem();
+                    //         function genSliderItem() {
+                    //             // Generate the slider items
+                    //             institu_images.forEach((image, imageIndex) => {
+                    //                 const slide = document.createElement('div');
+                    //                 slide.classList.add('swiper-slide');
+                    //                 slide.classList.add('d-flex');
+                    //                 slide.classList.add('justify-content-center');
+                    //                 slide.classList.add('align-items-center');
+
+                    //                 const imgElement = document.createElement('img');
+                    //                 imgElement.src = image;
+                    //                 imgElement.alt = `Image ${imageIndex + 1}`;
+                    //                 imgElement.style.height = '48px'; // Set the height directly
+                    //                 imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
+
+                    //                 slide.appendChild(imgElement);
+
+                    //                 swiperWrapper.appendChild(slide);
+                    //             });
+                    //         }
+
+
+
+
+                    //     }
+                    // }
                 }
 
 
@@ -395,7 +507,7 @@ function addMarkerOnContextMenu(map, markersLayer) {
             marker.on('click', function () {
                 var markModal = document.getElementById(markModalID);
                 $(markModal).modal("show");
-                isModalActive = true;
+                openModal();
 
                 var modalViewLatitude = document.getElementById('modalEditLatitude');
                 modalViewLatitude.value = coordinates['lat'];
@@ -420,6 +532,7 @@ function addMarkerOnContextMenu(map, markersLayer) {
                         // $('#editMarkModal').modal('hide');
                         // newMarker.setPopupContent(updatedPopupContent);
                         // $(markModal).modal("hide");
+                        closeModal();
                     });
                 }
                 var modalRemoveButton = document.querySelector('.modal-mark-remove-btn');
@@ -427,7 +540,7 @@ function addMarkerOnContextMenu(map, markersLayer) {
                     modalRemoveButton.addEventListener('click', function () {
                         markersLayer.removeLayer(marker);
                         $(markModal).modal("hide");
-                        isModalActive = false;
+                        closeModal();
                     });
                 }
                 var modalCancelButton = document.querySelector('.modal-mark-cancel-btn');
@@ -435,7 +548,7 @@ function addMarkerOnContextMenu(map, markersLayer) {
                     modalCancelButton.addEventListener('click', function () {
                         // $('#editMarkModal').modal('hide');
                         $(markModal).modal("hide");
-                        isModalActive = false;
+                        closeModal();
                     });
                 }
 
@@ -462,70 +575,109 @@ function addMarkerOnContextMenu(map, markersLayer) {
                 function addImages2Modal() {
                     setImages()
                     function setImages() {
-                        setSwiperSlider();
-                        function setSwiperSlider() {
-                            // Initialize Swiper
-                            const swiperInstance = new Swiper('.swiper-container', {
-                                // Configuration options
-                                slidesPerView: 1,
-                                spaceBetween: 1,
-                                loop: true,
-                                navigation: {
-                                    nextEl: '.swiper-images-btn-next',
-                                    prevEl: '.swiper-images-btn-prev',
-                                },
-                                breakpoints: {
-                                    // When the viewport width is less than or equal to 640px
-                                    640: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 1,
-                                    },
-                                    // When the viewport width is greater than 640px and less than or equal to 1024px
-                                    1024: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 2,
-                                    },
-                                    // When the viewport width is greater than 1024px
-                                    1024: {
-                                        slidesPerView: 1,
-                                        spaceBetween: 3,
-                                    },
-                                },
-                                observer: true,
-                                observeParents: true,
-                                observeSlideChildren: true,
+                        setBS5Slider();
+                        function setBS5Slider(BS5SliderID) {
+                            const carouselIndicators = document.getElementById('caro_indicators');
+                            const carouselInner = document.getElementById('caro_items');
+
+                            institu_images.forEach((image, imageIndex) => {
+                                // Create indicator button
+                                const slideIndiBtn = document.createElement('button');
+                                slideIndiBtn.setAttribute('data-bs-target', '#' + BS5SliderID);
+                                slideIndiBtn.setAttribute('data-bs-slide-to', imageIndex);
+
+                                if (imageIndex === 0) {
+                                    slideIndiBtn.classList.add('active');
+                                }
+                                carouselIndicators.appendChild(slideIndiBtn);
+
+
+                                // Create carousel item
+                                const carouselItem = document.createElement('div');
+                                carouselItem.classList.add('carousel-item');
+                                carouselItem.classList.add('d-flex');
+                                carouselItem.classList.add('justify-content-center');
+                                carouselItem.classList.add('align-items-center');
+
+                                if (imageIndex === 0) {
+                                    carouselItem.classList.add('active');
+                                }
+
+                                const img = document.createElement('img');
+                                img.classList.add('d-block', 'w-100');
+                                img.src = image;
+                                carouselItem.appendChild(img);
+
+                                carouselInner.appendChild(carouselItem);
                             });
-
-                            // Clear existing slider items
-                            const swiperWrapper = document.querySelector('.swiper-wrapper');
-                            swiperWrapper.innerHTML = '';
-
-                            genSliderItem();
-                            function genSliderItem() {
-                                // Generate the slider items
-                                institu_images.forEach((image, imageIndex) => {
-                                    const slide = document.createElement('div');
-                                    slide.classList.add('swiper-slide');
-                                    slide.classList.add('d-flex');
-                                    slide.classList.add('justify-content-center');
-                                    slide.classList.add('align-items-center');
-
-                                    const imgElement = document.createElement('img');
-                                    imgElement.src = image;
-                                    imgElement.alt = `Image ${imageIndex + 1}`;
-                                    imgElement.style.height = '48px'; // Set the height directly
-                                    imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
-
-                                    slide.appendChild(imgElement);
-
-                                    swiperWrapper.appendChild(slide);
-                                });
-                            }
-
-
-
-
                         }
+
+
+
+                        // // setSwiperSlider();
+                        // function setSwiperSlider() {
+                        //     // Initialize Swiper
+                        //     const swiperInstance = new Swiper('.swiper-container', {
+                        //         // Configuration options
+                        //         slidesPerView: 1,
+                        //         spaceBetween: 1,
+                        //         loop: true,
+                        //         navigation: {
+                        //             nextEl: '.swiper-images-btn-next',
+                        //             prevEl: '.swiper-images-btn-prev',
+                        //         },
+                        //         breakpoints: {
+                        //             // When the viewport width is less than or equal to 640px
+                        //             640: {
+                        //                 slidesPerView: 1,
+                        //                 spaceBetween: 1,
+                        //             },
+                        //             // When the viewport width is greater than 640px and less than or equal to 1024px
+                        //             1024: {
+                        //                 slidesPerView: 1,
+                        //                 spaceBetween: 2,
+                        //             },
+                        //             // When the viewport width is greater than 1024px
+                        //             1024: {
+                        //                 slidesPerView: 1,
+                        //                 spaceBetween: 3,
+                        //             },
+                        //         },
+                        //         observer: true,
+                        //         observeParents: true,
+                        //         observeSlideChildren: true,
+                        //     });
+
+                        //     // Clear existing slider items
+                        //     const swiperWrapper = document.querySelector('.swiper-wrapper');
+                        //     swiperWrapper.innerHTML = '';
+
+                        //     genSliderItem();
+                        //     function genSliderItem() {
+                        //         // Generate the slider items
+                        //         institu_images.forEach((image, imageIndex) => {
+                        //             const slide = document.createElement('div');
+                        //             slide.classList.add('swiper-slide');
+                        //             slide.classList.add('d-flex');
+                        //             slide.classList.add('justify-content-center');
+                        //             slide.classList.add('align-items-center');
+
+                        //             const imgElement = document.createElement('img');
+                        //             imgElement.src = image;
+                        //             imgElement.alt = `Image ${imageIndex + 1}`;
+                        //             imgElement.style.height = '48px'; // Set the height directly
+                        //             imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
+
+                        //             slide.appendChild(imgElement);
+
+                        //             swiperWrapper.appendChild(slide);
+                        //         });
+                        //     }
+                        // }
+
+
+
+
                     }
                 }
 

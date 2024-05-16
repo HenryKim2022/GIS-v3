@@ -46,11 +46,13 @@
 <link rel="stylesheet"
     href="{{ asset('public/materialize/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
 
+
 <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/dropzone/dropzone.css') }}" />
 <script src="{{ asset('public/materialize/assets/vendor/libs/dropzone/dropzone.js') }}"></script>
 
 {{-- <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" /> --}}
 {{-- <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script> --}}
+
 
 {{-- Leaflet from Template --}}
 {{-- <link rel="stylesheet" href="{{ asset('public/materialize/assets/vendor/libs/leaflet/leaflet.css') }}" /> --}}
@@ -68,18 +70,15 @@
 <!-- Helpers -->
 <script src="{{ asset('public/materialize/assets/vendor/js/helpers.js') }}"></script>
 <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-<!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-<script src="{{ asset('public/materialize/assets/vendor/js/template-customizer.js') }}"></script>
-<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-<script src="{{ asset('public/materialize/assets/js/front-config.js') }}"></script>
-<script src="{{ asset('public/materialize/assets/js/config.js') }}"></script>
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="{{ asset('public/materialize/assets/vendor/js/template-customizer.js') }}"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('public/materialize/assets/js/front-config.js') }}"></script>
+    <script src="{{ asset('public/materialize/assets/js/config.js') }}"></script>
 
 
 <script src="{{ asset('public/materialize/assets/vendor/js/dropdown-hover.js') }}"></script>
 <script src="{{ asset('public/materialize/assets/vendor/js/mega-dropdown.js') }}"></script>
-
-
-
 
 
 

@@ -32,6 +32,7 @@
 
 
 
+
 <!-- alert:js assets vendor & page -->
 <script src="{{ asset('public/materialize/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 <script src="{{ asset('public/materialize/assets/js/extended-ui-sweetalert2.js') }}"></script>
@@ -125,3 +126,8 @@
         // });
     })
 </script>
+
+
+
+
+
