@@ -51,20 +51,20 @@
                     <div class="col-12 col-lg-3 col-md-12">
                         <div class="form-floating form-floating-outline form-control">
                             <div class="mb-2">
-                                <label id="modalViewLogo" name="modalViewLogo" for="modalViewLogoPreview"
+                                <label for="modalViewLogoPreview"
                                     disabled>Logo</label>
                             </div>
                             <div id="modalViewLogoPreview"
-                                class="logo-preview-container mb-2 d-flex justify-content-center">
+                                class="logo-view-preview-container mb-2 d-flex justify-content-center">
                                 <!-- Initial Image -->
                             </div>
                         </div>
 
                         <script>
-                            var modalLogoPreview = document.getElementById('modalViewLogoPreview');
+                            var modalViewLogoPreview = document.getElementById('modalViewLogoPreview');
 
                             // Add magnifying icon on hover
-                            modalLogoPreview.addEventListener('mouseenter', function() {
+                            modalViewLogoPreview.addEventListener('mouseenter', function() {
                                 var zoomIcon = document.createElement('i');
                                 zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
                                 zoomIcon.style.position = 'absolute';
@@ -80,23 +80,23 @@
                                 zoomIcon.style.borderRadius = '50%';
                                 zoomIcon.style.padding = '8px';
                                 zoomIcon.style.zIndex = '1';
-                                modalLogoPreview.appendChild(zoomIcon);
+                                modalViewLogoPreview.appendChild(zoomIcon);
                             });
 
                             // Remove magnifying icon on hover out
-                            modalLogoPreview.addEventListener('mouseleave', function() {
-                                var zoomIcon = modalLogoPreview.querySelector('.magnify-icon');
+                            modalViewLogoPreview.addEventListener('mouseleave', function() {
+                                var zoomIcon = modalViewLogoPreview.querySelector('.magnify-icon');
                                 if (zoomIcon) {
                                     zoomIcon.remove();
                                 }
                             });
 
                             // Add click event listener to open the image in a Bootstrap 5 image modal
-                            modalLogoPreview.addEventListener('click', function() {
-                                var modalImage = new bootstrap.Modal(document.getElementById('modalLogoPopUp'));
-                                var modalImageContent = document.getElementById('modalImageContent');
-                                modalImageContent.src = modalLogoPreview.querySelector('.logo-preview').src;
-                                modalImage.show();
+                            modalViewLogoPreview.addEventListener('click', function() {
+                                var modalViewLogoPopUp = new bootstrap.Modal(document.getElementById('modalViewLogoPopUp'));
+                                var modalViewZoomImageContent = document.getElementById('modalViewZoomImageContent');
+                                modalViewZoomImageContent.src = modalViewLogoPreview.querySelector('.logo-preview').src;
+                                modalViewLogoPopUp.show();
                             });
                         </script>
 
@@ -149,15 +149,15 @@
                         <script>
                             // Add event listeners to dynamically generated images
                             document.getElementById('swiperImagesContainerView').addEventListener('click', function(event) {
-                                var modalImagesPreview = document.getElementById('swiperImagesContainerView');
-                                var modalImage = new bootstrap.Modal(document.getElementById('modalLogoPopUp'));
-                                var modalImageContent = document.getElementById('modalImageContent');
+                                // var modalImagesPreview = document.getElementById('swiperImagesContainerView');
+                                var modalViewImage = new bootstrap.Modal(document.getElementById('modalViewLogoPopUp'));
+                                var modalViewZoomImageContent = document.getElementById('modalViewZoomImageContent');
 
                                 var clickedImage = event.target.closest('img');
                                 if (clickedImage) {
                                     var clickedImageUrl = clickedImage.src;
-                                    modalImageContent.src = clickedImageUrl;
-                                    modalImage.show();
+                                    modalViewZoomImageContent.src = clickedImageUrl;
+                                    modalViewImage.show();
                                 }
                             });
 
@@ -200,14 +200,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalLogoPopUp" data-bs-backdrop="false" tabindex="-1" style="z-index: 1105 !important">
+<div class="modal fade" id="modalViewLogoPopUp" data-bs-backdrop="false" tabindex="-1" style="z-index: 1105 !important">
     <div class="modal-dialog modal-md modal-simple modal-edit-user modal-dialog-centered">
         <div class="modal-content p-3 p-md-5">
             <div class="modal-body py-3 py-md-0 d-flex align-content-around justify-content-around">
                 <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
-                    id="close_modalLogoPopUp"></button>
-                <img id="modalImageContent" class="align-self-center col-12 col-lg-6 col-md-12" src=""
-                    alt="Modal Image">
+                    id="close_modalViewLogoPopUp"></button>
+                <img id="modalViewZoomImageContent" class="align-self-center col-12 col-lg-6 col-md-12" alt="Modal Image">
             </div>
         </div>
     </div>
@@ -253,10 +252,10 @@
     // });
 
 
-    // const modalViewLogoPopUp = document.getElementById('close_modalLogoPopUp');
+    // const modalViewLogoPopUp = document.getElementById('close_modalViewLogoPopUp');
     // modalViewLogoPopUp.addEventListener('click', function(event) {
     //     event.preventDefault(); // Prevent form submission
-    //     $('#modalLogoPopUp').modal('hide');
+    //     $('#modalViewLogoPopUp').modal('hide');
     // });
 </script>
 

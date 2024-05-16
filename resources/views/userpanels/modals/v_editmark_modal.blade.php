@@ -60,66 +60,127 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="form-floating form-floating-outline mb-4">
-                            <input type="file" class="form-control" id="modalEditLogo" name="modalEditLogo" />
-                            <label for="modalEditLogo">Logo</label>
-                        </div>
-
-                        <div class="form-floating form-floating-outline mb-4">
-                            <div id="modalEditLogoPreview" class="logo-preview-container d-flex justify-content-center">
-                                <!-- Initial Image -->
+                        <div class="form-floating form-floating-outline form-control">
+                            <div class="mb-4">
+                                <label for="modalEditLogo" class="mb-2" disabled>Logo</label>
+                                <input type="file" class="form-control" id="modalEditLogo" name="modalEditLogo" />
+                            </div>
+                            <div class="logo-edit-preview-container mb-2 d-flex justify-content-center"
+                                id="modalEditLogoPreview">
+                                {{-- <img src="public/img/noimage.png" alt="" class="logo-preview" style="height: 96px; width: 96px;"> --}}
                             </div>
                         </div>
 
                         <script>
-                            var modalEditLogoPreview = document.getElementById('modalEditLogoPreview');
+                            var modalEditLogoPreview = document.getElementsByClassName('logo-edit-preview-container');
+                            var modalEditLogoInput = document.getElementById('modalEditLogo');
+                            var modalEditZoomImageContent = document.getElementById('modalEditZoomImageContent');
 
-                            // Add magnifying icon on hover
-                            var logoPreviewImg = modalEditLogoPreview.querySelector('.logo-preview');
-                            modalEditLogoPreview.addEventListener('mouseenter', function() {
-                                zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
-                                zoomIcon.style.position = 'absolute';
-                                zoomIcon.style.top = '0';
-                                zoomIcon.style.left = '0';
-                                zoomIcon.style.width = '100%';
-                                zoomIcon.style.height = '100%';
-                                zoomIcon.style.display = 'flex';
-                                zoomIcon.style.justifyContent = 'center';
-                                zoomIcon.style.alignItems = 'center';
-                                zoomIcon.style.fontSize = '24px';
-                                zoomIcon.style.color = 'white';
-                                zoomIcon.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                                zoomIcon.style.borderRadius = '50%';
-                                zoomIcon.style.padding = '8px';
-                                logoPreviewImg.parentNode.insertBefore(zoomIcon, logoPreviewImg.nextSibling);
+                            modalEditLogoInput.addEventListener('change', function() {
+                                const file = this.files[0];
+                                if (file && file.type.startsWith('image/')) {
+                                    const img = document.createElement('img');
+                                    img.src = URL.createObjectURL(file);
+
+                                    img.onload = function() {
+                                        for (var i = 0; i < modalEditLogoPreview.length; i++) {
+                                            modalEditLogoPreview[i].querySelector('.logo-preview').src = img.src;
+                                        }
+                                    };
+                                }
                             });
 
-                            // Remove magnifying icon on hover out
-                            modalEditLogoPreview.addEventListener('mouseleave', function() {
-                                var zoomIcon = modalEditLogoPreview.querySelector('.magnify-icon');
-                                if (zoomIcon) {
-                                    zoomIcon.remove();
+                            for (var i = 0; i < modalEditLogoPreview.length; i++) {
+                                modalEditLogoPreview[i].addEventListener('click', function() {
+                                    var modalEditZoomImageContent = document.getElementById('modalEditZoomImageContent');
+                                    modalEditZoomImageContent.src = this.querySelector('.logo-preview').src;
+                                    var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
+                                    modalImage.show();
+                                });
+                            }
+                        </script>
+
+
+                        {{-- <script>
+                            var modalLogoPreview = document.getElementById('modalLogoPreview');
+                            var modalEditLogoInput = document.getElementById('modalEditImages');
+
+                            // Add change event listener to the file input
+                            modalEditLogoInput.addEventListener('change', function() {
+                                // Get the selected file
+                                const file = modalEditLogoInput.files[0];
+
+                                // Check if the file is an image
+                                if (file && file.type.startsWith('image/')) {
+                                    // Create a new image element
+                                    const img = document.createElement('img');
+
+                                    // Set the image source to the selected file
+                                    img.src = URL.createObjectURL(file);
+
+                                    // Wait for the image to load
+                                    img.onload = function() {
+                                        // Set the image source to the logo-preview element
+                                        modalLogoPreview.querySelector('.logo-preview').src = img.src;
+                                    };
                                 }
                             });
 
                             // Add click event listener to open the image in a Bootstrap 5 image modal
-                            modalEditLogoPreview.addEventListener('click', function() {
+                            modalLogoPreview.addEventListener('click', function() {
                                 var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
-                                var modalImageContent = document.getElementById('modalImageContent');
-                                modalImageContent.src = modalEditLogoPreview.querySelector('.logo-preview').src;
+                                var modalEditZoomImageContent = document.getElementById('modalEditZoomImageContent');
+                                modalEditZoomImageContent.src = modalLogoPreview.querySelector('.logo-preview').src;
                                 modalImage.show();
                             });
-                        </script>
+                        </script> --}}
                     </div>
 
 
-                    <div class="col-12">
-                        <div class="input-group input-group-merge">
-                            <div class="form-floating form-floating-outline mb-4">
-                                <input type="file" class="form-control" id="modalEditImages" name="modalEditImages" />
-                                <label for="modalEditImages">Images</label>
+                    {{-- Working Validation Example: --}}
+                    {{-- <div class="col-12 mb-2">
+                        <div class="form-floating form-floating-outline form-control mb-2">
+                            <div class="mb-2">
+                                <label id="modalEditImage" name="modalEditImage" for="modalEditImagesPreview"
+                                    disabled>Images</label>
+                                <input type="file" class="form-control" id="modalEditImages"
+                                    name="modalEditImages" />
+                            </div>
+                            <div class="mb-2">
+                                <label id="modalEditImage" name="modalEditImage" for="modalEditImagesPreview"
+                                    disabled>Images</label>
                             </div>
                         </div>
+                    </div> --}}
+
+
+                    {{-- All form field Validation in modal, Not Working after modified it like this : --}}
+                    <div class="col-12 mb-2">
+                        <div class="form-floating form-floating-outline form-control mb-2">
+                            <div class="card mb-2">
+                                {{-- <h5 class="card-header">Multiple</h5> --}}
+                                <label id="modalEditImage" name="modalEditImage" for="modalEditImagesPreview"
+                                    class="mb-2" disabled>Images</label>
+                                <div class="card-body dropzone">
+                                    {{-- <form action="/uploads/institution/images" class="needsclick" id="dropzone-multi"> --}}
+                                    {{-- </form> --}}
+                                    <div class="needsclick" id="dropzone-multi">
+                                        <div class="dz-message needsclick text-sm">
+                                            Drop files here or click to upload
+                                            <span class="note needsclick text-sm">(This is just a demo dropzone.
+                                                Selected files are
+                                                <span class="fw-medium">not</span> actually uploaded.)</span>
+                                        </div>
+                                        <div class="fallback">
+                                            <input name="file" type="file" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
 
 
                         <style>
@@ -135,54 +196,45 @@
                                 content: '\e5cb';
                             }
                         </style>
-                        <div class="form-floating form-floating-outline mb-4">
-                            <div class="swiper-container overflow-hidden">
-                                <div class="swiper-wrapper" id="swiperImagesContainer">
-                                    <!-- Slides will be dynamically generated here -->
-                                </div>
 
-                                <!-- Navigation buttons -->
-                                <div class="swiper-button-next swiper-images-btn-next">
-                                    <i class="mdi mdi-chevron-right"></i>
-                                </div>
-                                <div class="swiper-button-prev swiper-images-btn-prev">
-                                    <i class="mdi mdi-chevron-left"></i>
-                                </div>
-                            </div>
-                        </div>
 
                         <script>
-                            // Add event listeners to dynamically generated images
-                            document.getElementById('swiperImagesContainer').addEventListener('mouseenter', function(event) {
-                                var zoomIcon = document.createElement('i');
-                                zoomIcon.classList.add('mdi', 'mdi-magnify', 'magnify-icon');
-                                event.target.appendChild(zoomIcon);
+                            var thumbnails = document.querySelectorAll('[data-dz-thumbnail]');
+                            thumbnails.forEach(function(thumbnail) {
+                                thumbnail.addEventListener('click', function(event) {
+                                    var modalEditImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
+                                    var modalEditZoomImageContent = document.getElementById('modalEditZoomImageContent');
+
+                                    var clickedImage = event.target.closest('img');
+                                    if (clickedImage) {
+                                        var clickedImageUrl = clickedImage.src;
+                                        modalEditZoomImageContent.src = clickedImageUrl;
+                                        modalEditImage.show();
+                                    }
+
+                                    setLogo(modalEditImage, modalEditZoomImageContent);
+                                });
                             });
 
-                            document.getElementById('swiperImagesContainer').addEventListener('mouseleave', function(event) {
-                                var zoomIcon = event.target.querySelector('.magnify-icon');
-                                if (zoomIcon) {
-                                    zoomIcon.remove();
-                                }
-                            });
 
+                            // // Add event listeners to dynamically generated images
+                            // document.querySelectorAll('img').forEach(function(thumbnail) {
+                            //     thumbnail.addEventListener('click', function(event) {
+                            //         var modalEditImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
+                            //         var modalEditZoomImageContent = document.getElementById('modalEditZoomImageContent');
 
-                            // Add event listeners to dynamically generated images
-                            document.getElementById('swiperImagesContainer').addEventListener('click', function(event) {
-                                var modalImage = new bootstrap.Modal(document.getElementById('modalEditLogoPopUp'));
-                                var modalImageContent = document.getElementById('modalImageContent');
+                            //         var clickedImage = event.target.closest('img');
+                            //         if (clickedImage) {
+                            //             var clickedImageUrl = clickedImage.src;
+                            //             modalEditZoomImageContent.src = clickedImageUrl;
+                            //             modalEditImage.show();
 
-                                var clickedImage = event.target.closest('img');
-                                if (clickedImage) {
-                                    var clickedImageUrl = clickedImage.src;
-                                    modalImageContent.src = clickedImageUrl;
-                                    modalImage.show();
-                                }
-                            });
+                            //             setLogo(modalEditImage, modalEditZoomImageContent);
+                            //         }
+                            //     });
+
+                            // });
                         </script>
-
-
-
                     </div>
                     {{-- <div class="col-12 col-md-6">
                         <div class="input-group input-group-merge">
@@ -246,7 +298,7 @@
                     </div> --}}
 
 
-                    <div class="col-12">
+                    <div class="col-12 mb-2">
                         <div class="form-floating form-floating-outline">
                             <input type="text" id="modalEditLastUpdate" name="modalEditLastUpdate"
                                 class="form-control" placeholder="last update" disabled />
@@ -258,7 +310,7 @@
                     <div class="col-12 mb-3">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="bs-validation-checkbox" required />
-                            <label class="form-check-label" for="bs-validation-checkbox">Procced to save</label>
+                            <label class="form-check-label" for="bs-validation-checkbox">Proceed to save</label>
                             <div class="invalid-feedback">You must agree before saving.</div>
                         </div>
                     </div>
@@ -287,18 +339,19 @@
 </div>
 
 <div class="modal fade" id="modalEditLogoPopUp" data-bs-backdrop="false" tabindex="-1"
-    style="z-index: 1104 !important">
+    style="z-index: 1105 !important">
     <div class="modal-dialog modal-sm modal-simple modal-edit-user modal-dialog-centered">
         <div class="modal-content p-3 p-md-5">
             <div class="modal-body py-3 py-md-0 d-flex align-content-around justify-content-around">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     onclick="close_modalEditLogoPopUp()"></button>
-                <img id="modalImageContent" class="align-self-center" src="" alt="Modal Image"
-                    style="width: 148px;">
+                <img id="modalEditZoomImageContent" class="align-self-center col-12 col-lg-6 col-md-12"
+                    alt="Modal Image">
             </div>
         </div>
     </div>
 </div>
+
 
 
 
@@ -362,12 +415,49 @@
         });
     });
 
-
-
-    // function close_modalEditLogoPopUp() {
-    //     var modalEditLogoPopUp = document.getElementById('modalEditLogoPopUp');
-    //     modalEditLogoPopUp.style.display = 'none';
-    // }
+    function close_modalEditLogoPopUp() {
+        //     var modalEditLogoPopUp = document.getElementById('modalEditLogoPopUp');
+        //     modalEditLogoPopUp.style.display = 'none';
+    }
 </script>
 
-<!-- / CONTENT: EDIT PROFILE -->
+
+
+<script>
+    // Get the form element
+    const form = document.getElementById('editUserForm');
+
+    // Add a submit event listener to the form
+    form.addEventListener('submit', function(event) {
+        // Prevent the form from submitting normally
+        event.preventDefault();
+
+        // Perform custom validation on the form fields
+        const formFields = form.elements;
+        let isValid = true;
+
+        for (let i = 0; i < formFields.length; i++) {
+            const field = formFields[i];
+
+            // Check if the field is required and empty
+            if (field.required && !field.value) {
+                isValid = false;
+                field.classList.add('is-invalid');
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        }
+
+        // If the form is valid, submit it using JavaScript
+        if (isValid) {
+            // Submit the form using JavaScript
+            const formData = new FormData(form);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/submit-form', true);
+            xhr.send(formData);
+        }
+    });
+</script>
+
+
+< !--/ CONTENT: EDIT PROFILE -->

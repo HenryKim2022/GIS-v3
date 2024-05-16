@@ -1,4 +1,4 @@
-var imgu = "https://demo4.iti-if.my.id/public/plugins/leaflet-official/data.geojson.json/img/tutwuri.png";
+var imgu = "public/img/noimage.png";
 var controlSearch;
 var mycurrentLat, mycurrentLng;
 
@@ -378,7 +378,11 @@ function addMarkerOnContextMenu(map, markersLayer) {
             const institu_name = "Untitled Marker";
             const institu_npsn = "fill data!";
             const imgLogo = imgu; // Corrected variable name
-            const institu_images = imgu;
+            const institu_images = [
+                imgu,
+                imgu,
+                imgu
+            ];
             const last_update = "never";
 
             const tooltipData = {
@@ -406,8 +410,8 @@ function addMarkerOnContextMenu(map, markersLayer) {
                 var modalViewLastUpdate = document.getElementById('modalEditLastUpdate');
                 modalViewLastUpdate.value = last_update;
 
-                // addLogo2Modal(LogoPreviewId = "modalEditLogoPreview");
-                // addImages2Modal();
+                addLogo2Modal(LogoPreviewId = "modalEditLogoPreview");
+                addImages2Modal();
 
 
                 var modalSaveButton = document.querySelector('.modal-mark-save-btn');
@@ -433,6 +437,96 @@ function addMarkerOnContextMenu(map, markersLayer) {
                         $(markModal).modal("hide");
                         isModalActive = false;
                     });
+                }
+
+                function addLogo2Modal(LogoPreviewId = "") {
+                    setLogo();
+                    function setLogo() {
+                        var modalLogoPreview = document.getElementById(LogoPreviewId);
+                        // Check if logo already exists
+                        if (modalLogoPreview.childElementCount === 0) {
+                            updateLogoPreview(imgLogo);
+                        }
+                        function updateLogoPreview(imageSrc) {
+                            var logoImage = document.createElement('img');
+                            logoImage.src = imageSrc;
+                            logoImage.classList.add('logo-preview');
+                            logoImage.style.width = '96px';
+                            logoImage.style.height = '96px';
+
+                            modalLogoPreview.appendChild(logoImage);
+                        }
+                    }
+                }
+
+                function addImages2Modal() {
+                    setImages()
+                    function setImages() {
+                        setSwiperSlider();
+                        function setSwiperSlider() {
+                            // Initialize Swiper
+                            const swiperInstance = new Swiper('.swiper-container', {
+                                // Configuration options
+                                slidesPerView: 1,
+                                spaceBetween: 1,
+                                loop: true,
+                                navigation: {
+                                    nextEl: '.swiper-images-btn-next',
+                                    prevEl: '.swiper-images-btn-prev',
+                                },
+                                breakpoints: {
+                                    // When the viewport width is less than or equal to 640px
+                                    640: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 1,
+                                    },
+                                    // When the viewport width is greater than 640px and less than or equal to 1024px
+                                    1024: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 2,
+                                    },
+                                    // When the viewport width is greater than 1024px
+                                    1024: {
+                                        slidesPerView: 1,
+                                        spaceBetween: 3,
+                                    },
+                                },
+                                observer: true,
+                                observeParents: true,
+                                observeSlideChildren: true,
+                            });
+
+                            // Clear existing slider items
+                            const swiperWrapper = document.querySelector('.swiper-wrapper');
+                            swiperWrapper.innerHTML = '';
+
+                            genSliderItem();
+                            function genSliderItem() {
+                                // Generate the slider items
+                                institu_images.forEach((image, imageIndex) => {
+                                    const slide = document.createElement('div');
+                                    slide.classList.add('swiper-slide');
+                                    slide.classList.add('d-flex');
+                                    slide.classList.add('justify-content-center');
+                                    slide.classList.add('align-items-center');
+
+                                    const imgElement = document.createElement('img');
+                                    imgElement.src = image;
+                                    imgElement.alt = `Image ${imageIndex + 1}`;
+                                    imgElement.style.height = '48px'; // Set the height directly
+                                    imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
+
+                                    slide.appendChild(imgElement);
+
+                                    swiperWrapper.appendChild(slide);
+                                });
+                            }
+
+
+
+
+                        }
+                    }
                 }
 
 

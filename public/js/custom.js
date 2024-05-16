@@ -187,5 +187,7 @@ if (signupBtn) {
 
 
 // /////////////////////////////////////////////////////////////////////////////
-// /////    <!-- CUST SCRIPT: REGISTER PRIVACY POLICY JS -->
+// /////    <!-- CUST SCRIPT: DROPZONE JS -->
 // /////////////////////////////////////////////////////////////////////////////
+// previewTemplate: Updated Dropzone default previewTemplate
+// ! Don't change it unless you really know what you are doing
