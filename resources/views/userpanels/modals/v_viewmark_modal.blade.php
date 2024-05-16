@@ -203,7 +203,7 @@
 
                     <div class="col-12 col-lg-9 col-md-12">
                         <div class="input-group input-group-merge">
-                            <div class="form-floating form-floating-outline mb-2">
+                            <div class="form-floating form-control form-floating-outline mb-2">
                                 {{-- <div class="form-control">
 
                                 </div> --}}
