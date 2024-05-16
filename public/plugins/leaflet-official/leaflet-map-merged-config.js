@@ -320,7 +320,7 @@ function populateMapWithMarkers(map, markersLayer) {
                                     const imgElement = document.createElement('img');
                                     imgElement.src = image;
                                     imgElement.alt = `Image ${imageIndex + 1}`;
-                                    imgElement.style.height = '48px'; // Set the height directly
+                                    imgElement.style.height = '40px'; // Set the height directly
                                     imgElement.id = `image${imageIndex + 1}`; // Assign an ID to the image element
 
                                     slide.appendChild(imgElement);

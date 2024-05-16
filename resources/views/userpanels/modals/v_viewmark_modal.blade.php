@@ -209,7 +209,7 @@
                                 </div> --}}
                                 <div for="modalViewImages" class="mb-2" id="modalViewImages" name="modalViewImages"
                                     disabled>Images</div>
-                                <div class="form-floating form-floating-outline">
+                                <div class="form-floating form-floating-outline mb-2">
                                     <div class="swiper-container overflow-hidden">
                                         <div class="swiper-wrapper" id="swiperImagesContainerView">
                                             <!-- Slides will be dynamically generated here -->
@@ -324,7 +324,6 @@
     });
 
 
-
     // Get the modal inputs
     var modalInputs = document.querySelectorAll('.form-floating');
     modalInputs.forEach(function(input) {
@@ -351,109 +350,4 @@
     });
 
 
-
-
-    // const viewMarkModalCloseBtn = document.getElementById('close_modalViewMarkModal');
-    // viewMarkModalCloseBtn.addEventListener('click', function(event) {
-    //     event.preventDefault(); // Prevent form submission
-    //     $('#viewMarkModal').modal('hide');
-    // });
-
-
-    // const modalViewLogoPopUp = document.getElementById('close_modalViewLogoPopUp');
-    // modalViewLogoPopUp.addEventListener('click', function(event) {
-    //     event.preventDefault(); // Prevent form submission
-    //     $('#modalViewLogoPopUp').modal('hide');
-    // });
 </script>
-
-{{--
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let swiperInstance;
-
-        function initSwiper() {
-            swiperInstance = new Swiper('.swiper-container', {
-                // Configuration options
-                slidesPerView: 1,
-                spaceBetween: 1,
-                loop: true,
-                navigation: {
-                    nextEl: '.swiper-images-btn-next',
-                    prevEl: '.swiper-images-btn-prev',
-                },
-                breakpoints: {
-                    // When the viewport width is less than or equal to 640px
-                    640: {
-                        slidesPerView: 1,
-                        spaceBetween: 1,
-                    },
-                    // When the viewport width is greater than 640px and less than or equal to 1024px
-                    1024: {
-                        slidesPerView: 1,
-                        spaceBetween: 2,
-                    },
-                    // When the viewport width is greater than 1024px
-                    1024: {
-                        slidesPerView: 1,
-                        spaceBetween: 3,
-                    },
-                },
-                observer: true,
-                observeParents: true,
-                observeSlideChildren: true,
-            });
-
-            // Get the modal swiper-navs
-            // var nextBtn = document.querySelector('.swiper-images-btn-next');
-            // nextBtn.addEventListener('click', function (event) {
-            //     event.stopPropagation(); // Stop the event from bubbling up
-            //     swiperInstance.slideNext();
-            // });
-
-            // var prevBtn = document.querySelector('.swiper-images-btn-prev');
-            // prevBtn.addEventListener('click', function (event) {
-            //     event.stopPropagation(); // Stop the event from bubbling up
-            //     swiperInstance.slidePrev();
-            // });
-
-            var nextBtn = document.querySelector('.swiper-images-btn-next');
-            var prevBtn = document.querySelector('.swiper-images-btn-prev');
-
-            // Use the separate event handler functions
-            nextBtn.addEventListener('click', swiperNextClickHandler);
-            prevBtn.addEventListener('click', swiperPrevClickHandler);
-        }
-
-        function swiperNextClickHandler(event) {
-            event.stopPropagation(); // Stop the event from bubbling up
-            swiperInstance.slideNext();
-        }
-
-        function swiperPrevClickHandler(event) {
-            event.stopPropagation(); // Stop the event from bubbling up
-            swiperInstance.slidePrev();
-        }
-
-        modalListener("viewMarkModal");
-
-        function modalListener(modalGeneralID) {
-            var modal = document.getElementById(modalGeneralID);
-            modal.addEventListener('show.bs.modal', function() {
-                initSwiper();
-            });
-            modal.addEventListener('hide.bs.modal', function() {
-                swiperInstance.destroy();
-                // Remove event listeners for the Swiper navigation buttons
-                var nextBtn = document.querySelector('.swiper-images-btn-next');
-                var prevBtn = document.querySelector('.swiper-images-btn-prev');
-                nextBtn.removeEventListener('click', swiperNextClickHandler);
-                prevBtn.removeEventListener('click', swiperPrevClickHandler);
-            });
-        }
-    });
-</script>
- --}}
-
-
-<!-- / CONTENT: EDIT PROFILE -->

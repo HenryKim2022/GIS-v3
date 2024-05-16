@@ -418,14 +418,10 @@
         });
     });
 
-    function close_modalEditLogoPopUp() {
-        //     var modalEditLogoPopUp = document.getElementById('modalEditLogoPopUp');
-        //     modalEditLogoPopUp.style.display = 'none';
-    }
 </script>
 
 
-
+{{--
 <script>
     // Get the form element
     const form = document.getElementById('editMarkForm');
@@ -460,6 +456,6 @@
             xhr.send(formData);
         }
     });
-</script>
+</script> --}}
 
 
