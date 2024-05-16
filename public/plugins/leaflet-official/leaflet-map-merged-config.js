@@ -575,42 +575,42 @@ function addMarkerOnContextMenu(map, markersLayer) {
                 function addImages2Modal() {
                     setImages()
                     function setImages() {
-                        setBS5Slider();
-                        function setBS5Slider(BS5SliderID) {
-                            const carouselIndicators = document.getElementById('caro_indicators');
-                            const carouselInner = document.getElementById('caro_items');
+                        // // setBS5Slider();
+                        // function setBS5Slider(BS5SliderID) {
+                        //     const carouselIndicators = document.getElementById('caro_indicators');
+                        //     const carouselInner = document.getElementById('caro_items');
 
-                            institu_images.forEach((image, imageIndex) => {
-                                // Create indicator button
-                                const slideIndiBtn = document.createElement('button');
-                                slideIndiBtn.setAttribute('data-bs-target', '#' + BS5SliderID);
-                                slideIndiBtn.setAttribute('data-bs-slide-to', imageIndex);
+                        //     institu_images.forEach((image, imageIndex) => {
+                        //         // Create indicator button
+                        //         const slideIndiBtn = document.createElement('button');
+                        //         slideIndiBtn.setAttribute('data-bs-target', '#' + BS5SliderID);
+                        //         slideIndiBtn.setAttribute('data-bs-slide-to', imageIndex);
 
-                                if (imageIndex === 0) {
-                                    slideIndiBtn.classList.add('active');
-                                }
-                                carouselIndicators.appendChild(slideIndiBtn);
+                        //         if (imageIndex === 0) {
+                        //             slideIndiBtn.classList.add('active');
+                        //         }
+                        //         carouselIndicators.appendChild(slideIndiBtn);
 
 
-                                // Create carousel item
-                                const carouselItem = document.createElement('div');
-                                carouselItem.classList.add('carousel-item');
-                                carouselItem.classList.add('d-flex');
-                                carouselItem.classList.add('justify-content-center');
-                                carouselItem.classList.add('align-items-center');
+                        //         // Create carousel item
+                        //         const carouselItem = document.createElement('div');
+                        //         carouselItem.classList.add('carousel-item');
+                        //         carouselItem.classList.add('d-flex');
+                        //         carouselItem.classList.add('justify-content-center');
+                        //         carouselItem.classList.add('align-items-center');
 
-                                if (imageIndex === 0) {
-                                    carouselItem.classList.add('active');
-                                }
+                        //         if (imageIndex === 0) {
+                        //             carouselItem.classList.add('active');
+                        //         }
 
-                                const img = document.createElement('img');
-                                img.classList.add('d-block', 'w-100');
-                                img.src = image;
-                                carouselItem.appendChild(img);
+                        //         const img = document.createElement('img');
+                        //         img.classList.add('d-block', 'w-100');
+                        //         img.src = image;
+                        //         carouselItem.appendChild(img);
 
-                                carouselInner.appendChild(carouselItem);
-                            });
-                        }
+                        //         carouselInner.appendChild(carouselItem);
+                        //     });
+                        // }
 
 
 

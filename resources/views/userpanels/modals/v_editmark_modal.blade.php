@@ -157,10 +157,13 @@
                     {{-- All form field Validation in modal, Not Working after modified it like this : --}}
                     <div class="col-12 mb-2">
                         <div class="form-floating form-floating-outline form-control mb-2">
-                            <div class="card mb-2">
-                                {{-- <h5 class="card-header">Multiple</h5> --}}
+                            <div>
                                 <label id="modalEditImage" name="modalEditImage" for="modalEditImagesPreview"
                                     class="mb-2" disabled>Images</label>
+
+                            </div>
+                            <div class="card mb-2">
+                                {{-- <h5 class="card-header">Multiple</h5> --}}
                                 <div class="card-body dropzone">
                                     {{-- <form action="/uploads/institution/images" class="needsclick" id="dropzone-multi"> --}}
                                     {{-- </form> --}}
