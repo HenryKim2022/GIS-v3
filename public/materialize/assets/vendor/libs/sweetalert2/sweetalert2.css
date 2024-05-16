@@ -1150,13 +1150,13 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
 }
 
 .light-style .swal2-container {
-  z-index: 1090;
+  z-index: 1106 !important;
 }
 .light-style .swal2-container .tooltip {
-  z-index: 1092;
+  z-index: 1108 !important;
 }
 .light-style .swal2-container .popover {
-  z-index: 1091;
+  z-index: 1107 !important;
 }
 .light-style .swal2-modal.swal2-popup {
   font-family: var(--bs-font-sans-serif);
@@ -1217,13 +1217,13 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
 }
 
 .dark-style .swal2-container {
-  z-index: 1090;
+  z-index: 1106 !important;
 }
 .dark-style .swal2-container .tooltip {
-  z-index: 1092;
+  z-index: 1108 !important;
 }
 .dark-style .swal2-container .popover {
-  z-index: 1091;
+  z-index: 1107 !important;
 }
 .dark-style .swal2-modal.swal2-popup {
   background: #30334e;

@@ -127,6 +127,7 @@ function showAlert(
             allowEscapeKey: false,
             didOpen: function () { },
             didClose: function () { },
+            zIndex: 1150
         });
     }
 }
