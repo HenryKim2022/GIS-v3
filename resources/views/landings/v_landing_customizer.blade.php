@@ -131,7 +131,7 @@
 
     <div data-bs-spy="scroll" class="scrollspy-example">
         <!-- Hero: Start -->
-        <section id="hero" class="section-py landing-hero position-relative">
+        <section id="hero" class="section-py pt-5 landing-hero position-relative">
             <img src="{{ asset('public/materialize/assets/img/front-pages/backgrounds/hero-bg-light.png') }}"
                 alt="hero background" class="position-absolute top-0 start-0 w-100 h-100 z-n1" data-speed="1"
                 data-app-light-img="front-pages/backgrounds/hero-bg-light.png"

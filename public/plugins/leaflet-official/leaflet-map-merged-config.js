@@ -1234,7 +1234,7 @@ function initializeMapApp() {
     addTileLayer(map);
     populateMapWithMarkers(map, markersLayer);
     addAddressSearchControl(map);
-    addGeocodeTracksControl(map, markersLayer);
+    // addGeocodeTracksControl(map, markersLayer);
     addResetViewControl(map);
     addLocateMeControl(map);
     addMarkerOnContextMenu(map, markersLayer);
